@@ -38,7 +38,6 @@
 		7FE546470E86B1B900DD28E4 /* Whip.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7FE546460E86B1B900DD28E4 /* Whip.aiff */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		9498EE500EAF91C5006B327F /* test in Resources */ = {isa = PBXBuildFile; fileRef = 9498EE4F0EAF91C5006B327F /* test */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,7 +97,6 @@
 		7FE546460E86B1B900DD28E4 /* Whip.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = Whip.aiff; path = Resources/Whip.aiff; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Discipline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discipline.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9498EE4F0EAF91C5006B327F /* test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +162,6 @@
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9498EE4F0EAF91C5006B327F /* test */,
 				7FE545070E86294000DD28E4 /* main.m */,
 				32DBCF750370BD2300C91783 /* Moirae_Prefix.pch */,
 			);
@@ -305,7 +302,6 @@
 				7FBEB6BB0E992C7000E240EC /* ReadMe.txt in Resources */,
 				7FDBF5410E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib in Resources */,
 				7FDBF5440E99BB9B00DD9B7F /* ClothoTaskPrompt.xib in Resources */,
-				9498EE500EAF91C5006B327F /* test in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
