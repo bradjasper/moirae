@@ -2,8 +2,8 @@
 //  main.m
 //  Dominatrix
 //
-//  Created by Nicholas Jitkoff on 6/2/05.
-//  Copyright __MyCompanyName__ 2005 . All rights reserved.
+//  Created by Nicholas Jitkoff on 6/2/05. 
+//  Copyright __MyCompanyName__ 2008 . All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
