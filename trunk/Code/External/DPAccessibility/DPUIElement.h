@@ -308,7 +308,7 @@ DP_STATIC_INLINE BOOL _DPAXAssertIfValid(AXError err, NSString *methName, id sel
 	BOOL b = err == kAXErrorSuccess;
 	
 	if (!b && err != kAXErrorInvalidUIElement &&
-		err != kAXErrorInvalidUIElementObserver)
+		err != kAXErrorInvalidUIElementObserver && err != kAXErrorNoValue)
 		
 		[[NSException exceptionWithName:DPAccessibilityException
 								 reason:[NSString stringWithFormat:@"%@ in %@ of %@",
