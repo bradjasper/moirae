@@ -13,6 +13,8 @@
 - (id) init {
   self = [super init];
   if (self != nil) {
+    [[NSFileManager defaultManager] createDirectoryAtPath:[@"~/Library/Logs/Discipline/Screenshots/" stringByStandardizingPath]
+                              withIntermediateDirectories:YES attributes:nil error:nil];
     [self captureScreen];
   }
   return self;
