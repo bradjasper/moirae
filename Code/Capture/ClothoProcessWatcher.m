@@ -162,7 +162,14 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
 }
 
 - (DPUIElement *)frontWindowForApp:(DPUIElement *)app{
-  return  [app valueForAttribute:(NSString *)kAXMainWindowAttribute];
+  DPUIElement *value = nil;
+@try {
+  value = [app valueForAttribute:(NSString *)kAXMainWindowAttribute];
+}
+@catch (NSException * e) {
+  NSLog(@"Exception raised: %@", e);
+}
+  return value;
 }
 
 
@@ -245,7 +252,7 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
 
 - (void)setCurrentWindow:(DPUIElement *)newCurrentWindow {
   if (!currentWindow && !newCurrentWindow) return;
-  if (![currentWindow isEqual:newCurrentWindow]) {
+  if (newCurrentWindow && ![currentWindow isEqual:newCurrentWindow]) {
     [currentWindow release];
     currentWindow = [newCurrentWindow retain];
     [self recordContext];
