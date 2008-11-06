@@ -38,16 +38,22 @@
 }
 
 - (void)captureScreen {
-  NSString *path = @"~/Library/Logs/Discipline/Screenshots/%@.png";
+  NSString *path = @"~/Library/Logs/Discipline/Screenshots/%@";
   path = [NSString stringWithFormat:path, [NSDate date]];
   path = [path stringByStandardizingPath];
   CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
-  [self writeCGImage:screenShot toFile:path];
+  [self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
   CGImageRelease(screenShot);
+  
+  NSArray *list = (NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly |  
+                             kCGWindowListExcludeDesktopElements, kCGNullWindowID);
+  
+  [list writeToFile:[path stringByAppendingPathExtension:@"plist"] 
+         atomically:NO];
+  [list release];
   
   [self performSelector:@selector(captureScreen) withObject:nil afterDelay:60.0];
 }
-
 
 - (void)writeCGImage:(CGImageRef)image toFile:(NSString *)path {
   

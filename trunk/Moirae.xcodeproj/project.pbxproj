@@ -17,13 +17,10 @@
 		7F4F34060E9EC1890061161A /* DXApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F34020E9EC1890061161A /* DXApp.m */; };
 		7FBEB3D60E9888B000E240EC /* DisciplineSilhouette.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7FBEB3D50E9888B000E240EC /* DisciplineSilhouette.pdf */; };
 		7FBEB4E80E9919ED00E240EC /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBEB4E70E9919ED00E240EC /* ApplicationServices.framework */; };
-		7FBEB6B70E992C7000E240EC /* DPAccessibilityNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBEB6AE0E992C7000E240EC /* DPAccessibilityNotificationCenter.m */; };
-		7FBEB6B80E992C7000E240EC /* DPNameServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBEB6B00E992C7000E240EC /* DPNameServer.m */; };
-		7FBEB6B90E992C7000E240EC /* DPUIElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBEB6B30E992C7000E240EC /* DPUIElement.m */; };
-		7FBEB6BA0E992C7000E240EC /* DPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBEB6B50E992C7000E240EC /* DPUtilities.m */; };
-		7FBEB6BB0E992C7000E240EC /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7FBEB6B60E992C7000E240EC /* ReadMe.txt */; };
 		7FDBF5410E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDBF53F0E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib */; };
 		7FDBF5440E99BB9B00DD9B7F /* ClothoTaskPrompt.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDBF5420E99BB9B00DD9B7F /* ClothoTaskPrompt.xib */; };
+		7FDD12480EC2813A004C5873 /* ClothoLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDD12470EC2813A004C5873 /* ClothoLogger.m */; };
+		7FDD12720EC285E5004C5873 /* GTMAXUIElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDD12700EC285E5004C5873 /* GTMAXUIElement.m */; };
 		7FE5450D0E86294000DD28E4 /* NDProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE544FC0E86294000DD28E4 /* NDProcess.m */; };
 		7FE5450E0E86294000DD28E4 /* NSString+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE544FF0E86294000DD28E4 /* NSString+NDCarbonUtilities.m */; };
 		7FE5450F0E86294000DD28E4 /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE545010E86294000DD28E4 /* NSURL+NDCarbonUtilities.m */; };
@@ -64,18 +61,12 @@
 		7F4F34030E9EC1890061161A /* DXApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DXApp.h; path = Discipline/DXApp.h; sourceTree = "<group>"; };
 		7FBEB3D50E9888B000E240EC /* DisciplineSilhouette.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = DisciplineSilhouette.pdf; path = Resources/DisciplineSilhouette.pdf; sourceTree = "<group>"; };
 		7FBEB4E70E9919ED00E240EC /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
-		7FBEB6AD0E992C7000E240EC /* DPAccessibilityNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPAccessibilityNotificationCenter.h; sourceTree = "<group>"; };
-		7FBEB6AE0E992C7000E240EC /* DPAccessibilityNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPAccessibilityNotificationCenter.m; sourceTree = "<group>"; };
-		7FBEB6AF0E992C7000E240EC /* DPNameServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPNameServer.h; sourceTree = "<group>"; };
-		7FBEB6B00E992C7000E240EC /* DPNameServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPNameServer.m; sourceTree = "<group>"; };
-		7FBEB6B10E992C7000E240EC /* DPUIElement-Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DPUIElement-Private.h"; sourceTree = "<group>"; };
-		7FBEB6B20E992C7000E240EC /* DPUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPUIElement.h; sourceTree = "<group>"; };
-		7FBEB6B30E992C7000E240EC /* DPUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPUIElement.m; sourceTree = "<group>"; };
-		7FBEB6B40E992C7000E240EC /* DPUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPUtilities.h; sourceTree = "<group>"; };
-		7FBEB6B50E992C7000E240EC /* DPUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPUtilities.m; sourceTree = "<group>"; };
-		7FBEB6B60E992C7000E240EC /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		7FDBF5400E99BB8A00DD9B7F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/DisciplineTaskPrompt.xib; sourceTree = "<group>"; };
 		7FDBF5430E99BB9B00DD9B7F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ClothoTaskPrompt.xib; sourceTree = "<group>"; };
+		7FDD12460EC2813A004C5873 /* ClothoLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothoLogger.h; sourceTree = "<group>"; };
+		7FDD12470EC2813A004C5873 /* ClothoLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothoLogger.m; sourceTree = "<group>"; };
+		7FDD12700EC285E5004C5873 /* GTMAXUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMAXUIElement.m; sourceTree = "<group>"; };
+		7FDD12710EC285E5004C5873 /* GTMAXUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMAXUIElement.h; sourceTree = "<group>"; };
 		7FE544FB0E86294000DD28E4 /* NDProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDProcess.h; sourceTree = "<group>"; };
 		7FE544FC0E86294000DD28E4 /* NDProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDProcess.m; sourceTree = "<group>"; };
 		7FE544FD0E86294000DD28E4 /* NSEvent+BLTRExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEvent+BLTRExtensions.h"; sourceTree = "<group>"; };
@@ -192,23 +183,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7FBEB6AC0E992C7000E240EC /* DPAccessibility */ = {
-			isa = PBXGroup;
-			children = (
-				7FBEB6AD0E992C7000E240EC /* DPAccessibilityNotificationCenter.h */,
-				7FBEB6AE0E992C7000E240EC /* DPAccessibilityNotificationCenter.m */,
-				7FBEB6AF0E992C7000E240EC /* DPNameServer.h */,
-				7FBEB6B00E992C7000E240EC /* DPNameServer.m */,
-				7FBEB6B10E992C7000E240EC /* DPUIElement-Private.h */,
-				7FBEB6B20E992C7000E240EC /* DPUIElement.h */,
-				7FBEB6B30E992C7000E240EC /* DPUIElement.m */,
-				7FBEB6B40E992C7000E240EC /* DPUtilities.h */,
-				7FBEB6B50E992C7000E240EC /* DPUtilities.m */,
-				7FBEB6B60E992C7000E240EC /* ReadMe.txt */,
-			);
-			path = DPAccessibility;
-			sourceTree = "<group>";
-		};
 		7FE544F70E86294000DD28E4 /* Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +198,8 @@
 				7F4F33F50E9EC1800061161A /* ClothoProcessWatcher.m */,
 				7F4F33F60E9EC1800061161A /* ClothoScreenWatcher.h */,
 				7F4F33F70E9EC1800061161A /* ClothoScreenWatcher.m */,
+				7FDD12460EC2813A004C5873 /* ClothoLogger.h */,
+				7FDD12470EC2813A004C5873 /* ClothoLogger.m */,
 				7F4F33F80E9EC1800061161A /* ClothoTaskPrompter.h */,
 				7F4F33F90E9EC1800061161A /* ClothoTaskPrompter.m */,
 				7FE544FA0E86294000DD28E4 /* External */,
@@ -234,7 +210,8 @@
 		7FE544FA0E86294000DD28E4 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				7FBEB6AC0E992C7000E240EC /* DPAccessibility */,
+				7FDD12710EC285E5004C5873 /* GTMAXUIElement.h */,
+				7FDD12700EC285E5004C5873 /* GTMAXUIElement.m */,
 				7FE544FB0E86294000DD28E4 /* NDProcess.h */,
 				7FE544FC0E86294000DD28E4 /* NDProcess.m */,
 				7FE544FD0E86294000DD28E4 /* NSEvent+BLTRExtensions.h */,
@@ -299,7 +276,6 @@
 				7FE546450E86B1B000DD28E4 /* Discipline.icns in Resources */,
 				7FE546470E86B1B900DD28E4 /* Whip.aiff in Resources */,
 				7FBEB3D60E9888B000E240EC /* DisciplineSilhouette.pdf in Resources */,
-				7FBEB6BB0E992C7000E240EC /* ReadMe.txt in Resources */,
 				7FDBF5410E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib in Resources */,
 				7FDBF5440E99BB9B00DD9B7F /* ClothoTaskPrompt.xib in Resources */,
 			);
@@ -318,10 +294,6 @@
 				7FE545100E86294000DD28E4 /* QSAccessibility.m in Sources */,
 				7FE545110E86294000DD28E4 /* QSIdleWatcher.m in Sources */,
 				7FE545120E86294000DD28E4 /* main.m in Sources */,
-				7FBEB6B70E992C7000E240EC /* DPAccessibilityNotificationCenter.m in Sources */,
-				7FBEB6B80E992C7000E240EC /* DPNameServer.m in Sources */,
-				7FBEB6B90E992C7000E240EC /* DPUIElement.m in Sources */,
-				7FBEB6BA0E992C7000E240EC /* DPUtilities.m in Sources */,
 				7F4F33FA0E9EC1800061161A /* ClothoiTunesWatcher.m in Sources */,
 				7F4F33FB0E9EC1800061161A /* ClothoProcessWatcher.m in Sources */,
 				7F4F33FC0E9EC1800061161A /* ClothoScreenWatcher.m in Sources */,
@@ -329,6 +301,8 @@
 				7F4F34040E9EC1890061161A /* DisciplineController.m in Sources */,
 				7F4F34050E9EC1890061161A /* DisciplineTaskPrompter.m in Sources */,
 				7F4F34060E9EC1890061161A /* DXApp.m in Sources */,
+				7FDD12480EC2813A004C5873 /* ClothoLogger.m in Sources */,
+				7FDD12720EC285E5004C5873 /* GTMAXUIElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

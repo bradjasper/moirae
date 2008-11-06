@@ -6,9 +6,7 @@
 //  Copyright 2008 Blacktree. All rights reserved.
 //
 
-#import "DPUIElement.h"
-#import "DPUIElement-Private.h"
-#import "DPAccessibilityNotificationCenter.h"
+#import "GTMAXUIElement.h"
 #import "ClothoProcessWatcher.h"
 #import "Carbon/Carbon.h"
 #import "NDProcess.h"
@@ -18,31 +16,35 @@
 #define TIMERDURATION 5.0f
 
 
-@interface DPUIElement (Title)
+@interface GTMAXUIElement (Title)
 - (NSString *) title;
 @end
-@implementation DPUIElement (Title)
+@implementation GTMAXUIElement (Title)
 - (NSString *) title {
-  return [self valueForAttribute:(NSString *)kAXTitleAttribute];
+  return [self stringValueForAttribute:(NSString *)kAXTitleAttribute];
 }
 @end
 
 @interface ClothoProcessWatcher ()
 - (void)registerForAppChangeNotifications;
 - (void)handleProcessEvent:(EventRef)theEvent;
-- (BOOL)registerForSwitchNotificationsForApp:(DPUIElement *)app;
+- (BOOL)registerForSwitchNotificationsForApp:(GTMAXUIElement *)app;
+- (GTMAXUIElement *)frontWindowForApp:(GTMAXUIElement *)app;
+- (BOOL)registerForTitleNotificationsForWindow:(GTMAXUIElement *)element;
+- (void)handleWindowChange:(GTMAXUIElement *) element;
+- (void)recordContext;
 @end
 
 @implementation ClothoProcessWatcher
 @synthesize currentDate, currentApp, currentWindow, state, lastActivity, timer;
 
+- (NSString *)logName {
+  return @"Process.log";
+}
 
 - (id) init {
   self = [super init];
   if (self != nil) {
-    NSString *directory = [@"~/Library/Logs/Discipline" stringByStandardizingPath];
-    NSString *path = [directory stringByAppendingPathComponent:@"Process.log"];
-    log = fopen([path fileSystemRepresentation], "a");
     [self registerForAppChangeNotifications];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceSleep:) name:NSWorkspaceWillSleepNotification object:nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceWake:) name:NSWorkspaceDidWakeNotification object:nil];
@@ -56,15 +58,11 @@
   return self;
 }
 
-- (void) dealloc{
-  
-  fclose(log);
-  [super dealloc];
-}
+
 
 OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, ClothoProcessWatcher *self) {
   [self handleProcessEvent:theEvent];
-  return noErr;//CallNextEventHandler(nextHandler, theEvent);
+  return noErr; //CallNextEventHandler(nextHandler, theEvent);
 }
 
 - (void)registerForAppChangeNotifications{
@@ -89,9 +87,11 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, ClothoPr
   GetProcessPID(&psn,&pid);
   if (pid) {
     self.currentDate = [NSDate date];
-    self.currentApp = [DPUIElement applicationElement:pid];
+    self.currentApp = [GTMAXUIElement elementWithProcessIdentifier:pid];
+    GTMAXUIElement *window = [self frontWindowForApp:self.currentApp];
     [self registerForSwitchNotificationsForApp:currentApp];
-    [self handleWindowChange:[self frontWindowForApp:self.currentApp]];
+    
+    if (window) [self handleWindowChange:window];
     [self recordContext];
     // [[NSNotificationCenter defaultCenter] postNotificationName:@"BTDNWindowFocused" object:[self frontWindowForAppElement:currentApp] userInfo:DXTitleForElement(currentApp)];
   }
@@ -100,23 +100,21 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, ClothoPr
 #pragma mark Window Focus switch notification
 
 
-- (void)handleWindowChange:(DPUIElement *) element{
-  //NSLog(@"Window %@", [element valueForAttribute:(NSString *)kAXTitleAttribute]);
-  
+- (void)handleWindowChange:(GTMAXUIElement *) element{
   [self setCurrentDate:[NSDate date]];
-  [self setCurrentApp:[element application]];
+  [self setCurrentApp:[element processElement]];
+
   [self setCurrentWindow:element];  
   [self registerForTitleNotificationsForWindow: element];
 }
 
-void focusObserverCallbackFunction(AXObserverRef focusObserver, AXUIElementRef element, CFStringRef notification, ClothoProcessWatcher *self) {
-  [self handleWindowChange: [[[DPUIElement alloc] _initWithAXElement:element] autorelease]];
+void focusObserverCallbackFunction(AXObserverRef focusObserver, AXUIElementRef element, CFStringRef notification, void *self) {
+  [(id)self handleWindowChange: [[[GTMAXUIElement alloc] initWithElement:element] autorelease]];
  
 }
 
-- (BOOL)registerForSwitchNotificationsForApp:(DPUIElement *) appElement{
-  AXUIElementRef element = [appElement axElement];
-  
+- (BOOL)registerForSwitchNotificationsForApp:(GTMAXUIElement *) appElement{
+  AXUIElementRef element = [appElement element];
   if (focusObserver){
     CFRunLoopRemoveSource(CFRunLoopGetCurrent(),
                            AXObserverGetRunLoopSource(focusObserver), 
@@ -134,49 +132,48 @@ void focusObserverCallbackFunction(AXObserverRef focusObserver, AXUIElementRef e
 }
 
 
-- (void)handleTitleChange:(DPUIElement *) element{
+- (void)handleTitleChange:(GTMAXUIElement *) element{
   //NSLog(@"title %@", [element valueForAttribute:(NSString *)kAXTitleAttribute]);
 }
 
 
 void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef element, CFStringRef notification, void *self) {
-  [(ClothoProcessWatcher *)self handleTitleChange: [[[DPUIElement alloc] _initWithAXElement:element] autorelease]];
+  [(ClothoProcessWatcher *)self handleTitleChange: [[[GTMAXUIElement alloc] initWithElement:element] autorelease]];
 
 }
 
-- (BOOL)registerForTitleNotificationsForWindow:(DPUIElement *) element{
+- (BOOL)registerForTitleNotificationsForWindow:(GTMAXUIElement *) element{
   if (windowObserver){
     CFRunLoopRemoveSource(CFRunLoopGetCurrent(),
                           AXObserverGetRunLoopSource(windowObserver), 
                           kCFRunLoopDefaultMode);		
     CFRelease(windowObserver);
+    windowObserver = NULL;
   }
   
-  AXError err = AXObserverCreate([element pid], windowObserverCallbackFunction, &windowObserver);
+  AXError err = AXObserverCreate([element processIdentifier], windowObserverCallbackFunction, &windowObserver);
   if (err) return err;
   CFRunLoopAddSource(CFRunLoopGetCurrent(),
                      AXObserverGetRunLoopSource(windowObserver), 
                      kCFRunLoopDefaultMode);
-  err = AXObserverAddNotification(windowObserver, [element axElement], kAXValueChangedNotification, self);
+  err = AXObserverAddNotification(windowObserver, [element element], kAXValueChangedNotification, self);
   return err;
 }
 
-- (DPUIElement *)frontWindowForApp:(DPUIElement *)app{
-  DPUIElement *value = nil;
-@try {
-  value = [app valueForAttribute:(NSString *)kAXMainWindowAttribute];
-}
-@catch (NSException * e) {
-  NSLog(@"Exception raised: %@", e);
-}
+- (GTMAXUIElement *)frontWindowForApp:(GTMAXUIElement *)app{
+  GTMAXUIElement *value = nil;
+  @try {
+    value = [app accessibilityAttributeValue:(NSString *)kAXFocusedWindowAttribute];
+  }
+  @catch (NSException * e) {
+    NSLog(@"Exception raised: %@", e);
+  }
   return value;
 }
 
-
 - (NSString *)currentWindowName{
-  return [self frontWindowForAppElement:currentApp];
+  return nil; //[self frontWindowForAppElement:currentApp];
 }
-
 
 - (void)idled:(id)sender{
   [self setCurrentDate:[NSDate dateWithTimeIntervalSinceNow:-IDLEDURATION]];
@@ -250,7 +247,7 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
 
 
 
-- (void)setCurrentWindow:(DPUIElement *)newCurrentWindow {
+- (void)setCurrentWindow:(GTMAXUIElement *)newCurrentWindow {
   if (!currentWindow && !newCurrentWindow) return;
   if (newCurrentWindow && ![currentWindow isEqual:newCurrentWindow]) {
     [currentWindow release];
