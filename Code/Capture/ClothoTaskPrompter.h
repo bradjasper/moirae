@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ClothoLogger.h"
 
-
-@interface ClothoTaskPrompter : NSObject {
+@interface ClothoTaskPrompter : ClothoLogger {
   NSTimer *askTimer;
   IBOutlet NSWindow *alertWindow;
   IBOutlet NSWindow *shieldWindow;
@@ -18,7 +18,6 @@
   id currentActivity;
   NSMutableArray *pastActivities;
   float interval;
-  FILE *log;
 }
 - (void)resetTimer;
 @end

@@ -10,6 +10,9 @@
 
 
 @implementation ClothoTaskPrompter
+- (NSString *)logName {
+ return @"Tasks.log"; 
+}
 - (id) init {
   self = [super init];
   if (self != nil) {
@@ -21,12 +24,6 @@
                                     userInfo:nil
                                      repeats:NO] retain];
     [askTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-    
-    NSString *directory = [@"~/Library/Logs/Discipline" stringByStandardizingPath];
-    NSString *path = [directory stringByAppendingPathComponent:@"Tasks.log"];
-    log = fopen([path fileSystemRepresentation], "a");
-
-    
     
   }
   return self;
@@ -98,7 +95,7 @@
   
   if (result){
     
-    NSString *string=[[alertWindow initialFirstResponder]stringValue];
+    NSString *string=[[alertWindow initialFirstResponder] stringValue];
     //NSLog(@"string %@",string);
     [self willChangeValueForKey:@"activityNames"];
     [pastActivities removeObject:string];
