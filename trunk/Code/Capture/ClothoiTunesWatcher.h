@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ClothoLogger.h"
 
-
-@interface ClothoiTunesWatcher : NSObject {
+@interface ClothoiTunesWatcher : ClothoLogger {
 
 }
 
