@@ -9,7 +9,9 @@
 #import "DisciplineController.h"
 #import "ClothoProcessWatcher.h"
 #import "ClothoScreenWatcher.h"
+#import "ClothoiTunesWatcher.h"
 #import "DisciplineTaskPrompter.h"
+#import "ClothoTaskPrompter.h"
 #import "QSAccessibility.h"
 
 #define DOC_PATH [@"~/Library/Application Support/Discipline/" stringByStandardizingPath]
@@ -27,8 +29,8 @@
                                                   error:nil];
   [[ClothoProcessWatcher alloc] init];
   [[ClothoScreenWatcher alloc] init];
-  [[ClothoTaskPrompter alloc] init];
-  
+  //[[ClothoTaskPrompter alloc] init];
+  [[ClothoiTunesWatcher alloc] init];
   
   NSImage *image = [NSImage imageNamed:@"Discipline"];
   image = [image copy];
