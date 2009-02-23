@@ -7,6 +7,7 @@
 //
 
 #import "ClothoLogger.h"
+
 @class NDProcess;
 @class GTMAXUIElement;
 

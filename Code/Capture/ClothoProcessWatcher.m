@@ -19,9 +19,10 @@
 @interface GTMAXUIElement (Title)
 - (NSString *) title;
 @end
+
 @implementation GTMAXUIElement (Title)
 - (NSString *) title {
-  return [self stringValueForAttribute:(NSString *)kAXTitleAttribute];
+    return [self stringValueForAttribute:(NSString *)kAXTitleAttribute];
 }
 @end
 
@@ -39,98 +40,102 @@
 @synthesize currentDate, currentApp, currentWindow, state, lastActivity, timer;
 
 - (NSString *)logName {
-  return @"Process.log";
+  return @"Process_";
+}
+
+- (NSString *)logDirectory {
+    return @"Processes";
 }
 
 - (id) init {
-  self = [super init];
-  if (self != nil) {
-    [self registerForAppChangeNotifications];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceSleep:) name:NSWorkspaceWillSleepNotification object:nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceWake:) name:NSWorkspaceDidWakeNotification object:nil];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMERDURATION
-                                                  target:self
-                                                selector:@selector(timerFired:)
-                                                userInfo:nil
-                                                 repeats:YES];
-    
+    self = [super init];
+    if (self != nil) {
+        [self registerForAppChangeNotifications];
+        [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self 
+                                                               selector:@selector(workspaceSleep:) 
+                                                                   name:NSWorkspaceWillSleepNotification 
+                                                                 object:nil];
+        [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self 
+                                                               selector:@selector(workspaceWake:) 
+                                                                   name:NSWorkspaceDidWakeNotification 
+                                                                 object:nil];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMERDURATION
+                                                      target:self
+                                                    selector:@selector(timerFired:)
+                                                    userInfo:nil
+                                                     repeats:YES];
   }
   return self;
 }
 
-
-
 OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, ClothoProcessWatcher *self) {
-  [self handleProcessEvent:theEvent];
-  return noErr; //CallNextEventHandler(nextHandler, theEvent);
+    [self handleProcessEvent:theEvent];
+    return noErr; //CallNextEventHandler(nextHandler, theEvent);
 }
 
-- (void)registerForAppChangeNotifications{
-  EventTypeSpec eventType;
-  eventType.eventClass = kEventClassApplication;
-  eventType.eventKind = kEventAppFrontSwitched;
-  EventHandlerUPP handlerFunction = NewEventHandlerUPP(appChanged);
-  OSStatus err = InstallApplicationEventHandler(handlerFunction, 1, &eventType, self, NULL);
-  if (err) NSLog(@"gmod registration err %d",err);
+- (void)registerForAppChangeNotifications {
+    EventTypeSpec eventType;
+    eventType.eventClass = kEventClassApplication;
+    eventType.eventKind = kEventAppFrontSwitched;
+    EventHandlerUPP handlerFunction = NewEventHandlerUPP(appChanged);
+    OSStatus err = InstallApplicationEventHandler(handlerFunction, 1, &eventType, self, NULL);
+    if (err) NSLog(@"gmod registration err %d",err);
 }
 
 - (void)handleProcessEvent:(EventRef)theEvent {
-  ProcessSerialNumber psn;
-  GetEventParameter(theEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn );
+    ProcessSerialNumber psn;
+    GetEventParameter(theEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn );
   
-  NDProcess *process=[NDProcess processWithProcessSerialNumber:psn];
-  //NSLog(@"proc %@", process);
+    NDProcess *process=[NDProcess processWithProcessSerialNumber:psn];
+    //NSLog(@"proc %@", process);
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"BTDNAppSwitched" object:process userInfo:[NSDate date] ];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BTDNAppSwitched" object:process userInfo:[NSDate date] ];
   
-  pid_t pid=0;
-  GetProcessPID(&psn,&pid);
-  if (pid) {
-    self.currentDate = [NSDate date];
-    self.currentApp = [GTMAXUIElement elementWithProcessIdentifier:pid];
-    GTMAXUIElement *window = [self frontWindowForApp:self.currentApp];
-    [self registerForSwitchNotificationsForApp:currentApp];
+    pid_t pid=0;
+    GetProcessPID(&psn,&pid);
+    if (pid) {
+        self.currentDate = [NSDate date];
+        self.currentApp = [GTMAXUIElement elementWithProcessIdentifier:pid];
+        GTMAXUIElement *window = [self frontWindowForApp:self.currentApp];
+        [self registerForSwitchNotificationsForApp:currentApp];
     
-    if (window) [self handleWindowChange:window];
-    [self recordContext];
-    // [[NSNotificationCenter defaultCenter] postNotificationName:@"BTDNWindowFocused" object:[self frontWindowForAppElement:currentApp] userInfo:DXTitleForElement(currentApp)];
-  }
+        if (window) [self handleWindowChange:window];
+        [self recordContext];
+        // [[NSNotificationCenter defaultCenter] postNotificationName:@"BTDNWindowFocused" object:[self frontWindowForAppElement:currentApp] userInfo:DXTitleForElement(currentApp)];
+    }
 }
 
 #pragma mark Window Focus switch notification
 
+- (void)handleWindowChange:(GTMAXUIElement *) element {
+    [self setCurrentDate:[NSDate date]];
+    [self setCurrentApp:[element processElement]];
 
-- (void)handleWindowChange:(GTMAXUIElement *) element{
-  [self setCurrentDate:[NSDate date]];
-  [self setCurrentApp:[element processElement]];
-
-  [self setCurrentWindow:element];  
-  [self registerForTitleNotificationsForWindow: element];
+    [self setCurrentWindow:element];  
+    [self registerForTitleNotificationsForWindow: element];
 }
 
 void focusObserverCallbackFunction(AXObserverRef focusObserver, AXUIElementRef element, CFStringRef notification, void *self) {
-  [(id)self handleWindowChange: [[[GTMAXUIElement alloc] initWithElement:element] autorelease]];
- 
+    [(id)self handleWindowChange: [[[GTMAXUIElement alloc] initWithElement:element] autorelease]];
 }
 
 - (BOOL)registerForSwitchNotificationsForApp:(GTMAXUIElement *) appElement{
-  AXUIElementRef element = [appElement element];
-  if (focusObserver){
-    CFRunLoopRemoveSource(CFRunLoopGetCurrent(),
-                           AXObserverGetRunLoopSource(focusObserver), 
-                          kCFRunLoopDefaultMode);		
-    CFRelease(focusObserver);
-  }
-  pid_t pid;
-  AXUIElementGetPid(element, &pid);
-  AXError err = AXObserverCreate(pid, focusObserverCallbackFunction, &focusObserver);
-  CFRunLoopAddSource(CFRunLoopGetCurrent(),
-                     AXObserverGetRunLoopSource(focusObserver), 
-                     kCFRunLoopDefaultMode);
-  err = AXObserverAddNotification(focusObserver, element, kAXMainWindowChangedNotification, self);
-  return err;
+    AXUIElementRef element = [appElement element];
+    if (focusObserver){
+        CFRunLoopRemoveSource(CFRunLoopGetCurrent(),
+                              AXObserverGetRunLoopSource(focusObserver), 
+                              kCFRunLoopDefaultMode);		
+        CFRelease(focusObserver);
+    }
+    pid_t pid;
+    AXUIElementGetPid(element, &pid);
+    AXError err = AXObserverCreate(pid, focusObserverCallbackFunction, &focusObserver);
+    CFRunLoopAddSource(CFRunLoopGetCurrent(),
+                       AXObserverGetRunLoopSource(focusObserver), 
+                       kCFRunLoopDefaultMode);
+    err = AXObserverAddNotification(focusObserver, element, kAXMainWindowChangedNotification, self);
+    return err;
 }
-
 
 - (void)handleTitleChange:(GTMAXUIElement *) element{
   //NSLog(@"title %@", [element valueForAttribute:(NSString *)kAXTitleAttribute]);
@@ -138,122 +143,111 @@ void focusObserverCallbackFunction(AXObserverRef focusObserver, AXUIElementRef e
 
 
 void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef element, CFStringRef notification, void *self) {
-  [(ClothoProcessWatcher *)self handleTitleChange: [[[GTMAXUIElement alloc] initWithElement:element] autorelease]];
-
+    [(ClothoProcessWatcher *)self handleTitleChange: [[[GTMAXUIElement alloc] initWithElement:element] autorelease]];
 }
 
 - (BOOL)registerForTitleNotificationsForWindow:(GTMAXUIElement *) element{
-  if (windowObserver){
-    CFRunLoopRemoveSource(CFRunLoopGetCurrent(),
-                          AXObserverGetRunLoopSource(windowObserver), 
-                          kCFRunLoopDefaultMode);		
-    CFRelease(windowObserver);
-    windowObserver = NULL;
-  }
+    if (windowObserver){
+        CFRunLoopRemoveSource(CFRunLoopGetCurrent(),
+                              AXObserverGetRunLoopSource(windowObserver), 
+                              kCFRunLoopDefaultMode);		
+        CFRelease(windowObserver);
+        windowObserver = NULL;
+    }
   
-  AXError err = AXObserverCreate([element processIdentifier], windowObserverCallbackFunction, &windowObserver);
-  if (err) return err;
-  CFRunLoopAddSource(CFRunLoopGetCurrent(),
-                     AXObserverGetRunLoopSource(windowObserver), 
-                     kCFRunLoopDefaultMode);
-  err = AXObserverAddNotification(windowObserver, [element element], kAXValueChangedNotification, self);
-  return err;
+    AXError err = AXObserverCreate([element processIdentifier], windowObserverCallbackFunction, &windowObserver);
+    if (err) return err;
+    CFRunLoopAddSource(CFRunLoopGetCurrent(),
+                       AXObserverGetRunLoopSource(windowObserver), 
+                       kCFRunLoopDefaultMode);
+    err = AXObserverAddNotification(windowObserver, [element element], kAXValueChangedNotification, self);
+    return err;
 }
 
 - (GTMAXUIElement *)frontWindowForApp:(GTMAXUIElement *)app{
-  GTMAXUIElement *value = nil;
-  @try {
-    value = [app accessibilityAttributeValue:(NSString *)kAXFocusedWindowAttribute];
-  }
-  @catch (NSException * e) {
-    NSLog(@"Exception raised: %@", e);
-  }
-  return value;
+    GTMAXUIElement *value = nil;
+    @try {
+        value = [app accessibilityAttributeValue:(NSString *)kAXFocusedWindowAttribute];
+    }
+    @catch (NSException * e) {
+        NSLog(@"Exception raised: %@", e);
+    }
+    return value;
 }
 
 - (NSString *)currentWindowName{
   return nil; //[self frontWindowForAppElement:currentApp];
 }
 
-- (void)idled:(id)sender{
-  [self setCurrentDate:[NSDate dateWithTimeIntervalSinceNow:-IDLEDURATION]];
-  self.state = 1;
-  [self recordContext];
-}
-- (void)unidled:(id)sender{
-  [self setCurrentDate:[NSDate date]];
-  self.state = 0;
-  [self recordContext];  
-}
-- (void)timerFired:(id)sender{
-  [self setCurrentWindow:[self frontWindowForApp:[self currentApp]]];
+- (void)idled:(id)sender {
+    [self setCurrentDate:[NSDate dateWithTimeIntervalSinceNow:-IDLEDURATION]];
+    self.state = 1;
+    [self recordContext];
 }
 
-
-
-
-
-
-- (void)workspaceWake:(NSNotification *)notif{
-  
-  //NSLog(@"record wake");
-  [self setCurrentDate:[NSDate date]];
-  self.state = 0;
-  [self recordContext];
-  
+- (void)unidled:(id)sender {
+    [self setCurrentDate:[NSDate date]];
+    self.state = 0;
+    [self recordContext];  
 }
 
-- (void)workspaceSleep:(NSNotification *)notif{
-  
-  //NSLog(@"record sleep");
-  [self setCurrentDate:[NSDate date]];
-  self.state = -1;
-  [self recordContext];
-  
+- (void)timerFired:(id)sender {
+    [self setCurrentWindow:[self frontWindowForApp:[self currentApp]]];
 }
 
-//
+- (void)workspaceWake:(NSNotification *)notif { 
+    //NSLog(@"record wake");
+    [self setCurrentDate:[NSDate date]];
+    self.state = 0;
+    [self recordContext];
+}
+
+- (void)workspaceSleep:(NSNotification *)notif {
+    //NSLog(@"record sleep");
+    [self setCurrentDate:[NSDate date]];
+    self.state = -1;
+    [self recordContext];
+}
+
 - (void)recordContext{
-  [self setCurrentDate:[NSDate date]];
+    [self setCurrentDate:[NSDate date]];
   
-  NSMutableDictionary *activity = [NSMutableDictionary dictionary];
+    NSMutableDictionary *activity = [NSMutableDictionary dictionary];
   
-  [activity setValue:[[self currentApp] title] forKey:@"application"];
-  [activity setValue:[self currentDate] forKey:@"date"];
-  [activity setValue:[[self currentWindow] title] forKey:@"window"];
-  [activity setValue:[[self currentWindow] title] forKey:@"window"];
-  [activity setValue:[NSNumber numberWithInt:state] forKey:@"state"];
+    [activity setValue:[[self currentApp] title] forKey:@"application"];
+    [activity setValue:[self currentDate] forKey:@"date"];
+    [activity setValue:[[self currentWindow] title] forKey:@"window"];
+    [activity setValue:[[self currentWindow] title] forKey:@"window"];
+    [activity setValue:[NSNumber numberWithInt:state] forKey:@"state"];
   
-  if (self.lastActivity){
-    float duration=[[self currentDate] timeIntervalSinceDate:[lastActivity valueForKey:@"date"]];
-    [lastActivity setValue:[NSNumber numberWithFloat:duration] forKey:@"duration"];
+    if (self.lastActivity) {
+        float duration=[[self currentDate] timeIntervalSinceDate:[lastActivity valueForKey:@"date"]];
+        [lastActivity setValue:[NSNumber numberWithFloat:duration] forKey:@"duration"];
     
-    if (duration > 0.01) {
-      NSString *message = [NSString stringWithFormat:@"%@\t%@\t%@\t%@\t%@\n",
-                           [lastActivity valueForKey:@"date"],
-                           [lastActivity valueForKey:@"application"],
-                           [lastActivity valueForKey:@"state"],
-                           [lastActivity valueForKey:@"duration"],
-                           [lastActivity valueForKey:@"window"]];
-      
-      
-      fprintf(log, [message UTF8String]);
-      
-      fflush(log);
+        if (duration > 0.01) {
+            NSString *message = [NSString stringWithFormat:@"%@\t%@\t%@\t%@\t%@\n",
+                                 [lastActivity valueForKey:@"date"],
+                                 [lastActivity valueForKey:@"application"],
+                                 [lastActivity valueForKey:@"state"],
+                                 [lastActivity valueForKey:@"duration"],
+                                 [lastActivity valueForKey:@"window"]];
+            
+            [self logProcess:message];
+            //fprintf(log, [message UTF8String]);      
+            //fflush(log);
+        }
     }
-  }
-  self.lastActivity = activity;
+    self.lastActivity = activity;
 }
-
-
 
 - (void)setCurrentWindow:(GTMAXUIElement *)newCurrentWindow {
-  if (!currentWindow && !newCurrentWindow) return;
-  if (newCurrentWindow && ![currentWindow isEqual:newCurrentWindow]) {
-    [currentWindow release];
-    currentWindow = [newCurrentWindow retain];
-    [self recordContext];
-  }
+    if (!currentWindow && !newCurrentWindow) 
+        return;
+    if (newCurrentWindow && ![currentWindow isEqual:newCurrentWindow]) {
+        [currentWindow release];
+        currentWindow = [newCurrentWindow retain];
+        [self recordContext];
+    }
 }
 
 

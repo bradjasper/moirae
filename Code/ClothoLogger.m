@@ -2,31 +2,148 @@
 //  ClothoLogger.m
 //  Moirae
 //
-//  Created by J. Nicholas Jitkoff on 11/5/08.
-//  Copyright 2008 Google Inc. All rights reserved.
+//  Created by Joseph Subida on 2/9/09.
+//  Copyright 2009 University of Illinois Champaign-Urbana. All rights reserved.
 //
 
 #import "ClothoLogger.h"
 
-
 @implementation ClothoLogger
-- (NSString *)logName {
-  return @"log.log";
-}
 
-- (id) init {
-  self = [super init];
-  if (self != nil) {
-    NSString *directory = [@"~/Library/Logs/Discipline" stringByStandardizingPath];
-    NSString *path = [directory stringByAppendingPathComponent:[self logName]];
+@synthesize logDate;
+
+- (id)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    // Create directory path
+    NSString *directory = [self pathOfCreatedDirectory];
+    
+    // Create current log file
+    [self todaysDate];
+    NSString *path = [directory stringByAppendingPathComponent:[[self logName]
+                                       stringByAppendingString:[logDate
+                                       stringByAppendingString:@".log"]]];
     log = fopen([path fileSystemRepresentation], "a");
-  }
-  return self;
+    return self;
+}
+//
+// (NSString *)logName
+//      - returns name of log file
+//
+- (NSString *)logName {
+    return @"log.log";
+}
+//
+// (NSString *)logDirectory
+//      - returns name of directory of log files
+//
+- (NSString *)logDirectory {
+    return @"Logs";
+}
+//
+// (NSString *)pathOfCreatedDirectory
+//      - creates a directory and returns the path to it
+//
+- (NSString *)pathOfCreatedDirectory {
+    NSString *directory = [@"~/Library/Logs/Discipline/Log/" stringByStandardizingPath];
+    //NSString *directory = [@"~/Desktop" stringByStandardizingPath];
+    directory = [directory stringByAppendingPathComponent:[self logDirectory]];
+    
+    if ([[directory lastPathComponent] isEqualToString:@"Tasks"]) {
+        directory = [directory stringByDeletingLastPathComponent];
+        directory = [directory stringByDeletingLastPathComponent];
+        directory = [directory stringByAppendingPathComponent:@"Tasks"];
+    }
+    
+    // Create directory
+    [[NSFileManager defaultManager] 
+     createDirectoryAtPath:[directory stringByStandardizingPath]
+     withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    return directory;
+}
+//
+// (NSString *)todaysDate
+//      - returns a string of the form YYYY-MM-DD
+//
+- (NSString *)todaysDate {
+    NSRange theRange;
+    theRange.location = 0;
+    theRange.length = 10;
+    unichar *str = malloc((theRange.length)*(sizeof(unichar)));
+    
+    // Sets current date of log
+    NSDate *currentDate = [NSDate date];
+    self.logDate = [currentDate description];
+    [self.logDate getCharacters:str range:theRange];
+    self.logDate = [NSString stringWithCharacters:str length:sizeof(str)+6];
+    free(str);
+    return self.logDate;
+}
+//
+// (BOOL)logShouldRoll
+//      - determines if new log file needs to be created
+//
+- (BOOL)logShouldRoll {
+    NSString *today = [[NSDate date] description];
+    NSRange theRange;
+    theRange.location = 0;
+    theRange.length = 10;
+    unichar *theDay = malloc((theRange.length)*(sizeof(unichar)));
+    
+    [today getCharacters:theDay range:theRange];
+    today = [NSString stringWithCharacters:theDay length:sizeof(theDay)+6];
+    NSLog(@"today is: %@", today);
+    free(theDay);
+    if ([logDate isEqualToString:today])
+        return FALSE;
+    else {
+        [self logWithNewDate:today];
+        return TRUE;
+    }
+}
+//
+// (void)logWithNewDate:(NSString *)newLogDate
+//      - creates a new log by appending the new date newLogDate
+//
+- (void)logWithNewDate:(NSString *)newLogDate {
+    fclose(log);
+    
+    // Create directory path
+    NSString *directory = [self pathOfCreatedDirectory];
+    
+    // Create current log file
+    [self todaysDate];
+    NSString *path = [directory stringByAppendingPathComponent:[[self logName]
+                                       stringByAppendingString:[logDate
+                                       stringByAppendingString:@".log"]]];
+    log = fopen([path fileSystemRepresentation], "a");
+}
+//
+// (void)logTask
+//      - writes theData to the Task log file
+//
+- (void)logTask:(NSString *)theData {
+    if ([self logShouldRoll])
+        [self logRoll];
+    fprintf(log, [theData UTF8String]);
+    fflush(log);
+}
+//
+// (NSString *)logDirectory
+//      - writes theData to the Process log file
+//
+- (void)logProcess:(NSString *)theData {
+    fprintf(log, [theData UTF8String]);
+    fflush(log);
 }
 
-- (void) dealloc{
-  fclose(log);
-  [super dealloc];
+- (void) dealloc {
+    fclose(log);
+    [super dealloc];
 }
 
 @end
+
+

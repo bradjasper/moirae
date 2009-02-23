@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		494FE80E0F440F8300608BC8 /* ClothoLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FE80D0F440F8300608BC8 /* ClothoLogger.m */; };
 		7F4F33FA0E9EC1800061161A /* ClothoiTunesWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F30E9EC1800061161A /* ClothoiTunesWatcher.m */; };
 		7F4F33FB0E9EC1800061161A /* ClothoProcessWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F50E9EC1800061161A /* ClothoProcessWatcher.m */; };
 		7F4F33FC0E9EC1800061161A /* ClothoScreenWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F70E9EC1800061161A /* ClothoScreenWatcher.m */; };
@@ -19,7 +20,6 @@
 		7FBEB4E80E9919ED00E240EC /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBEB4E70E9919ED00E240EC /* ApplicationServices.framework */; };
 		7FDBF5410E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDBF53F0E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib */; };
 		7FDBF5440E99BB9B00DD9B7F /* ClothoTaskPrompt.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDBF5420E99BB9B00DD9B7F /* ClothoTaskPrompt.xib */; };
-		7FDD12480EC2813A004C5873 /* ClothoLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDD12470EC2813A004C5873 /* ClothoLogger.m */; };
 		7FDD12720EC285E5004C5873 /* GTMAXUIElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDD12700EC285E5004C5873 /* GTMAXUIElement.m */; };
 		7FE5450D0E86294000DD28E4 /* NDProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE544FC0E86294000DD28E4 /* NDProcess.m */; };
 		7FE5450E0E86294000DD28E4 /* NSString+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE544FF0E86294000DD28E4 /* NSString+NDCarbonUtilities.m */; };
@@ -45,6 +45,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Moirae_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moirae_Prefix.pch; sourceTree = "<group>"; };
+		494FE80C0F440F8300608BC8 /* ClothoLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothoLogger.h; sourceTree = "<group>"; };
+		494FE80D0F440F8300608BC8 /* ClothoLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothoLogger.m; sourceTree = "<group>"; };
 		7F4F33F20E9EC1800061161A /* ClothoiTunesWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClothoiTunesWatcher.h; path = Capture/ClothoiTunesWatcher.h; sourceTree = "<group>"; };
 		7F4F33F30E9EC1800061161A /* ClothoiTunesWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClothoiTunesWatcher.m; path = Capture/ClothoiTunesWatcher.m; sourceTree = "<group>"; };
 		7F4F33F40E9EC1800061161A /* ClothoProcessWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClothoProcessWatcher.h; path = Capture/ClothoProcessWatcher.h; sourceTree = "<group>"; };
@@ -63,8 +65,6 @@
 		7FBEB4E70E9919ED00E240EC /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		7FDBF5400E99BB8A00DD9B7F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/DisciplineTaskPrompt.xib; sourceTree = "<group>"; };
 		7FDBF5430E99BB9B00DD9B7F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ClothoTaskPrompt.xib; sourceTree = "<group>"; };
-		7FDD12460EC2813A004C5873 /* ClothoLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothoLogger.h; sourceTree = "<group>"; };
-		7FDD12470EC2813A004C5873 /* ClothoLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothoLogger.m; sourceTree = "<group>"; };
 		7FDD12700EC285E5004C5873 /* GTMAXUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMAXUIElement.m; sourceTree = "<group>"; };
 		7FDD12710EC285E5004C5873 /* GTMAXUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMAXUIElement.h; sourceTree = "<group>"; };
 		7FE544FB0E86294000DD28E4 /* NDProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDProcess.h; sourceTree = "<group>"; };
@@ -197,9 +197,9 @@
 				7F4F33F40E9EC1800061161A /* ClothoProcessWatcher.h */,
 				7F4F33F50E9EC1800061161A /* ClothoProcessWatcher.m */,
 				7F4F33F60E9EC1800061161A /* ClothoScreenWatcher.h */,
+				494FE80C0F440F8300608BC8 /* ClothoLogger.h */,
+				494FE80D0F440F8300608BC8 /* ClothoLogger.m */,
 				7F4F33F70E9EC1800061161A /* ClothoScreenWatcher.m */,
-				7FDD12460EC2813A004C5873 /* ClothoLogger.h */,
-				7FDD12470EC2813A004C5873 /* ClothoLogger.m */,
 				7F4F33F80E9EC1800061161A /* ClothoTaskPrompter.h */,
 				7F4F33F90E9EC1800061161A /* ClothoTaskPrompter.m */,
 				7FE544FA0E86294000DD28E4 /* External */,
@@ -301,8 +301,8 @@
 				7F4F34040E9EC1890061161A /* DisciplineController.m in Sources */,
 				7F4F34050E9EC1890061161A /* DisciplineTaskPrompter.m in Sources */,
 				7F4F34060E9EC1890061161A /* DXApp.m in Sources */,
-				7FDD12480EC2813A004C5873 /* ClothoLogger.m in Sources */,
 				7FDD12720EC285E5004C5873 /* GTMAXUIElement.m in Sources */,
+				494FE80E0F440F8300608BC8 /* ClothoLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
