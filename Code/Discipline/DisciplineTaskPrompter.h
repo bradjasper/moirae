@@ -10,7 +10,6 @@
 #import "ClothoTaskPrompter.h"
 
 @interface DisciplineTaskPrompter : ClothoTaskPrompter {
-
 }
 
 @end

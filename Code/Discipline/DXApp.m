@@ -14,16 +14,16 @@
 
 
 @implementation DXApp
-- (void)sendEvent:(NSEvent *)theEvent{
-  NSLog(@"theEvent %@", theEvent);
-  if ([theEvent type]==NSProcessNotificationEvent){
-    [self handleProcessEvent:theEvent];
-  }	
-  [super sendEvent:theEvent];
+
+- (void)sendEvent:(NSEvent *)theEvent {
+    NSLog(@"theEvent %@", theEvent);
+    if ([theEvent type]==NSProcessNotificationEvent){
+        [self handleProcessEvent:theEvent];
+    }	
+    [super sendEvent:theEvent];
 }
 
-
-- (BOOL)handleProcessEvent:(NSEvent *)theEvent{
+- (BOOL)handleProcessEvent:(NSEvent *)theEvent {
 //  ProcessSerialNumber psn;
 //  psn.highLongOfPSN=[theEvent data1];
 //  psn.lowLongOfPSN=[theEvent data2];
@@ -50,5 +50,8 @@
 //  [self registerForSwitchNotificationsForApp:currentApp];
 //  [[NSNotificationCenter defaultCenter] postNotificationName:@"BTDNWindowFocused" object:[self frontWindowForAppElement:currentApp] userInfo:DXTitleForElement(currentApp)];
   return YES;
-};
+}
+
+// THERE WAS A SEMICOLON HERE. IT MIGHT HAVE PREVENTED THE CODE FROM WORKING
+
 @end

@@ -19,25 +19,24 @@
 @implementation DisciplineController
 
 - (void)applicationDidFinishLaunching:(NSApplication *)theApplication{
-  QSEnableAccessibility();
+    QSEnableAccessibility();
   
-  NSString *directory = [@"~/Library/Logs/Discipline" stringByStandardizingPath];
+    NSString *directory = [@"~/Library/Logs/Discipline" stringByStandardizingPath];
   
-  [[NSFileManager defaultManager] createDirectoryAtPath:directory
-                            withIntermediateDirectories:YES
-                                             attributes:nil
-                                                  error:nil];
-  [[ClothoProcessWatcher alloc] init];
-  [[ClothoScreenWatcher alloc] init];
-  //[[ClothoTaskPrompter alloc] init];
-  [[ClothoiTunesWatcher alloc] init];
+    [[NSFileManager defaultManager] createDirectoryAtPath:directory
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:nil];
+    [[ClothoProcessWatcher alloc] init];
+    [[ClothoScreenWatcher alloc] init];
+    [[ClothoTaskPrompter alloc] init];
   
-  NSImage *image = [NSImage imageNamed:@"Discipline"];
-  image = [image copy];
-  [image setSize:NSMakeSize(16, 16)];
-  NSStatusItem *item = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
-  [item setImage:image];
-  [item retain];
+    NSImage *image = [NSImage imageNamed:@"Discipline"];
+    image = [image copy];
+    [image setSize:NSMakeSize(16, 16)];
+    NSStatusItem *item = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
+    [item setImage:image];
+    [item retain];
 }
 
 @end
