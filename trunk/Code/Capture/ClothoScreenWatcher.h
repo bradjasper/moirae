@@ -10,9 +10,9 @@
 
 
 @interface ClothoScreenWatcher : NSObject {
-
 }
 
 - (void)captureScreen;
 - (void)writeCGImage:(CGImageRef)image toFile:(NSString *)path;
+
 @end
