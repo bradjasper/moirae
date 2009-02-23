@@ -10,7 +10,6 @@
 
 @class NDProcess;
 @interface DXApp : NSApplication {
-
 }
 
 @end

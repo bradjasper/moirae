@@ -12,20 +12,20 @@
 @implementation DisciplineTaskPrompter
 
 - (void)createAlertWindow {
-  [NSBundle loadNibNamed:@"DisciplineTaskPrompt" owner:self];
+    [NSBundle loadNibNamed:@"DisciplineTaskPrompt" owner:self];
 }
 
 - (void)createShieldWindow {
-  [super createShieldWindow];
-  NSImageView *imageView = [[[NSImageView alloc] initWithFrame:[[shieldWindow contentView] frame]] autorelease];
-  NSString *path = [[NSBundle mainBundle] pathForResource:@"DisciplineSilhouette" ofType:@"pdf"];
-  NSImage *image = [[NSImage alloc] initWithContentsOfFile:path];
-  [imageView setImageScaling:NSImageScaleProportionallyUpOrDown];
-  [imageView setImage:image];
-  [imageView setWantsLayer:YES];
-  [imageView setAlphaValue:0.1];
-  [shieldWindow setContentView:imageView];
+    [super createShieldWindow];
+    NSImageView *imageView = [[[NSImageView alloc] initWithFrame:[[shieldWindow contentView] frame]] autorelease];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"DisciplineSilhouette" ofType:@"pdf"];
+    NSImage *image = [[NSImage alloc] initWithContentsOfFile:path];
+    [imageView setImageScaling:NSImageScaleProportionallyUpOrDown];
+    
+    [imageView setImage:image];
+    [imageView setWantsLayer:YES];
+    [imageView setAlphaValue:0.1];
+    [shieldWindow setContentView:imageView];
 }
-
 
 @end
