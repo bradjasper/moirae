@@ -11,93 +11,98 @@
 
 @implementation ClothoScreenWatcher
 - (id) init {
-    BOOL screenshooting = NO;
-  self = [super init];
-  if (self != nil) {
-    [[NSFileManager defaultManager] 
-     createDirectoryAtPath:
-        [@"~/Library/Logs/Discipline/Log/Screenshots/" stringByStandardizingPath]
-     withIntermediateDirectories:
-        YES attributes:nil error:nil];
+	BOOL captureScreenShot = NO;
+	self = [super init];
+	if (self != nil) {
 
-      [[NSFileManager defaultManager] 
-       createDirectoryAtPath:
-       [@"~/Library/Logs/Discipline/Log/Screenshots/Plists_Snapshots" stringByStandardizingPath]
-       withIntermediateDirectories:
-       YES attributes:nil error:nil];
-    if (screenshooting)
-        [self captureScreen];
-  }
-  return self;
+		[[NSFileManager defaultManager] createDirectoryAtPath:[@"~/Library/Logs/Discipline/Log/System_Snapshots/" stringByStandardizingPath]
+								  withIntermediateDirectories:YES attributes:nil error:nil];
+		
+		if(captureScreenShot){
+			[[NSFileManager defaultManager] createDirectoryAtPath:[@"~/Library/Logs/Discipline/Screenshots/" stringByStandardizingPath]
+									  withIntermediateDirectories:YES attributes:nil error:nil];
+			[self captureScreen];
+			
+			
+		}
+		[self captureSystemSnapshot];
+	}
+	return self;
 }
 
 
 - (void)catpureWindowRects {
-  
+	
 }
 
 
 - (void)captureKeyWindow {
-  
-  
+	
+	
 } 
 
 
 - (void) captureWindowWithID:(NSUInteger)windowID {
-  CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, 
-                                                   kCGWindowListOptionIncludingWindow, 
-                                                   windowID, 
-                                                   kCGWindowImageDefault);
-  CGImageRelease(windowImage);  
+	CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, windowID, kCGWindowImageDefault);
+	CGImageRelease(windowImage);  
 }
 
 - (void)captureScreen {
-  NSString *path = @"~/Library/Logs/Discipline/Screenshots/%@";
-  path = [NSString stringWithFormat:path, [NSDate date]];
-  path = [path stringByStandardizingPath];
-    
-  NSString *plistPath = @"~/Library/Logs/Discipline/Screenshots/Plists/%@";
-    plistPath = [NSString stringWithFormat:plistPath, [NSDate date]];
-    plistPath = [plistPath stringByStandardizingPath];
-    
-  CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, 
-                                                  kCGWindowListOptionOnScreenOnly, 
-                                                  kCGNullWindowID, 
-                                                  kCGWindowImageDefault);
-  [self writeCGImage:screenShot 
-              toFile:[path stringByAppendingPathExtension:@"png"]];
-    
-  CGImageRelease(screenShot);
-  
-  NSArray *list = (NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly |  
-                             kCGWindowListExcludeDesktopElements, kCGNullWindowID);
-  
-  [list writeToFile:[plistPath stringByAppendingPathExtension:@"plist"] 
-         atomically:NO];
-  [list release];
-  
-  [self performSelector:@selector(captureScreen) withObject:nil afterDelay:60.0];
+	NSString *path = @"~/Library/Logs/Discipline/Screenshots/%@";
+	path = [NSString stringWithFormat:path, [NSDate date]];
+	path = [path stringByStandardizingPath];
+	CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
+	[self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
+	CGImageRelease(screenShot);
+	/*
+	NSArray *list = (NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly |  
+														  kCGWindowListExcludeDesktopElements, kCGNullWindowID);
+	
+	[list writeToFile:[path stringByAppendingPathExtension:@"plist"] 
+		   atomically:NO];
+	[list release];
+	*/
+	[self performSelector:@selector(captureScreen) withObject:nil afterDelay:60.0];
+}
+- (void)captureSystemSnapshot{
+	NSString *path = @"~/Library/Logs/Discipline/Log/System_Snapshots/%@";
+	path = [NSString stringWithFormat:path, [NSDate date]];
+	path = [path stringByStandardizingPath];
+	/*
+	CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
+	[self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
+	CGImageRelease(screenShot);
+	*/
+	NSArray *list = (NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly |  
+														  kCGWindowListExcludeDesktopElements, kCGNullWindowID);
+	
+	[list writeToFile:[path stringByAppendingPathExtension:@"plist"] 
+		   atomically:NO];
+	[list release];
+	
+	[self performSelector:@selector(captureSystemSnapshot) withObject:nil afterDelay:60.0];
 }
 
-- (void)writeCGImage:(CGImageRef)image toFile:(NSString *)path {
-  
-  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-//                           [NSNumber numberWithFloat:0.0], 
-//                           kCGImageDestinationLossyCompressionQuality,
-                           nil];
-  NSURL *url = [NSURL fileURLWithPath:path];
-  CGImageDestinationRef destination = CGImageDestinationCreateWithURL((CFURLRef)url, kUTTypePNG, 
-                                                        1, options);
-  
-  void CGImageDestinationAddImage(CGImageDestinationRef idst,
-                                  CGImageRef image,
-                                  CFDictionaryRef properties);
-  CGImageDestinationAddImage(destination, image, 0);  
-  bool status = CGImageDestinationFinalize(destination);
-  
-  CFRelease(destination);
-  if (!status) NSLog(@"Couldn't write image file");
 
+- (void)writeCGImage:(CGImageRef)image toFile:(NSString *)path {
+	
+	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+							 //                           [NSNumber numberWithFloat:0.0], 
+							 //                           kCGImageDestinationLossyCompressionQuality,
+							 nil];
+	NSURL *url = [NSURL fileURLWithPath:path];
+	CGImageDestinationRef destination = CGImageDestinationCreateWithURL((CFURLRef)url, kUTTypePNG, 
+																		1, options);
+	
+	void CGImageDestinationAddImage(CGImageDestinationRef idst,
+									CGImageRef image,
+									CFDictionaryRef properties);
+	CGImageDestinationAddImage(destination, image, 0);  
+	bool status = CGImageDestinationFinalize(destination);
+	
+	CFRelease(destination);
+	if (!status) NSLog(@"Couldn't write image file");
+	
 }
 
 @end
