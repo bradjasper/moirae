@@ -51,7 +51,7 @@
 // (NSString *)pathOfCreatedDirectory
 //      - creates a directory and returns the path to it
 - (NSString *)pathOfCreatedDirectory {
-    NSString *directory = [@"~/Library/Logs/Discipline/Logs/" stringByStandardizingPath];
+    NSString *directory = [@"~/Library/Logs/Discipline/Log/" stringByStandardizingPath];
     //NSString *directory = [@"~/Desktop" stringByStandardizingPath];
     directory = [directory stringByAppendingPathComponent:[self logDirectory]];
     
