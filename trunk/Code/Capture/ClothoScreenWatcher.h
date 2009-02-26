@@ -13,6 +13,7 @@
 }
 
 - (void)captureScreen;
+- (void)captureSystemSnapshot;
 - (void)writeCGImage:(CGImageRef)image toFile:(NSString *)path;
 
 @end
