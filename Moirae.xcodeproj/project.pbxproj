@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		4907FE7E0F5687ED00BFEE15 /* ClothoAppLister.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907FE7D0F5687ED00BFEE15 /* ClothoAppLister.m */; };
+		4907FE810F56881000BFEE15 /* ClothoMouseTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907FE800F56881000BFEE15 /* ClothoMouseTracker.m */; };
 		494FE80E0F440F8300608BC8 /* ClothoLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FE80D0F440F8300608BC8 /* ClothoLogger.m */; };
 		7F4F33FA0E9EC1800061161A /* ClothoiTunesWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F30E9EC1800061161A /* ClothoiTunesWatcher.m */; };
 		7F4F33FB0E9EC1800061161A /* ClothoProcessWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F50E9EC1800061161A /* ClothoProcessWatcher.m */; };
@@ -45,6 +47,10 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Moirae_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moirae_Prefix.pch; sourceTree = "<group>"; };
+		4907FE7C0F5687ED00BFEE15 /* ClothoAppLister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothoAppLister.h; sourceTree = "<group>"; };
+		4907FE7D0F5687ED00BFEE15 /* ClothoAppLister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothoAppLister.m; sourceTree = "<group>"; };
+		4907FE7F0F56881000BFEE15 /* ClothoMouseTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothoMouseTracker.h; sourceTree = "<group>"; };
+		4907FE800F56881000BFEE15 /* ClothoMouseTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothoMouseTracker.m; sourceTree = "<group>"; };
 		494FE80C0F440F8300608BC8 /* ClothoLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothoLogger.h; sourceTree = "<group>"; };
 		494FE80D0F440F8300608BC8 /* ClothoLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothoLogger.m; sourceTree = "<group>"; };
 		7F4F33F20E9EC1800061161A /* ClothoiTunesWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClothoiTunesWatcher.h; path = Capture/ClothoiTunesWatcher.h; sourceTree = "<group>"; };
@@ -187,6 +193,10 @@
 			isa = PBXGroup;
 			children = (
 				7F4F33FE0E9EC1890061161A /* DisciplineController.h */,
+				4907FE7C0F5687ED00BFEE15 /* ClothoAppLister.h */,
+				4907FE7D0F5687ED00BFEE15 /* ClothoAppLister.m */,
+				4907FE7F0F56881000BFEE15 /* ClothoMouseTracker.h */,
+				4907FE800F56881000BFEE15 /* ClothoMouseTracker.m */,
 				7F4F33FF0E9EC1890061161A /* DisciplineController.m */,
 				7F4F34000E9EC1890061161A /* DisciplineTaskPrompter.h */,
 				7F4F34010E9EC1890061161A /* DisciplineTaskPrompter.m */,
@@ -196,9 +206,9 @@
 				7F4F33F30E9EC1800061161A /* ClothoiTunesWatcher.m */,
 				7F4F33F40E9EC1800061161A /* ClothoProcessWatcher.h */,
 				7F4F33F50E9EC1800061161A /* ClothoProcessWatcher.m */,
-				7F4F33F60E9EC1800061161A /* ClothoScreenWatcher.h */,
 				494FE80C0F440F8300608BC8 /* ClothoLogger.h */,
 				494FE80D0F440F8300608BC8 /* ClothoLogger.m */,
+				7F4F33F60E9EC1800061161A /* ClothoScreenWatcher.h */,
 				7F4F33F70E9EC1800061161A /* ClothoScreenWatcher.m */,
 				7F4F33F80E9EC1800061161A /* ClothoTaskPrompter.h */,
 				7F4F33F90E9EC1800061161A /* ClothoTaskPrompter.m */,
@@ -303,6 +313,8 @@
 				7F4F34060E9EC1890061161A /* DXApp.m in Sources */,
 				7FDD12720EC285E5004C5873 /* GTMAXUIElement.m in Sources */,
 				494FE80E0F440F8300608BC8 /* ClothoLogger.m in Sources */,
+				4907FE7E0F5687ED00BFEE15 /* ClothoAppLister.m in Sources */,
+				4907FE810F56881000BFEE15 /* ClothoMouseTracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

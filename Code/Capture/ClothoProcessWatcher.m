@@ -82,6 +82,8 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, ClothoPr
     if (err) NSLog(@"gmod registration err %d",err);
 }
 
+#pragma mark LOOK HERE OVER HERE HERE HER HERER HERERHERERE OVER HERE THIS ONE!!!!!!!!!!!!!!!!!!!!!!!
+
 - (void)handleProcessEvent:(EventRef)theEvent {
     ProcessSerialNumber psn;
     GetEventParameter(theEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn );
