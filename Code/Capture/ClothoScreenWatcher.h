@@ -13,7 +13,10 @@
 }
 
 - (void)captureScreen;
+- (void)captureScreen_help;
 - (void)captureSystemSnapshot;
+- (void)captureSystemSnapshot_help;
+- (void)captureMousePosition;
 - (void)writeCGImage:(CGImageRef)image toFile:(NSString *)path;
 
 @end

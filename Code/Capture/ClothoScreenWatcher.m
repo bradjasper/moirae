@@ -26,6 +26,7 @@
 			
 		}
 		[self captureSystemSnapshot];
+		[self captureMousePosition];
 	}
 	return self;
 }
@@ -42,43 +43,58 @@
 } 
 
 
+
 - (void) captureWindowWithID:(NSUInteger)windowID {
 	CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, windowID, kCGWindowImageDefault);
 	CGImageRelease(windowImage);  
 }
 
-- (void)captureScreen {
+- (void) captureMousePosition_helper{
+	//Insert mouse collection code here
+	
+	//Insert call to ClothoLogger here to write to disk
+}
+- (void) captureMousePosition{
+	[self captureMousePosition_helper];
+	
+	[self performSelector:@selector(captureMousePosition) withObject:nil afterDelay:60.0];
+	
+}
+
+- (void)captureScreen_helper{
 	NSString *path = @"~/Library/Logs/Discipline/Screenshots/%@";
 	path = [NSString stringWithFormat:path, [NSDate date]];
 	path = [path stringByStandardizingPath];
 	CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
+	//Change to call to ClothoLogger here to write to disk
 	[self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
 	CGImageRelease(screenShot);
-	/*
-	NSArray *list = (NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly |  
-														  kCGWindowListExcludeDesktopElements, kCGNullWindowID);
-	
-	[list writeToFile:[path stringByAppendingPathExtension:@"plist"] 
-		   atomically:NO];
-	[list release];
-	*/
+}
+
+- (void)captureScreen {
+
+	[self captureScreen_helper];
+
 	[self performSelector:@selector(captureScreen) withObject:nil afterDelay:60.0];
 }
-- (void)captureSystemSnapshot{
+
+- (void)captureSystemSnapshot_help{
 	NSString *path = @"~/Library/Logs/Discipline/Log/System_Snapshots/%@";
 	path = [NSString stringWithFormat:path, [NSDate date]];
 	path = [path stringByStandardizingPath];
-	/*
-	CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
-	[self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
-	CGImageRelease(screenShot);
-	*/
+
 	NSArray *list = (NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll |  
 														  kCGWindowListExcludeDesktopElements, kCGNullWindowID);
-	
+	//Change to call to ClothoLogger here to write to disk
 	[list writeToFile:[path stringByAppendingPathExtension:@"plist"] 
 		   atomically:NO];
 	[list release];
+	
+}
+
+- (void)captureSystemSnapshot{
+	
+	[self captureSystemSnapshot_help];
 	
 	[self performSelector:@selector(captureSystemSnapshot) withObject:nil afterDelay:60.0];
 }
