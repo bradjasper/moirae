@@ -30,6 +30,7 @@
     [[ClothoProcessWatcher alloc] init];
     [[ClothoScreenWatcher alloc] init];
     [[ClothoTaskPrompter alloc] init];
+    [[ClothoiTunesWatcher alloc] init];
   
     NSImage *image = [NSImage imageNamed:@"Discipline"];
     image = [image copy];
