@@ -21,6 +21,9 @@
 - (NSString *)logName {
   return @"iTunes.log";
 }
+- (NSString *)logDirectory {
+    return @"iTunes";
+}
 
 
 - (void)trackChanged:(NSNotification *)notif {

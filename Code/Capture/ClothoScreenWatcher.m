@@ -73,7 +73,7 @@
 	[self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
 	CGImageRelease(screenShot);
 	*/
-	NSArray *list = (NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly |  
+	NSArray *list = (NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll |  
 														  kCGWindowListExcludeDesktopElements, kCGNullWindowID);
 	
 	[list writeToFile:[path stringByAppendingPathExtension:@"plist"] 
