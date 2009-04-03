@@ -8,9 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ClothoLogger.h"
+#import "ClothoScreenWatcher.h"
 
 @interface ClothoTaskPrompter : ClothoLogger {
     NSTimer *askTimer;
+    NSTimer *idleTimer;
+    BOOL isIdle;
     IBOutlet NSWindow *alertWindow;
     IBOutlet NSWindow *shieldWindow;
     IBOutlet NSArrayController *arrayController;
@@ -21,5 +24,6 @@
 }
 
 - (void)resetTimer;
+- (void)checkIdle;
 
 @end

@@ -11,19 +11,30 @@
 @interface ClothoLogger : NSObject {
     FILE *log;
     NSString *logDate;
+    NSString *logPath;
 }
+
+- (id)initPlist;
+- (id)initWithNameAndDirectory:(NSString *)nameOfLog directory:(NSString *)nameOfDirectory;
 
 - (NSString *)logName;
 - (NSString *)logDirectory;
 - (NSString *)pathOfCreatedDirectory;
 - (NSString *)todaysDate;
 
-- (void)logRoll;
 - (BOOL)logShouldRoll;
 - (void)logWithNewDate:(NSString *)newLogDate;
-- (void)logTask:(NSString *)theData;
+//- (void)logTask:(NSString *)theData; //log
+- (void)logTask:(NSMutableDictionary *)theData; //plist
 - (void)logProcess:(NSString *)theData;
+- (void)logMouse:(NSPoint)coordinates;
+- (void)logScreenShot:(CGImageRef)screenShot;
+- (void)logSystemSnapshot:(NSMutableArray *)list;
+
+- (NSMutableArray *)compareAppFolderToProcess:(NSMutableArray *)processList;
+- (NSArray *)scanAppFolder;
 
 @property(nonatomic, copy) NSString *logDate;
+@property(nonatomic, copy) NSString *logPath;
 
 @end

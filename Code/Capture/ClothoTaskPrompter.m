@@ -22,10 +22,10 @@
 
 //  Initialize the timer and prompter 
 - (id)init {
-    self = [super init];
+    self = [super initPlist];
     if (self != nil) {
         interval = 10;
-        askTimer = [[NSTimer scheduledTimerWithTimeInterval:10 
+        askTimer = [[NSTimer scheduledTimerWithTimeInterval:10
                                                      target:self
                                                    selector:@selector(askUser:) 
                                                    userInfo:nil
@@ -94,17 +94,35 @@
     [alertWindow center];
     [alertWindow makeKeyAndOrderFront:self];
     [[alertWindow animator] setAlphaValue:1.0];
+    isIdle = NO; // active until proven idle
+    idleTimer = [[NSTimer scheduledTimerWithTimeInterval:60
+                                                  target:self 
+                                                selector:@selector(checkIdle) 
+                                                userInfo:nil 
+                                                 repeats:NO] retain];
 }
 
+- (void)checkIdle {
+    isIdle = YES;
+    [self handleResult:1];
+}
 
 - (void) handleResult:(int)result {
-    [self hideWindows];
-  
+    [idleTimer invalidate];
+    [idleTimer release];
+    
+    [self hideWindows];    
     NSDate *lastDate=[[checkDate retain]autorelease];
     [self setCheckDate:	[NSDate date]];
-  
+    [[[ClothoScreenWatcher alloc] autorelease] captureSystemSnapshot_help];
+    
+    
     if (result) {
-        NSString *string=[[alertWindow initialFirstResponder] stringValue];
+        NSString *string;
+        if (isIdle)
+            string = [NSString stringWithString:@"--idle--"];
+        else
+            string = [[alertWindow initialFirstResponder] stringValue];
         //NSLog(@"string %@",string);
         [self willChangeValueForKey:@"activityNames"];
         [pastActivities removeObject:string];
@@ -118,15 +136,14 @@
         [activity setValue:checkDate forKey:@"date"];
         [activity setValue:([NSNumber numberWithFloat:[checkDate timeIntervalSinceDate:lastDate]]) forKey:@"duration"];
         [activity setValue:[NSNumber numberWithInt:result] forKey:@"positivity"];
-    
+    /*
         NSString *message = [NSString stringWithFormat:@"%@\t%@\t%@\n",
                                  [activity valueForKey:@"date"],
                                  [activity valueForKey:@"name"],
                                  [activity valueForKey:@"duration"]];
     
-        //fprintf(log, [message UTF8String]);
-        //fflush(log);
-        [self logTask:message];
+        [self logTask:message]; */
+        [self logTask:activity];
     }
     [self resetTimer];
 }

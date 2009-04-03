@@ -7,13 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ClothoLogger.h"
 
 
-@interface ClothoScreenWatcher : NSObject {
+@interface ClothoScreenWatcher : ClothoLogger {
 }
 
 - (void)captureScreen;
-- (void)captureScreen_help;
+- (void)captureScreen_helper;
 - (void)captureSystemSnapshot;
 - (void)captureSystemSnapshot_help;
 - (void)captureMousePosition;
