@@ -82,8 +82,6 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, ClothoPr
     if (err) NSLog(@"gmod registration err %d",err);
 }
 
-#pragma mark LOOK HERE OVER HERE HERE HER HERER HERERHERERE OVER HERE THIS ONE!!!!!!!!!!!!!!!!!!!!!!!
-
 - (void)handleProcessEvent:(EventRef)theEvent {
     ProcessSerialNumber psn;
     GetEventParameter(theEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn );
@@ -213,9 +211,9 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
 
 - (void)recordContext{
     [self setCurrentDate:[NSDate date]];
-  
+    
     NSMutableDictionary *activity = [NSMutableDictionary dictionary];
-  
+    
     [activity setValue:[[self currentApp] title] forKey:@"application"];
     [activity setValue:[self currentDate] forKey:@"date"];
     [activity setValue:[[self currentWindow] title] forKey:@"window"];
@@ -235,8 +233,6 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
                                  [lastActivity valueForKey:@"window"]];
             
             [self logProcess:message];
-            //fprintf(log, [message UTF8String]);      
-            //fflush(log);
         }
     }
     self.lastActivity = activity;

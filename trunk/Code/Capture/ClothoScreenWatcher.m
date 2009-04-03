@@ -10,24 +10,23 @@
 #include <ApplicationServices/ApplicationServices.h>
 
 @implementation ClothoScreenWatcher
-- (id) init {
-	BOOL captureScreenShot = NO;
-	self = [super init];
-	if (self != nil) {
 
-		[[NSFileManager defaultManager] createDirectoryAtPath:[@"~/Library/Logs/Discipline/Log/System_Snapshots/" stringByStandardizingPath]
-								  withIntermediateDirectories:YES attributes:nil error:nil];
-		
-		if(captureScreenShot){
-			[[NSFileManager defaultManager] createDirectoryAtPath:[@"~/Library/Logs/Discipline/Screenshots/" stringByStandardizingPath]
-									  withIntermediateDirectories:YES attributes:nil error:nil];
-			[self captureScreen];
-			
-			
-		}
-		[self captureSystemSnapshot];
-		[self captureMousePosition];
+- (NSString *)logName {
+    return @"System_Snapshots_";
+}
+
+- (NSString *)logDirectory {
+    return @"System_Snapshots";
+}
+
+- (id) init {
+    [self setLogDate:[self todaysDate]];
+	BOOL captureScreenShot = NO;
+    if(captureScreenShot){
+		[self captureScreen];
 	}
+	[self captureSystemSnapshot];
+	[self captureMousePosition];
 	return self;
 }
 
@@ -50,9 +49,8 @@
 }
 
 - (void) captureMousePosition_helper{
-	//Insert mouse collection code here
-	
-	//Insert call to ClothoLogger here to write to disk
+    NSPoint mouseCoordinates = [NSEvent mouseLocation];
+    [self logMouse:mouseCoordinates];
 }
 - (void) captureMousePosition{
 	[self captureMousePosition_helper];
@@ -62,32 +60,28 @@
 }
 
 - (void)captureScreen_helper{
-	NSString *path = @"~/Library/Logs/Discipline/Screenshots/%@";
-	path = [NSString stringWithFormat:path, [NSDate date]];
-	path = [path stringByStandardizingPath];
+    
 	CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
-	//Change to call to ClothoLogger here to write to disk
-	[self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
-	CGImageRelease(screenShot);
+	//[self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
+    [self logScreenShot:screenShot];
+    CGImageRelease(screenShot);
 }
 
 - (void)captureScreen {
-
+    
 	[self captureScreen_helper];
 
 	[self performSelector:@selector(captureScreen) withObject:nil afterDelay:60.0];
 }
 
 - (void)captureSystemSnapshot_help{
-	NSString *path = @"~/Library/Logs/Discipline/Log/System_Snapshots/%@";
-	path = [NSString stringWithFormat:path, [NSDate date]];
-	path = [path stringByStandardizingPath];
-
-	NSArray *list = (NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll |  
-														  kCGWindowListExcludeDesktopElements, kCGNullWindowID);
-	//Change to call to ClothoLogger here to write to disk
-	[list writeToFile:[path stringByAppendingPathExtension:@"plist"] 
-		   atomically:NO];
+    
+	NSMutableArray *list = (NSMutableArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll |  
+                                                                        kCGWindowListExcludeDesktopElements, kCGNullWindowID);
+    [self compareAppFolderToProcess:list];
+    
+    [self logSystemSnapshot:list];
+    
 	[list release];
 	
 }
@@ -96,7 +90,7 @@
 	
 	[self captureSystemSnapshot_help];
 	
-	[self performSelector:@selector(captureSystemSnapshot) withObject:nil afterDelay:60.0];
+	[self performSelector:@selector(captureSystemSnapshot) withObject:nil afterDelay:300.0];
 }
 
 
