@@ -107,12 +107,14 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, ClothoPr
 
 #pragma mark Window Focus switch notification
 
-- (void)handleWindowChange:(GTMAXUIElement *) element {
-    [self setCurrentDate:[NSDate date]];
-    [self setCurrentApp:[element processElement]];
+- (void)handleWindowChange:(GTMAXUIElement *) element{
+  [self setCurrentDate:[NSDate date]];
+  if (![element isKindOfClass:[GTMAXUIElement class]])
+    element = nil;
+  [self setCurrentApp:[element processElement]];
+  [self setCurrentWindow:element];  
+  [self registerForTitleNotificationsForWindow: element];
 
-    [self setCurrentWindow:element];  
-    [self registerForTitleNotificationsForWindow: element];
 }
 
 void focusObserverCallbackFunction(AXObserverRef focusObserver, AXUIElementRef element, CFStringRef notification, void *self) {
@@ -165,14 +167,15 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
 }
 
 - (GTMAXUIElement *)frontWindowForApp:(GTMAXUIElement *)app{
-    GTMAXUIElement *value = nil;
-    @try {
-        value = [app accessibilityAttributeValue:(NSString *)kAXFocusedWindowAttribute];
-    }
-    @catch (NSException * e) {
-        NSLog(@"Exception raised: %@", e);
-    }
-    return value;
+  GTMAXUIElement *value = nil;
+  @try {
+    value = [app accessibilityAttributeValue:(NSString *)kAXFocusedWindowAttribute];
+  }
+  @catch (NSException * e) {
+    NSLog(@"Exception raised: %@", e);
+  }
+  if ([value isKindOfClass:[NSNull class]]) value = nil;
+  return value;
 }
 
 - (NSString *)currentWindowName{
@@ -220,9 +223,18 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
     [activity setValue:[[self currentWindow] title] forKey:@"window"];
     [activity setValue:[NSNumber numberWithInt:state] forKey:@"state"];
   
-    if (self.lastActivity) {
-        float duration=[[self currentDate] timeIntervalSinceDate:[lastActivity valueForKey:@"date"]];
-        [lastActivity setValue:[NSNumber numberWithFloat:duration] forKey:@"duration"];
+  
+  [activity setValue:[[self currentApp] title] forKey:@"application"];
+  [activity setValue:[self currentDate] forKey:@"date"];
+  id window = [self currentWindow];
+  if ([window isKindOfClass:[GTMAXUIElement class]])
+    [activity setValue:[window title] forKey:@"window"];
+  [activity setValue:[NSNumber numberWithInt:state] forKey:@"state"];
+  
+  if (self.lastActivity){
+    float duration=[[self currentDate] timeIntervalSinceDate:[lastActivity valueForKey:@"date"]];
+    [lastActivity setValue:[NSNumber numberWithFloat:duration] forKey:@"duration"];
+
     
         if (duration > 0.01) {
             NSString *message = [NSString stringWithFormat:@"%@\t%@\t%@\t%@\t%@\n",

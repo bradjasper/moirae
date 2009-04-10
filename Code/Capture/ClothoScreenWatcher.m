@@ -75,15 +75,18 @@
 }
 
 - (void)captureSystemSnapshot_help{
-    
-	NSMutableArray *list = (NSMutableArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll |  
-                                                                        kCGWindowListExcludeDesktopElements, kCGNullWindowID);
-    [self compareAppFolderToProcess:list];
-    
-    [self logSystemSnapshot:list];
-    
-	[list release];
-	
+  
+  NSMutableArray *list = (NSMutableArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly |  
+                                                                      kCGWindowListExcludeDesktopElements, kCGNullWindowID);
+  
+  
+  list = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
+  [self compareAppFolderToProcess:list];
+  
+  [self logSystemSnapshot:list];
+  
+  [list release];
+  
 }
 
 - (void)captureSystemSnapshot{
