@@ -31,6 +31,9 @@
 - (void)logScreenShot:(CGImageRef)screenShot;
 - (void)logSystemSnapshot:(NSMutableArray *)list;
 
+//- (NSString *)formatDateToAppend:(NSString *)dateToAppend;
+- (void)moveFilesToFolderForDate:(NSString *)theDate;
+
 - (NSMutableArray *)compareAppFolderToProcess:(NSMutableArray *)processList;
 - (NSArray *)scanAppFolder;
 
