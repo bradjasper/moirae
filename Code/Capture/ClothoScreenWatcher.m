@@ -77,7 +77,7 @@
 	[self performSelector:@selector(captureScreen) withObject:nil afterDelay:60.0];
 }
 
-- (void)captureSystemSnapshot_help{
+- (void)captureSystemSnapshot_help:(NSDate *)dateToLog{
   
   NSMutableArray *list = (NSMutableArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll |  
                                                                       kCGWindowListExcludeDesktopElements, kCGNullWindowID);
@@ -89,7 +89,7 @@
     [list addObject:[NSDictionary dictionaryWithObject:[self retrieveDesktopSize] forKey:@"DesktopSize"]];
     [list addObject:[NSDictionary dictionaryWithObject:[self retrieveCPUusage] forKey:@"CPUUsage"]];
     
-  [self logSystemSnapshot:list];
+    [self logSystemSnapshot:list forDate:dateToLog];
   
   [list release];
   
@@ -97,7 +97,7 @@
 
 - (void)captureSystemSnapshot{
 	
-	[self captureSystemSnapshot_help];
+	[self captureSystemSnapshot_help:[NSDate date]];
 	
 	[self performSelector:@selector(captureSystemSnapshot) withObject:nil afterDelay:60.0];
 }

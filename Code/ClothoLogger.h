@@ -15,7 +15,9 @@
 }
 
 - (id)initPlist;
-- (id)initWithNameAndDirectory:(NSString *)nameOfLog directory:(NSString *)nameOfDirectory;
+- (id)initWithNameAndDirectory:(NSString *)nameOfLog 
+                     directory:(NSString *)nameOfDirectory 
+                       forDate:(NSDate *)dateToUse;
 
 - (NSString *)logName;
 - (NSString *)logDirectory;
@@ -29,7 +31,7 @@
 - (void)logProcess:(NSString *)theData;
 - (void)logMouse:(NSPoint)coordinates;
 - (void)logScreenShot:(CGImageRef)screenShot;
-- (void)logSystemSnapshot:(NSMutableArray *)list;
+- (void)logSystemSnapshot:(NSMutableArray *)list forDate:(NSDate *)dateToLog;
 
 //- (NSString *)formatDateToAppend:(NSString *)dateToAppend;
 - (void)moveFilesToFolderForDate:(NSString *)theDate;
