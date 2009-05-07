@@ -22,6 +22,7 @@
   NSInteger state;
   NSMutableDictionary *lastActivity;
   NSTimer *timer;
+    NSMetadataQuery *metadataQuery;
 }
 
 @property(retain) NSTimer *timer;

@@ -64,6 +64,8 @@
                                                     selector:@selector(timerFired:)
                                                     userInfo:nil
                                                      repeats:YES];
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(receiveNotification:) name:NSWindowDidDeminiaturizeNotification object:nil];
   }
   return self;
 }
@@ -407,5 +409,8 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
 //}
 //
 
+- (void)receiveNotification:(NSNotification *)notification {
+    NSLog(@"%@", [notification name]);
+}
 
 @end

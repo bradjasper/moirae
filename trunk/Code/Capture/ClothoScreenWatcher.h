@@ -18,6 +18,8 @@
 - (void)captureSystemSnapshot;
 - (void)captureSystemSnapshot_help;
 - (void)captureMousePosition;
+- (NSArray *)retrieveCPUusage;
+- (NSDictionary *)retrieveDesktopSize;
 - (void)writeCGImage:(CGImageRef)image toFile:(NSString *)path;
 
 @end

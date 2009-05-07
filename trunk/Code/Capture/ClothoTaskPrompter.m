@@ -107,15 +107,15 @@
     [self handleResult:1];
 }
 
-- (void) handleResult:(int)result {
+- (void)handleResult:(int)result {
     [idleTimer invalidate];
     [idleTimer release];
     
     [self hideWindows];    
-    NSDate *lastDate=[[checkDate retain]autorelease];
+    NSDate *lastDate=[[checkDate retain] autorelease];
     [self setCheckDate:	[NSDate date]];
-    [[[ClothoScreenWatcher alloc] autorelease] captureSystemSnapshot_help];
-    
+    ClothoScreenWatcher *watcher = [[[ClothoScreenWatcher alloc] init] autorelease];
+    [watcher captureSystemSnapshot_help];
     
     if (result) {
         NSString *string;

@@ -44,6 +44,7 @@
 - (id)initWithNameAndDirectory:(NSString *)nameOfLog directory:(NSString *)directoryOfLog {
     NSString *directory = [@"~/Library/Logs/Discipline/Log/" stringByStandardizingPath];
     directory = [directory stringByAppendingPathComponent:directoryOfLog];
+    [self setLogPath:directory];
     NSString *path;
     
     [[NSFileManager defaultManager] 
@@ -160,8 +161,34 @@
 }
 
 - (void)logSystemSnapshot:(NSMutableArray *)list {
-    NSString *path = [self initWithNameAndDirectory:@"System_Snapshot_" directory:@"System_Snapshots"];
-    [list writeToFile:[path stringByAppendingPathExtension:@"plist"] atomically:NO];
+    BOOL isDir;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *today = [dateFormatter stringFromDate:[NSDate date]];
+    
+    NSString *path = [self initWithNameAndDirectory:@"System_Snapshot_" 
+                                          directory:@"System_Snapshots"];
+    NSString *dirPath = 
+    [[path stringByDeletingLastPathComponent] 
+     stringByAppendingPathComponent:[@"System_Snapshots_" stringByAppendingString:today]];
+    
+    //  if the directory exists, then just write the file into it
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dirPath isDirectory:&isDir] 
+        && isDir == YES) {
+        // cool. now write to that directory...
+    }
+    //  else make the directory then write the file into it
+    else {
+        [[NSFileManager defaultManager] createDirectoryAtPath:dirPath 
+                                                   attributes:nil];
+    }
+    NSString *filePath = [[dirPath stringByAppendingPathComponent:[path lastPathComponent]]
+                          stringByAppendingPathExtension:@"plist"];
+    [list writeToFile:filePath atomically:NO];
+        
+    //        [self moveFilesToFolderForDate:logDate];
+
+    [dateFormatter release];
 }
 
 
@@ -231,6 +258,47 @@
     log = fopen([path fileSystemRepresentation], "a");
 }
 
+// (void)moveFilesToFolderForDate:(NSString *)theDate
+//      - creates a new folder for theDate and moves the files that have
+//        theDate in the file's name into the new folder
+- (void)moveFilesToFolderForDate:(NSString *)theDate {
+    //  create date to append to folder name
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    //  create source path, target path, and new folder
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *directoryContents = [fileManager directoryContentsAtPath:logPath];
+    NSString *originalPath = [NSString stringWithString:logPath];
+    NSString *targetPath = [[logPath stringByAppendingPathComponent:
+                            [[self logName] stringByAppendingString:
+                             [dateFormatter stringFromDate:
+                              [NSDate dateWithNaturalLanguageString:
+                               [self logDate]]]]] stringByStandardizingPath];
+    [fileManager createDirectoryAtPath:targetPath 
+           withIntermediateDirectories:NO 
+                            attributes:nil 
+                                 error:nil];
+    
+    //  move files to new folder that contain theDate in the file's name
+    for (NSString *file in directoryContents) {
+        BOOL isDir;
+        NSString *sourcePath = [originalPath stringByAppendingPathComponent:file];
+        if ([fileManager fileExistsAtPath:sourcePath isDirectory:&isDir] 
+            && [file rangeOfString:theDate].length
+            && !isDir) {
+            NSError *err;
+            if(![fileManager moveItemAtPath:sourcePath
+                                     toPath:[targetPath stringByAppendingPathComponent:file] 
+                                      error:&err]) {
+                NSLog(@"%@",[err localizedFailureReason]);
+                NSLog(@"%@",[err localizedDescription]);
+            }
+        }
+    }
+    [dateFormatter release];
+}
+
 // (NSString *)pathOfCreatedDirectory
 //      - creates a directory and returns the path to it
 - (NSString *)pathOfCreatedDirectory {
@@ -295,6 +363,8 @@
     return finalListOfApps;
 }
 
+//- (NSDate *)formatDateToAppend:(NSString *)dateToAppend
+                                                                                           
 // (NSString *)todaysDate
 //      - sets logDate. Is of the form YYYY-MM-DD
 - (NSString *)todaysDate {
