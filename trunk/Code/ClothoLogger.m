@@ -41,7 +41,9 @@
     return self;        
 }
 
-- (id)initWithNameAndDirectory:(NSString *)nameOfLog directory:(NSString *)directoryOfLog {
+- (id)initWithNameAndDirectory:(NSString *)nameOfLog 
+                     directory:(NSString *)directoryOfLog 
+                       forDate:(NSDate *)dateToUse {
     NSString *directory = [@"~/Library/Logs/Discipline/Log/" stringByStandardizingPath];
     directory = [directory stringByAppendingPathComponent:directoryOfLog];
     [self setLogPath:directory];
@@ -58,10 +60,15 @@
         log = fopen([path fileSystemRepresentation], "a");
         return self;
     }
+    else if ([nameOfLog isEqualToString:@"System_Snapshot_"]) {
+        path = [directory stringByAppendingPathComponent:
+                [nameOfLog stringByAppendingString:[dateToUse description]]];
+        return path;
+    }
     else {
         path = [directory stringByAppendingPathComponent:
                 [nameOfLog stringByAppendingString:[[NSDate date] description]]];
-        return path;
+        return path;        
     }
 }
 
@@ -150,24 +157,25 @@
                         coordinates.x,
                         coordinates.y];
     
-    [self initWithNameAndDirectory:@"Mouse_" directory:@"Mouse"];
+    [self initWithNameAndDirectory:@"Mouse_" directory:@"Mouse" forDate:nil];
     fprintf(log, [logged UTF8String]);
     fflush(log);
 }
 
 - (void)logScreenShot:(CGImageRef)screenShot {
-    NSString *path = [self initWithNameAndDirectory:@"ScreenShots_" directory:@"ScreenShots"];
+    NSString *path = [self initWithNameAndDirectory:@"ScreenShots_" directory:@"ScreenShots" forDate:nil];
     [self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
 }
 
-- (void)logSystemSnapshot:(NSMutableArray *)list {
+- (void)logSystemSnapshot:(NSMutableArray *)list forDate:(NSDate *)dateToLog {
     BOOL isDir;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *today = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *today = [dateFormatter stringFromDate:dateToLog];
     
     NSString *path = [self initWithNameAndDirectory:@"System_Snapshot_" 
-                                          directory:@"System_Snapshots"];
+                                          directory:@"System_Snapshots"
+                                            forDate:dateToLog];
     NSString *dirPath = 
     [[path stringByDeletingLastPathComponent] 
      stringByAppendingPathComponent:[@"System_Snapshots_" stringByAppendingString:today]];
@@ -182,6 +190,7 @@
         [[NSFileManager defaultManager] createDirectoryAtPath:dirPath 
                                                    attributes:nil];
     }
+    
     NSString *filePath = [[dirPath stringByAppendingPathComponent:[path lastPathComponent]]
                           stringByAppendingPathExtension:@"plist"];
     [list writeToFile:filePath atomically:NO];

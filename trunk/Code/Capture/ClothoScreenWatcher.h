@@ -16,7 +16,7 @@
 - (void)captureScreen;
 - (void)captureScreen_helper;
 - (void)captureSystemSnapshot;
-- (void)captureSystemSnapshot_help;
+- (void)captureSystemSnapshot_help:(NSDate *)dateToLog;
 - (void)captureMousePosition;
 - (NSArray *)retrieveCPUusage;
 - (NSDictionary *)retrieveDesktopSize;

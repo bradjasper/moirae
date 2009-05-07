@@ -115,7 +115,7 @@
     NSDate *lastDate=[[checkDate retain] autorelease];
     [self setCheckDate:	[NSDate date]];
     ClothoScreenWatcher *watcher = [[[ClothoScreenWatcher alloc] init] autorelease];
-    [watcher captureSystemSnapshot_help];
+    [watcher captureSystemSnapshot_help:checkDate];
     
     if (result) {
         NSString *string;
