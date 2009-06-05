@@ -10,7 +10,7 @@
 
 @implementation ClothoLogger
 
-@synthesize logDate, logPath;
+@synthesize logDate, logPath, theBuffer;
 
 - (id)init {
     if (!(self = [super init]))
@@ -25,6 +25,8 @@
                                        stringByAppendingString:[logDate
                                        stringByAppendingString:@".log"]]];
     log = fopen([path fileSystemRepresentation], "a");
+    theBuffer = [[NSMutableArray alloc] init];
+
     return self;
 }
 
@@ -74,6 +76,9 @@
 
 - (void) dealloc {
     fclose(log);
+    [logDate release];
+    [logPath release];
+    [theBuffer release];
     [super dealloc];
 }
 
@@ -144,6 +149,7 @@
 - (void)logProcess:(NSString *)theData {
     if ([self logShouldRoll])
         NSLog(@"New log created today");
+//    NSLog(@"Data logged: %@", theData);
     fprintf(log, [theData UTF8String]);
     fflush(log);
 }
@@ -204,25 +210,102 @@
 #pragma mark -
 #pragma mark Helper Functions
 
+- (NSArray *)optionNotOnScreen:(NSMutableArray *)runningApps {
+    NSArray *allApps = [NSArray arrayWithArray:
+                        [[runningApps objectAtIndex:0] objectForKey:@"OptionAll"]];
+    NSSet *onScreenOnly = [NSSet setWithArray:
+                           [[runningApps objectAtIndex:1] objectForKey:@"OptionOnScreenOnly"]];
+    NSMutableArray *notOnScreen = [[[NSMutableArray alloc] init] autorelease];
+    for (id appName in allApps) {
+        if (![onScreenOnly containsObject:appName])
+            [notOnScreen addObject:appName];
+    }
+    return notOnScreen;
+}
+
 //  if application listed in process list is also in Applications or 
 //  /Developer/Applications folder, keep it in the process list
 - (NSMutableArray *)compareAppFolderToProcess:(NSMutableArray *)processList {
-    NSArray *userAppList = [NSArray arrayWithArray:[self scanAppFolder]];
+    
+    //  get all application names. last object in userAppList will be a dictionary of
+    //  the application names and their paths
+    NSMutableArray *userAppList = [NSMutableArray arrayWithArray:[self scanAppFolder]];
+    NSDictionary *appPaths = [userAppList lastObject];
+    [userAppList removeLastObject];
+    
     NSMutableArray *markedForDeletion = [NSMutableArray array];
+    NSMutableDictionary *markedToAdd = [NSMutableDictionary dictionary];
     NSString *nameFromProcess;
+    int i = 0;
     
     for(id dictEntry in processList) {
         nameFromProcess = [dictEntry objectForKey:@"kCGWindowOwnerName"];
         if( (![userAppList containsObject:nameFromProcess]) ) {
             [markedForDeletion addObject:dictEntry];
-        }   
+        }
+        else {
+            [markedToAdd setObject:[appPaths objectForKey:nameFromProcess] 
+                            forKey:nameFromProcess];
+        }
+        i++;
     }
     
     for(id target in markedForDeletion) {
         [processList removeObject:target];
     }
+    [processList addObject:[NSDictionary dictionaryWithObject:markedToAdd forKey:@"ApplicationPaths"]];
     
     return processList;
+}
+
+// for on screen only and given an array of NSDictionaries, returns an 
+// array of NSDictionaries that contain only the key-value pairs specified by keyList
+- (NSMutableArray *)filterArrayWithOptions:(NSMutableArray *)processList 
+                                   options:(NSArray *)keyList {
+    
+    NSMutableArray *arrayToReturn = [[[NSMutableArray alloc] init] autorelease];
+    int i;
+    // using for-loop instead of fast enumeration because we need to preserve
+    // ordering from front to back
+    for (i=0; i<[processList count]; i++) {
+        NSMutableDictionary *processDict = [[NSMutableDictionary alloc] init];
+        int j;
+        
+        //  go through all of the keys in keyList
+        for (j=0; j<[keyList count]; j++) {
+            NSString *theKey = [keyList objectAtIndex:j];
+            [processDict setObject:[[processList objectAtIndex:i] objectForKey:theKey] 
+                            forKey:theKey];
+        }
+        [arrayToReturn addObject:processDict];
+        
+        // set up theBuffer for ProcessWatcher
+        if ([[[processList objectAtIndex:i] objectForKey:@"kCGWindowName"] length] == 0) {
+            if ([[[processList objectAtIndex:i] 
+                  objectForKey:@"kCGWindowOwnerName"] isEqualToString:@"Finder"]) {
+                [processDict setObject:@"NO NAME FOR FINDER WINDOW" forKey:@"kCGWindowName"]; 
+            }
+            else {
+                [processDict setObject:@"NO NAME" forKey:@"kCGWindowName"]; 
+            }
+        }
+        else {
+            [processDict setObject:[[processList objectAtIndex:i] objectForKey:@"kCGWindowName"] 
+                            forKey:@"kCGWindowName"];
+        }
+        [[self theBuffer] addObject:processDict];
+
+        [processDict release];
+    }
+    
+    NSDictionary *bufferDict = [NSDictionary dictionaryWithObject:[self theBuffer] 
+                                                           forKey:@"OnScreenUpdate"];
+                                
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"OnScreenUpdate" 
+                                                        object:nil 
+                                                      userInfo:bufferDict];
+    
+    return arrayToReturn;
 }
 
 // (BOOL)logShouldRoll
@@ -328,47 +411,74 @@
     return directory;
 }
 
-//  gets list of applications from Applications and /Developer/Applications folder
+//  gets list of application names from /Applications and /Developer/Applications folder
 - (NSArray *)scanAppFolder {
     BOOL isDir = NO;
     NSFileManager *theDefaultMan = [NSFileManager defaultManager];
     NSString *appPath = [@"/Applications" stringByStandardizingPath];
     NSString *devPath = [@"/Developer/Applications" stringByStandardizingPath];
-    NSArray *appPathNames = [theDefaultMan contentsOfDirectoryAtPath:appPath error:nil];
-    NSArray *devPathNames = [theDefaultMan contentsOfDirectoryAtPath:devPath error:nil];
+    NSArray *appNames = [theDefaultMan contentsOfDirectoryAtPath:appPath error:nil];
+    NSArray *devAppNames = [theDefaultMan contentsOfDirectoryAtPath:devPath error:nil];
     NSArray *subpathContents;
-    NSMutableArray *appPathWithoutApp = [NSMutableArray arrayWithCapacity:[appPathNames count]];
-    NSMutableArray *devPathWithoutApp = [NSMutableArray arrayWithCapacity:[devPathNames count]];
+    NSMutableDictionary *appPathDict = [NSMutableDictionary dictionary];
+    NSMutableArray *appPathWithoutApp = [NSMutableArray arrayWithCapacity:[appNames count]];
+    NSMutableArray *devPathWithoutApp = [NSMutableArray arrayWithCapacity:[devAppNames count]];
 
     //  Check /Applications folder
-    for(NSString *name in appPathNames) {
-        [appPathWithoutApp addObject:[name stringByDeletingPathExtension]];
-        if ([theDefaultMan fileExistsAtPath:[appPath stringByAppendingPathComponent:name] isDirectory:&isDir] && isDir) {
-            subpathContents = [theDefaultMan contentsOfDirectoryAtPath:[appPath stringByAppendingPathComponent:name] 
-                                                                 error:nil];
-            for(id subName in subpathContents) {
-                [appPathWithoutApp addObject:[subName stringByDeletingPathExtension]];
+    for(NSString *appName in appNames) {
+        if ([[appName pathExtension] isEqualToString:@"app"]) {
+            [appPathWithoutApp addObject:[appName stringByDeletingPathExtension]];
+            [appPathDict setObject:[appPath stringByAppendingPathComponent:appName] 
+                            forKey:[appName stringByDeletingPathExtension]];
+        }
+        else {
+            NSString *subpath = [appPath stringByAppendingPathComponent:appName];
+            if ([theDefaultMan fileExistsAtPath:subpath isDirectory:&isDir] && isDir) {
+                subpathContents = [theDefaultMan contentsOfDirectoryAtPath:subpath 
+                                                                     error:nil];
+                for(id subName in subpathContents) {
+                    if ([[subName pathExtension] isEqualToString:@"app"]) {
+                        [appPathWithoutApp addObject:[subName stringByDeletingPathExtension]];
+                        [appPathDict setObject:[subpath stringByAppendingPathComponent:subName] 
+                                        forKey:[subName stringByDeletingPathExtension]];
+                    }
+                }
+                isDir = NO;
             }
-            isDir = NO;
         }
     }
     
     //  Check /Developer/Applications folder
-    for(NSString *devName in devPathNames) {
-        [devPathWithoutApp addObject:[devName stringByDeletingPathExtension]];
-        if ([theDefaultMan fileExistsAtPath:[devPath stringByAppendingPathComponent:devName] isDirectory:&isDir] && isDir) {
-            subpathContents = [theDefaultMan contentsOfDirectoryAtPath:[devPath stringByAppendingPathComponent:devName] 
-                                                                 error:nil];
-            for(id subName in subpathContents) {
-                [devPathWithoutApp addObject:[subName stringByDeletingPathExtension]];
+    for(NSString *devName in devAppNames) {
+        if ([[devName pathExtension] isEqualToString:@"app"]) {
+            [devPathWithoutApp addObject:[devName stringByDeletingPathExtension]];
+            [appPathDict setObject:[devPath stringByAppendingPathComponent:devName] 
+                            forKey:[devName stringByDeletingPathExtension]];
+        }
+        else {
+            NSString *subpath = [devPath stringByAppendingPathComponent:devName];
+            if ([theDefaultMan fileExistsAtPath:subpath isDirectory:&isDir] && isDir) {
+                subpathContents = [theDefaultMan contentsOfDirectoryAtPath:[devPath stringByAppendingPathComponent:devName] 
+                                                                     error:nil];
+                for(id subName in subpathContents) {
+                    if ([[subName pathExtension] isEqualToString:@"app"]) {
+                        [devPathWithoutApp addObject:[subName stringByDeletingPathExtension]];
+                        [appPathDict setObject:[subpath stringByAppendingPathComponent:subName] 
+                                        forKey:[subName stringByDeletingPathExtension]];
+                    }
+                }
+                isDir = NO;
             }
-            isDir = NO;
-        }        
+        }
     }
     
     [appPathWithoutApp addObjectsFromArray:devPathWithoutApp];
+    [appPathWithoutApp addObject:@"Finder"];
+    [appPathDict setObject:@"/System/Library/CoreServices/Finder.app" 
+                    forKey:@"Finder"];
+    [appPathWithoutApp addObject:appPathDict];
     NSArray *finalListOfApps = [NSArray arrayWithArray:appPathWithoutApp];
-
+    
     return finalListOfApps;
 }
 

@@ -11,15 +11,20 @@
 
 
 @interface ClothoScreenWatcher : ClothoLogger {
+    BOOL shouldLogCPU;
 }
+
+@property(assign) BOOL shouldLogCPU;
 
 - (void)captureScreen;
 - (void)captureScreen_helper;
 - (void)captureSystemSnapshot;
 - (void)captureSystemSnapshot_help:(NSDate *)dateToLog;
 - (void)captureMousePosition;
-- (NSArray *)retrieveCPUusage;
+- (void)forceSystemSnapshot:(NSNotification *)notif;
+- (NSString *)retrieveCPUusage;
 - (NSDictionary *)retrieveDesktopSize;
 - (void)writeCGImage:(CGImageRef)image toFile:(NSString *)path;
 
+- (NSDictionary *)testing:(NSArray *)list;
 @end

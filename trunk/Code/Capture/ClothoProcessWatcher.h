@@ -7,6 +7,7 @@
 //
 
 #import "ClothoLogger.h"
+#import "ClothoScreenWatcher.h"
 
 @class NDProcess;
 @class GTMAXUIElement;
@@ -20,10 +21,13 @@
   GTMAXUIElement *currentWindow;
   NDProcess *lastProcess;
   NSInteger state;
+  NSInteger proID;  
   NSMutableDictionary *lastActivity;
   NSTimer *timer;
+    NSString *openCloseName;
     NSMetadataQuery *metadataQuery;
 }
+
 
 @property(retain) NSTimer *timer;
 @property(retain) NSDate *currentDate;
@@ -32,5 +36,7 @@
 @property(retain) NSMutableDictionary *lastActivity;
 
 @property(assign) NSInteger state;
+@property(assign) NSInteger proID;
+@property(assign) NSString *openCloseName;
 
 @end

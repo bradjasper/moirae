@@ -21,8 +21,12 @@
     id currentActivity;
     NSMutableArray *pastActivities;
     float interval;
+    NSArray *taskIntervals;   
 }
 
+@property(retain) NSArray *taskIntervals;
+
+- (void)randomInterval;
 - (void)resetTimer;
 - (void)checkIdle;
 

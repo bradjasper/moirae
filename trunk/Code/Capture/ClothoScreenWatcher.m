@@ -9,9 +9,11 @@
 #import "ClothoScreenWatcher.h"
 #import <Foundation/NSZone.h>
 #include <ApplicationServices/ApplicationServices.h>
-
+#include <openssl/md5.h>
 
 @implementation ClothoScreenWatcher
+
+@synthesize shouldLogCPU;
 
 - (NSString *)logName {
     return @"System_Snapshots_";
@@ -22,6 +24,8 @@
 }
 
 - (id) init {
+    if (!(self = [super init])) 
+        return nil;
     [self setLogDate:[self todaysDate]];
 	BOOL captureScreenShot = NO;
     if(captureScreenShot){
@@ -29,6 +33,13 @@
 	}
 	[self captureSystemSnapshot];
 	[self captureMousePosition];
+    
+    shouldLogCPU = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(forceSystemSnapshot:)
+                                                 name:@"DoSystemSnapshot" 
+                                               object:nil];
+    
 	return self;
 }
 
@@ -57,7 +68,7 @@
 - (void) captureMousePosition{
 	[self captureMousePosition_helper];
 	
-	[self performSelector:@selector(captureMousePosition) withObject:nil afterDelay:60.0];
+	[self performSelector:@selector(captureMousePosition) withObject:nil afterDelay:114.0];
 	
 }
 
@@ -79,36 +90,62 @@
 
 - (void)captureSystemSnapshot_help:(NSDate *)dateToLog{
   
-  NSMutableArray *list = (NSMutableArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll |  
-                                                                      kCGWindowListExcludeDesktopElements, kCGNullWindowID);
+//  NSMutableArray *list = (NSMutableArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll |  
+//                                                                      kCGWindowListExcludeDesktopElements, kCGNullWindowID);
   
   
-  list = CGWindowListCopyWindowInfo(kCGWindowListOptionAll, kCGNullWindowID);
-  [self compareAppFolderToProcess:list];
+    NSMutableArray *optAll = (NSMutableArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll, kCGNullWindowID);
+    NSMutableArray *onScreen = (NSMutableArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
+    NSMutableArray *toLog = [[NSMutableArray alloc] init];
     
-    [list addObject:[NSDictionary dictionaryWithObject:[self retrieveDesktopSize] forKey:@"DesktopSize"]];
-    [list addObject:[NSDictionary dictionaryWithObject:[self retrieveCPUusage] forKey:@"CPUUsage"]];
+    optAll = [self compareAppFolderToProcess:optAll];
+    NSDictionary *applicationPaths = [optAll lastObject];
+    [optAll removeLastObject];
+    onScreen = [self compareAppFolderToProcess:onScreen];
+    [onScreen removeLastObject];
+    onScreen = [self filterArrayWithOptions:onScreen options:[NSArray arrayWithObjects:
+                                                              @"kCGWindowNumber", @"kCGWindowOwnerPID", nil]];
     
-    [self logSystemSnapshot:list forDate:dateToLog];
-  
-  [list release];
-  
+    [toLog addObject:[NSDictionary dictionaryWithObject:optAll forKey:@"OptionAll"]];
+    [toLog addObject:[NSDictionary dictionaryWithObject:onScreen forKey:@"OptionOnScreenOnly"]];                 
+
+    [toLog addObject:[NSDictionary dictionaryWithObject:[self retrieveDesktopSize] forKey:@"DesktopSize"]];
+    
+//    if (shouldLogCPU)
+        [toLog addObject:[NSDictionary dictionaryWithObject:[self retrieveCPUusage] forKey:@"CPUUsage"]];
+//    else {
+//        [toLog addObject:[NSDictionary dictionaryWithObject:@"Process System Snapshot" forKey:@"CPUUsage"]];
+//        shouldLogCPU = YES;
+//    }
+    
+    [toLog addObject:applicationPaths];
+    
+    [self logSystemSnapshot:toLog forDate:dateToLog];
+    
+    [toLog release];
 }
 
 - (void)captureSystemSnapshot{
 	
 	[self captureSystemSnapshot_help:[NSDate date]];
 	
-	[self performSelector:@selector(captureSystemSnapshot) withObject:nil afterDelay:60.0];
+	[self performSelector:@selector(captureSystemSnapshot) withObject:nil afterDelay:114.0];
+    
 }
 
-- (NSArray *)retrieveCPUusage {
+- (void)forceSystemSnapshot:(NSNotification *)notif {
+    shouldLogCPU = NO;
+    [self captureSystemSnapshot_help:[[notif userInfo] objectForKey:@"TheDate"]];
+}
+
+- (NSString *)retrieveCPUusage {
     NSTask *task;
     task = [[NSTask alloc] init];
     [task setLaunchPath:@"/usr/bin/top"];
     
-    // "-l3" is the number of times top is run
-    NSArray *arguments = [NSArray arrayWithObjects:@"-FR", @"-l3", nil];
+    // "-l2" is the number of times top is run
+//    NSArray *arguments = [NSArray arrayWithObjects:@"-FR", @"-l3", nil];
+    NSArray *arguments = [NSArray arrayWithObjects:@"-ocpu", @"-FR", @"-l5", nil];
     [task setArguments:arguments];
     
     NSPipe *pipe = [NSPipe pipe];
@@ -116,40 +153,41 @@
     
     NSFileHandle *file = [pipe fileHandleForReading];
     
-    //  run terminal command: "top -FR -l3"
+    //  run terminal command: "top -ocpu -FR -l5"
     [task launch];
     
     NSData *data = [file readDataToEndOfFile];
     
     NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *outputComponents = [NSArray arrayWithArray:[output componentsSeparatedByString:@"Processes:"]];
-    NSMutableArray *CPUsamples = [[[NSMutableArray alloc] init] autorelease];
-    
-    for (id topOutput in outputComponents) {
-        NSRange usageRange = [topOutput rangeOfString:@"CPU usage:"];
-        if (usageRange.length != 0) {
-            usageRange.length += 38;
-            
-            NSString *justUsage = [topOutput substringWithRange:usageRange];
-            NSRange percentage;
-            percentage.length = 6;
-            
-            percentage.location = 10;
-            NSString *user = [justUsage substringWithRange:percentage];
-            percentage.location = 23;
-            NSString *sys = [justUsage substringWithRange:percentage];
-            percentage.location = 35;
-            NSString *idle = [justUsage substringWithRange:percentage];
-            
-            [CPUsamples addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   user, @"user",
-                                   sys, @"sys",
-                                   idle, @"idle", nil]];
-        }
-    }
-    return CPUsamples;
+    [output release];
+//    for (id topOutput in outputComponents) {
+//        NSRange usageRange = [topOutput rangeOfString:@"CPU usage:"];
+//        if (usageRange.length != 0) {
+//            usageRange.length += 38;
+//            
+//            NSString *justUsage = [topOutput substringWithRange:usageRange];
+//            NSRange percentage;
+//            percentage.length = 6;
+//            
+//            percentage.location = 10;
+//            NSString *user = [justUsage substringWithRange:percentage];
+//            percentage.location = 23;
+//            NSString *sys = [justUsage substringWithRange:percentage];
+//            percentage.location = 35;
+//            NSString *idle = [justUsage substringWithRange:percentage];
+//            
+//            [CPUsamples addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                   user, @"user",
+//                                   sys, @"sys",
+//                                   idle, @"idle", nil]];
+//        }
+//    }
+    return [outputComponents objectAtIndex:4];
 }
 
+// The screen containing the menu bar is always the first object (index 0) in the array returned 
+// by [NSScreen screens]
 - (NSDictionary *)retrieveDesktopSize {
     //  log each screen's size and the total size
     NSArray *allScreens = [NSArray arrayWithArray:[NSScreen screens]];
@@ -193,6 +231,30 @@
 	CFRelease(destination);
 	if (!status) NSLog(@"Couldn't write image file");
 	
+}
+
+- (NSDictionary *)testing:(NSArray *)list {
+    NSArray *optionAll = [NSArray arrayWithArray:[[list objectAtIndex:0] objectForKey:@"OptionAll"]];
+    NSMutableArray *appList = [[NSMutableArray alloc] init];
+    NSMutableDictionary *data = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    for (id thing in optionAll) {
+        NSString *appName = [thing objectForKey:@"kCGWindowOwnerName"];
+        NSNumber *winNumb = [thing objectForKey:@"kCGWindowNumber"];
+        
+        if (![appList containsObject:appName]) {
+            [appList addObject:appName];
+            [data setObject:[NSMutableArray arrayWithObject:winNumb] forKey:appName];
+        }
+        else {
+            NSMutableArray *theObj = [data objectForKey:appName];
+            [theObj addObject:winNumb];
+            [data setObject:theObj forKey:appName];
+        }
+    }
+    
+    [appList release];
+    return data;
 }
 
 @end
