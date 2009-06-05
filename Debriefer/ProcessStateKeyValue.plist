@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+    <dict>
+        <key>idled</key>
+        <integer>1</integer>
+        <key>unidled</key>
+        <integer>0</integer>
+        <key>workspaceWake</key>
+        <integer>0</integer>
+        <key>workspaceSleep</key>
+        <integer>-1</integer>
+    </dict>
+	<dict>
+        <key>workspaceDoesFileOp</key>
+        <integer>4</integer>
+        <key>workspaceCloseApp</key>
+        <integer>5</integer>
+        <key>workspaceSessionActive</key>
+        <integer>6</integer>
+        <key>workspaceSessionResign</key>
+        <integer>7</integer>
+        <key>workspaceOpenApp</key>
+        <integer>8</integer>
+        <key>workspaceShutDown</key>
+        <integer>9</integer>
+	</dict>
+</array>
+</plist>
