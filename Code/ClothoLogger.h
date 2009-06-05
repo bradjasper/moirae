@@ -12,6 +12,8 @@
     FILE *log;
     NSString *logDate;
     NSString *logPath;
+    
+    NSMutableArray *theBuffer;
 }
 
 - (id)initPlist;
@@ -37,9 +39,12 @@
 - (void)moveFilesToFolderForDate:(NSString *)theDate;
 
 - (NSMutableArray *)compareAppFolderToProcess:(NSMutableArray *)processList;
+- (NSMutableArray *)filterArrayWithOptions:(NSMutableArray *)processList options:(NSArray *)optionList;
 - (NSArray *)scanAppFolder;
+- (NSArray *)optionNotOnScreen:(NSMutableArray *)runningApps;
 
 @property(nonatomic, copy) NSString *logDate;
 @property(nonatomic, copy) NSString *logPath;
+@property(nonatomic, copy) NSMutableArray *theBuffer;
 
 @end

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
 		494FE80E0F440F8300608BC8 /* ClothoLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FE80D0F440F8300608BC8 /* ClothoLogger.m */; };
+		498CCE360FC88CB800A153B1 /* ProcessStateKeyValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498CCE350FC88CB800A153B1 /* ProcessStateKeyValue.plist */; };
+		49EB68040FD33E8A0053663A /* ProcessIDKeyValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49EB68030FD33E8A0053663A /* ProcessIDKeyValue.plist */; };
 		7F4F33FA0E9EC1800061161A /* ClothoiTunesWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F30E9EC1800061161A /* ClothoiTunesWatcher.m */; };
 		7F4F33FB0E9EC1800061161A /* ClothoProcessWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F50E9EC1800061161A /* ClothoProcessWatcher.m */; };
 		7F4F33FC0E9EC1800061161A /* ClothoScreenWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F70E9EC1800061161A /* ClothoScreenWatcher.m */; };
@@ -47,6 +49,8 @@
 		32DBCF750370BD2300C91783 /* Moirae_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moirae_Prefix.pch; sourceTree = "<group>"; };
 		494FE80C0F440F8300608BC8 /* ClothoLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothoLogger.h; sourceTree = "<group>"; };
 		494FE80D0F440F8300608BC8 /* ClothoLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothoLogger.m; sourceTree = "<group>"; };
+		498CCE350FC88CB800A153B1 /* ProcessStateKeyValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProcessStateKeyValue.plist; sourceTree = "<group>"; };
+		49EB68030FD33E8A0053663A /* ProcessIDKeyValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProcessIDKeyValue.plist; sourceTree = "<group>"; };
 		7F4F33F20E9EC1800061161A /* ClothoiTunesWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClothoiTunesWatcher.h; path = Capture/ClothoiTunesWatcher.h; sourceTree = "<group>"; };
 		7F4F33F30E9EC1800061161A /* ClothoiTunesWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClothoiTunesWatcher.m; path = Capture/ClothoiTunesWatcher.m; sourceTree = "<group>"; };
 		7F4F33F40E9EC1800061161A /* ClothoProcessWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClothoProcessWatcher.h; path = Capture/ClothoProcessWatcher.h; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
+				498CCE350FC88CB800A153B1 /* ProcessStateKeyValue.plist */,
+				49EB68030FD33E8A0053663A /* ProcessIDKeyValue.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -278,6 +284,8 @@
 				7FBEB3D60E9888B000E240EC /* DisciplineSilhouette.pdf in Resources */,
 				7FDBF5410E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib in Resources */,
 				7FDBF5440E99BB9B00DD9B7F /* ClothoTaskPrompt.xib in Resources */,
+				498CCE360FC88CB800A153B1 /* ProcessStateKeyValue.plist in Resources */,
+				49EB68040FD33E8A0053663A /* ProcessIDKeyValue.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,8 @@
 
 @implementation ClothoTaskPrompter
 
+@synthesize taskIntervals;
+
 //  Name of log file
 - (NSString *)logName {
     return @"Task_";
@@ -31,6 +33,17 @@
                                                    userInfo:nil
                                                     repeats:NO] retain];
         [askTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+        NSArray *courseBreaks = [NSArray arrayWithObjects:
+                                 [NSNumber numberWithInt:380], 
+                                 [NSNumber numberWithInt:570], [NSNumber numberWithInt:570],
+                                 [NSNumber numberWithInt:760], [NSNumber numberWithInt:760],
+                                 [NSNumber numberWithInt:950], nil];
+        NSArray *mediumBreaks = [NSArray arrayWithObjects:
+                                 [NSNumber numberWithInt:316], 
+                                 [NSNumber numberWithInt:474], [NSNumber numberWithInt:474],
+                                 [NSNumber numberWithInt:632], [NSNumber numberWithInt:632],
+                                 [NSNumber numberWithInt:790], nil];
+        taskIntervals = [[NSArray alloc] initWithObjects:courseBreaks, mediumBreaks, nil];
     }
     return self;
 }
@@ -83,7 +96,8 @@
 //  After all is said and done, hide everything that was created
 - (void)hideWindows {
     [alertWindow close];	
-    [[shieldWindow animator] setAlphaValue:0.0];
+//    [[shieldWindow animator] setAlphaValue:0.0];
+    [shieldWindow setAlphaValue:0.0];
 }
 
 //  When time is up, reawaken the beast that was created a long, long time ago
@@ -111,11 +125,12 @@
     [idleTimer invalidate];
     [idleTimer release];
     
-    [self hideWindows];    
+    [self hideWindows];
     NSDate *lastDate=[[checkDate retain] autorelease];
     [self setCheckDate:	[NSDate date]];
-    ClothoScreenWatcher *watcher = [[[ClothoScreenWatcher alloc] init] autorelease];
+    ClothoScreenWatcher *watcher = [[ClothoScreenWatcher alloc] init];
     [watcher captureSystemSnapshot_help:checkDate];
+    [watcher release];
     
     if (result) {
         NSString *string;
@@ -187,12 +202,18 @@
     if ([askTimer isValid])
         [askTimer invalidate];
     [askTimer release];
+    
+    //[self randomInterval];
     askTimer = [[NSTimer scheduledTimerWithTimeInterval:60.0f * interval 
                                                  target:self 
                                                selector:@selector(askUser:) 
                                                userInfo:nil 
                                                 repeats:NO] retain];	
   //NSLog(@"timer %@",timer);
+}
+
+- (void)randomInterval {
+    
 }
 
 //  If you forgot what you set the interval to, ask me
