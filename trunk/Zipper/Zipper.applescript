@@ -12,7 +12,7 @@ on clicked theObject
 		set visible of progress indicator "spinner" of window 1 to true
 		start progress indicator "spinner" of window 1
 		set desktopPath to "~/Desktop"
-		--		do shell script "zip -r ~/Desktop/DisciplineZipped ~/Library/Logs/Discipline"
+		do shell script "zip -r ~/Desktop/DisciplineZipped ~/Library/Logs/Discipline"
 		display alert "Folder successfully zipped!"
 		set visible of progress indicator "spinner" of window 1 to false
 		set enabled of button "zipButton" of window 1 to false
@@ -23,7 +23,7 @@ on clicked theObject
 		end tell
 		set enabled of button "uploadButton" of window 1 to false
 	else if objectsName is "deleteButton" then
-		--		do shell script "rm -r ~/Library/Logs/Discipline"
+		do shell script "rm -r ~/Library/Logs/Discipline"
 	end if
 	
 	if enabled of button "zipButton" of window 1 is false then
