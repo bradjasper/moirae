@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		492B67640FDAF9A900D1CF76 /* clotho_logger2.icns in Resources */ = {isa = PBXBuildFile; fileRef = 492B67630FDAF9A900D1CF76 /* clotho_logger2.icns */; };
 		494FE80E0F440F8300608BC8 /* ClothoLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FE80D0F440F8300608BC8 /* ClothoLogger.m */; };
 		498CCE360FC88CB800A153B1 /* ProcessStateKeyValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498CCE350FC88CB800A153B1 /* ProcessStateKeyValue.plist */; };
 		49EB68040FD33E8A0053663A /* ProcessIDKeyValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49EB68030FD33E8A0053663A /* ProcessIDKeyValue.plist */; };
@@ -46,7 +47,8 @@
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32DBCF750370BD2300C91783 /* Moirae_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moirae_Prefix.pch; sourceTree = "<group>"; };
+		32DBCF750370BD2300C91783 /* Clotho Logger_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Clotho Logger_Prefix.pch"; sourceTree = "<group>"; };
+		492B67630FDAF9A900D1CF76 /* clotho_logger2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clotho_logger2.icns; sourceTree = "<group>"; };
 		494FE80C0F440F8300608BC8 /* ClothoLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothoLogger.h; sourceTree = "<group>"; };
 		494FE80D0F440F8300608BC8 /* ClothoLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothoLogger.m; sourceTree = "<group>"; };
 		498CCE350FC88CB800A153B1 /* ProcessStateKeyValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProcessStateKeyValue.plist; sourceTree = "<group>"; };
@@ -158,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				7FE545070E86294000DD28E4 /* main.m */,
-				32DBCF750370BD2300C91783 /* Moirae_Prefix.pch */,
+				32DBCF750370BD2300C91783 /* Clotho Logger_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -166,6 +168,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				492B67630FDAF9A900D1CF76 /* clotho_logger2.icns */,
 				7FDBF53F0E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib */,
 				7FDBF5420E99BB9B00DD9B7F /* ClothoTaskPrompt.xib */,
 				7FBEB3D50E9888B000E240EC /* DisciplineSilhouette.pdf */,
@@ -196,8 +199,8 @@
 				7F4F33FF0E9EC1890061161A /* DisciplineController.m */,
 				7F4F34000E9EC1890061161A /* DisciplineTaskPrompter.h */,
 				7F4F34010E9EC1890061161A /* DisciplineTaskPrompter.m */,
-				7F4F34020E9EC1890061161A /* DXApp.m */,
 				7F4F34030E9EC1890061161A /* DXApp.h */,
+				7F4F34020E9EC1890061161A /* DXApp.m */,
 				7F4F33F20E9EC1800061161A /* ClothoiTunesWatcher.h */,
 				7F4F33F30E9EC1800061161A /* ClothoiTunesWatcher.m */,
 				7F4F33F40E9EC1800061161A /* ClothoProcessWatcher.h */,
@@ -286,6 +289,7 @@
 				7FDBF5440E99BB9B00DD9B7F /* ClothoTaskPrompt.xib in Resources */,
 				498CCE360FC88CB800A153B1 /* ProcessStateKeyValue.plist in Resources */,
 				49EB68040FD33E8A0053663A /* ProcessIDKeyValue.plist in Resources */,
+				492B67640FDAF9A900D1CF76 /* clotho_logger2.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +366,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Moirae_Prefix.pch;
+				GCC_PREFIX_HEADER = "Clotho Logger_Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Discipline;
@@ -376,10 +380,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Moirae_Prefix.pch;
+				GCC_PREFIX_HEADER = "Clotho Logger_Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = Discipline;
+				PRODUCT_NAME = "Clotho Logger";
 			};
 			name = Release;
 		};

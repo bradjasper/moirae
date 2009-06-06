@@ -11,7 +11,7 @@
 
 @implementation ClothoTaskPrompter
 
-@synthesize taskIntervals;
+@synthesize taskIntervals, breakpointUsed;
 
 //  Name of log file
 - (NSString *)logName {
@@ -44,6 +44,7 @@
                                  [NSNumber numberWithInt:632], [NSNumber numberWithInt:632],
                                  [NSNumber numberWithInt:790], nil];
         taskIntervals = [[NSArray alloc] initWithObjects:courseBreaks, mediumBreaks, nil];
+        breakpointUsed = @"first run";
     }
     return self;
 }
@@ -151,6 +152,7 @@
         [activity setValue:checkDate forKey:@"date"];
         [activity setValue:([NSNumber numberWithFloat:[checkDate timeIntervalSinceDate:lastDate]]) forKey:@"duration"];
         [activity setValue:[NSNumber numberWithInt:result] forKey:@"positivity"];
+        [activity setValue:breakpointUsed forKey:@"breakpoint"];
     /*
         NSString *message = [NSString stringWithFormat:@"%@\t%@\t%@\n",
                                  [activity valueForKey:@"date"],
@@ -203,7 +205,7 @@
         [askTimer invalidate];
     [askTimer release];
     
-    //[self randomInterval];
+//    [self randomInterval];
     askTimer = [[NSTimer scheduledTimerWithTimeInterval:60.0f * interval 
                                                  target:self 
                                                selector:@selector(askUser:) 
@@ -212,7 +214,25 @@
   //NSLog(@"timer %@",timer);
 }
 
-- (void)randomInterval {
+- (NSNumber *)randomInterval {
+    
+    NSNumber *chosenBPoint;
+    
+    while (1) {
+        //  choose a breakpoint set (course or medium breakpoints):
+        NSInteger bPoint = (random() % 2);
+        if (bPoint == 0)
+            breakpointUsed = @"C";
+        else
+            breakpointUsed = @"M";
+        NSArray *breakpointsToUse = [taskIntervals objectAtIndex:bPoint];
+        
+        //  choose a breakpoint: 
+        bPoint = (random() % [breakpointsToUse count]);
+        chosenBPoint = [breakpointsToUse objectAtIndex:bPoint];
+    }
+    
+    return chosenBPoint;
     
 }
 

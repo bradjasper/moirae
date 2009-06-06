@@ -32,7 +32,7 @@
     [[ClothoTaskPrompter alloc] init];
     [[ClothoiTunesWatcher alloc] init];
   
-    NSImage *image = [NSImage imageNamed:@"Discipline"];
+    NSImage *image = [NSImage imageNamed:@"clotho_logger2"];
     image = [image copy];
     [image setSize:NSMakeSize(16, 16)];
     NSStatusItem *item = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
