@@ -21,12 +21,14 @@
     id currentActivity;
     NSMutableArray *pastActivities;
     float interval;
-    NSArray *taskIntervals;   
+    NSArray *taskIntervals;
+    NSString *breakpointUsed;
 }
 
 @property(retain) NSArray *taskIntervals;
+@property(copy) NSString *breakpointUsed;
 
-- (void)randomInterval;
+- (NSNumber *)randomInterval;
 - (void)resetTimer;
 - (void)checkIdle;
 

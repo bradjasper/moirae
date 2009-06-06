@@ -45,6 +45,6 @@
 
 @property(nonatomic, copy) NSString *logDate;
 @property(nonatomic, copy) NSString *logPath;
-@property(nonatomic, copy) NSMutableArray *theBuffer;
+@property(nonatomic, retain) NSMutableArray *theBuffer;
 
 @end

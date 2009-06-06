@@ -5,9 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>Discipline</string>
+	<string>Clotho Logger</string>
 	<key>CFBundleIconFile</key>
-	<string>Discipline</string>
+	<string>clotho_logger2</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.blacktree.Discipline</string>
 	<key>CFBundleInfoDictionaryVersion</key>
