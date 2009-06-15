@@ -223,6 +223,35 @@
     return notOnScreen;
 }
 
+- (NSMutableArray *)changeWindowName:(NSMutableArray *)arrayOfSnapshots {
+    NSMutableArray *arrayToReturn = [NSMutableArray array];
+    BOOL somethingNotDone = YES;
+    for (id element in arrayOfSnapshots) {
+        NSString *hashedWindowName = [element objectForKey:@"kCGWindowName"];
+
+        if ( ([[element objectForKey:@"kCGWindowName"] isEqualToString:@""]) || 
+            ([element objectForKey:@"kCGWindowName"] == nil) ) {
+            [arrayToReturn addObject:[NSDictionary dictionaryWithDictionary:element]];
+            somethingNotDone = NO;
+        }
+        else {
+            NSData *hashData = [hashedWindowName dataUsingEncoding:NSUTF8StringEncoding];
+            hashedWindowName = 
+            [[hashData description] stringByReplacingOccurrencesOfString:@" " withString:@""];
+            NSMutableDictionary *elementChanged = [NSMutableDictionary dictionaryWithDictionary:element];
+            [elementChanged setObject:hashedWindowName forKey:@"kCGWindowIdent"];
+            [elementChanged removeObjectForKey:@"kCGWindowName"];
+            [arrayToReturn addObject:elementChanged];
+            somethingNotDone = NO;
+        }
+        
+        if (somethingNotDone) {
+            [arrayToReturn addObject:[NSDictionary dictionaryWithDictionary:element]];
+        }
+        somethingNotDone = YES;
+    }
+    return arrayToReturn;
+}
 //  if application listed in process list is also in Applications or 
 //  /Developer/Applications folder, keep it in the process list
 - (NSMutableArray *)compareAppFolderToProcess:(NSMutableArray *)processList {
@@ -277,24 +306,24 @@
             [processDict setObject:[[processList objectAtIndex:i] objectForKey:theKey] 
                             forKey:theKey];
         }
-        [arrayToReturn addObject:processDict];
+//        [arrayToReturn addObject:processDict];
         
         // set up theBuffer for ProcessWatcher
-        if ([[[processList objectAtIndex:i] objectForKey:@"kCGWindowName"] length] == 0) {
+        if ([[[processList objectAtIndex:i] objectForKey:@"kCGWindowIdent"] length] == 0) {
             if ([[[processList objectAtIndex:i] 
                   objectForKey:@"kCGWindowOwnerName"] isEqualToString:@"Finder"]) {
-                [processDict setObject:@"NO NAME FOR FINDER WINDOW" forKey:@"kCGWindowName"]; 
+                [processDict setObject:@"-=desktop=-" forKey:@"kCGWindowIdent"]; 
             }
             else {
-                [processDict setObject:@"NO NAME" forKey:@"kCGWindowName"]; 
+                [processDict setObject:@"NO NAME" forKey:@"kCGWindowIdent"]; 
             }
         }
         else {
-            [processDict setObject:[[processList objectAtIndex:i] objectForKey:@"kCGWindowName"] 
-                            forKey:@"kCGWindowName"];
+            [processDict setObject:[[processList objectAtIndex:i] objectForKey:@"kCGWindowIdent"] 
+                            forKey:@"kCGWindowIdent"];
         }
         [[self theBuffer] addObject:processDict];
-
+        [arrayToReturn addObject:processDict];
         [processDict release];
     }
     
@@ -306,6 +335,47 @@
                                                       userInfo:bufferDict];
     
     return arrayToReturn;
+}
+
+- (NSString *)hashString:(NSString *)inputString {
+    
+    NSData *hashData = [inputString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *hashedWindowName = 
+    [[hashData description] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return hashedWindowName;
+    
+//    NSString *hashedWindowName = @"";
+    NSString *hashCommand = 
+    [[@"do shell script \"md5 -s " 
+      stringByAppendingString:inputString] 
+     stringByAppendingString:@"\""];
+    NSAppleScript *hashWindowName = [[NSAppleScript alloc] initWithSource:hashCommand];
+    NSDictionary *errorDict = [NSDictionary dictionary];
+    
+    if (![hashWindowName isCompiled]) {
+        [hashWindowName compileAndReturnError:&errorDict];
+        //            NSLog(@"Clotho Logger - Compile hash script: %@", erro);
+    }
+    
+    NSAppleEventDescriptor *hashResult = [hashWindowName executeAndReturnError:&errorDict];
+    //        NSLog(@"Clotho Logger - Execute hash script: %@", [hashResult stringValue]);
+    [hashWindowName release];
+    
+    if (hashResult != nil) {
+        hashedWindowName = [[[hashResult stringValue] componentsSeparatedByString:@"= "] objectAtIndex:1];
+    }
+    else {
+        hashedWindowName = @"";
+    }
+    if ([errorDict count] > 0) {
+        NSLog(@"BEGIN ERROR--------------------------");
+        for (NSString *key in [errorDict allKeys]) {
+            NSLog(@"%@", [errorDict objectForKey:key]);
+        }
+        NSLog(@"END ERROR----------------------------");
+    }
+    return hashedWindowName;
+        
 }
 
 // (BOOL)logShouldRoll
@@ -420,6 +490,7 @@
     NSArray *appNames = [theDefaultMan contentsOfDirectoryAtPath:appPath error:nil];
     NSArray *devAppNames = [theDefaultMan contentsOfDirectoryAtPath:devPath error:nil];
     NSArray *subpathContents;
+    NSArray *subSubpathContents;
     NSMutableDictionary *appPathDict = [NSMutableDictionary dictionary];
     NSMutableArray *appPathWithoutApp = [NSMutableArray arrayWithCapacity:[appNames count]];
     NSMutableArray *devPathWithoutApp = [NSMutableArray arrayWithCapacity:[devAppNames count]];
@@ -441,6 +512,18 @@
                         [appPathWithoutApp addObject:[subName stringByDeletingPathExtension]];
                         [appPathDict setObject:[subpath stringByAppendingPathComponent:subName] 
                                         forKey:[subName stringByDeletingPathExtension]];
+                    }
+                    else {
+                        NSString *subSubpath = [subpath stringByAppendingPathComponent:subName];
+                        subSubpathContents = [theDefaultMan contentsOfDirectoryAtPath:subSubpath 
+                                                                                error:nil];
+                        for (id subSubName in subSubpathContents) {
+                            if ([[subSubName pathExtension] isEqualToString:@"app"]) {
+                                [appPathWithoutApp addObject:[subSubName stringByDeletingPathExtension]];
+                                [appPathDict setObject:[subSubpath stringByAppendingPathComponent:subSubName] 
+                                                forKey:[subSubName stringByDeletingPathExtension]];
+                            }
+                        }
                     }
                 }
                 isDir = NO;

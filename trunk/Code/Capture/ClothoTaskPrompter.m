@@ -26,6 +26,7 @@
 - (id)init {
     self = [super initPlist];
     if (self != nil) {
+        isShortInterval = NO;
         interval = 10;
         askTimer = [[NSTimer scheduledTimerWithTimeInterval:10
                                                      target:self
@@ -33,16 +34,26 @@
                                                    userInfo:nil
                                                     repeats:NO] retain];
         [askTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-        NSArray *courseBreaks = [NSArray arrayWithObjects:
-                                 [NSNumber numberWithInt:380], 
-                                 [NSNumber numberWithInt:570], [NSNumber numberWithInt:570],
-                                 [NSNumber numberWithInt:760], [NSNumber numberWithInt:760],
-                                 [NSNumber numberWithInt:950], nil];
-        NSArray *mediumBreaks = [NSArray arrayWithObjects:
-                                 [NSNumber numberWithInt:316], 
-                                 [NSNumber numberWithInt:474], [NSNumber numberWithInt:474],
-                                 [NSNumber numberWithInt:632], [NSNumber numberWithInt:632],
-                                 [NSNumber numberWithInt:790], nil];
+        NSArray *courseBreaks;
+        NSArray *mediumBreaks;
+        if (isShortInterval) {
+            courseBreaks = [NSArray arrayWithObjects:
+                              [NSNumber numberWithInt:40],  nil];
+            mediumBreaks = [NSArray arrayWithObjects:
+                            [NSNumber numberWithInt:40], nil];
+        }
+        else {
+            courseBreaks = [NSArray arrayWithObjects:
+                                     [NSNumber numberWithInt:380], 
+                                     [NSNumber numberWithInt:570], [NSNumber numberWithInt:570],
+                                     [NSNumber numberWithInt:760], [NSNumber numberWithInt:760],
+                                     [NSNumber numberWithInt:950], nil];
+             mediumBreaks = [NSArray arrayWithObjects:
+                                     [NSNumber numberWithInt:316], 
+                                     [NSNumber numberWithInt:474], [NSNumber numberWithInt:474],
+                                     [NSNumber numberWithInt:632], [NSNumber numberWithInt:632],
+                                     [NSNumber numberWithInt:790], nil];
+        }   
         taskIntervals = [[NSArray alloc] initWithObjects:courseBreaks, mediumBreaks, nil];
         breakpointUsed = @"first run";
     }
@@ -205,33 +216,35 @@
         [askTimer invalidate];
     [askTimer release];
     
-//    [self randomInterval];
-    askTimer = [[NSTimer scheduledTimerWithTimeInterval:60.0f * interval 
+    interval = [[self randomInterval] floatValue];
+    askTimer = [[NSTimer scheduledTimerWithTimeInterval:interval
                                                  target:self 
                                                selector:@selector(askUser:) 
                                                userInfo:nil 
                                                 repeats:NO] retain];	
-  //NSLog(@"timer %@",timer);
+    NSLog(@"timer %f",interval);
 }
 
 - (NSNumber *)randomInterval {
     
-    NSNumber *chosenBPoint;
+    NSString *bPointToLog;    
+    NSNumber *chosenBPoint = [[[NSNumber alloc] init] autorelease];
     
-    while (1) {
-        //  choose a breakpoint set (course or medium breakpoints):
-        NSInteger bPoint = (random() % 2);
-        if (bPoint == 0)
-            breakpointUsed = @"C";
-        else
-            breakpointUsed = @"M";
-        NSArray *breakpointsToUse = [taskIntervals objectAtIndex:bPoint];
-        
-        //  choose a breakpoint: 
-        bPoint = (random() % [breakpointsToUse count]);
-        chosenBPoint = [breakpointsToUse objectAtIndex:bPoint];
-    }
+    //  choose a breakpoint set (course or medium breakpoints):
+    NSInteger bPoint = (random() % 2);
+    if (bPoint == 0)
+        bPointToLog = @"C";
+    else
+        bPointToLog = @"M";
+    NSArray *breakpointsToUse = [taskIntervals objectAtIndex:bPoint];
     
+    //  choose a breakpoint: 
+    bPoint = (random() % [breakpointsToUse count]);
+    bPointToLog = [bPointToLog stringByAppendingString:
+    [[NSNumber numberWithInt:bPoint] stringValue]];
+    chosenBPoint = [breakpointsToUse objectAtIndex:bPoint];
+    
+    [self setBreakpointUsed:bPointToLog];
     return chosenBPoint;
     
 }

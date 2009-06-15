@@ -14,6 +14,7 @@
     NSTimer *askTimer;
     NSTimer *idleTimer;
     BOOL isIdle;
+    BOOL isShortInterval;
     IBOutlet NSWindow *alertWindow;
     IBOutlet NSWindow *shieldWindow;
     IBOutlet NSArrayController *arrayController;

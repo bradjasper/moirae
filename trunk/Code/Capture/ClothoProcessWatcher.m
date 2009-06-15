@@ -6,11 +6,13 @@
 //  Copyright 2008 Blacktree. All rights reserved.
 //
 
+//#import <openssl/evp.h>
 #import "GTMAXUIElement.h"
 #import "ClothoProcessWatcher.h"
 #import "Carbon/Carbon.h"
 #import "NDProcess.h"
 #import "stdio.h"
+#import "UKKQueue.h"
 
 #define IDLEDURATION 5.0f
 #define TIMERDURATION 5.0f
@@ -33,6 +35,7 @@
 - (BOOL)registerForTitleNotificationsForWindow:(GTMAXUIElement *)element;
 - (void)handleWindowChange:(GTMAXUIElement *) element;
 - (void)recordContext;
+- (void)recordContextThread;
 - (NSString *)retrieveInfoForWindow:(id)window;
 - (NSString *)checkForWindowNameInWindow:(id)window;
 - (void)registerForWindowNotifications:(NSArray *)windowNotifications;
@@ -42,7 +45,7 @@
 
 @implementation ClothoProcessWatcher
 @synthesize currentDate, currentApp, currentWindow, state, lastActivity, timer, 
-            proID, openCloseName;
+            proID, openCloseName, opQueue, theQueue;
 
 - (NSString *)logName {
   return @"Process_";
@@ -56,6 +59,9 @@
     self = [super init];
     if (self != nil) {
         [self registerForAppChangeNotifications];
+        threaded = YES;
+        if (threaded)
+            opQueue = [[NSOperationQueue alloc] init];
         [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self 
                                                                selector:@selector(workspaceSleep:) 
                                                                    name:NSWorkspaceWillSleepNotification 
@@ -63,10 +69,6 @@
         [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self 
                                                                selector:@selector(workspaceWake:) 
                                                                    name:NSWorkspaceDidWakeNotification 
-                                                                 object:nil];
-        [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self 
-                                                               selector:@selector(workspaceDoesFileOp:) 
-                                                                   name:NSWorkspaceDidPerformFileOperationNotification 
                                                                  object:nil];
         [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self 
                                                                selector:@selector(workspaceCloseApp:) 
@@ -97,19 +99,7 @@
                                                     selector:@selector(timerFired:)
                                                     userInfo:nil
                                                      repeats:YES];
-//        [[NSDistributedNotificationCenter defaultCenter] addObserver:self 
-//                                                            selector:@selector(receivedNotification:) 
-//                                                                name:nil
-//                                                              object:nil];
-//        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//        NSArray *notificationList = [NSArray arrayWithObjects:
-//                                     NSWindowDidBecomeKeyNotification,
-//                                     NSWindowDidBecomeMainNotification,
-//                                     NSWindowDidChangeScreenNotification,
-//                                     NSWindowDidExposeNotification,
-//                                     NSWindowWillCloseNotification, 
-//                                     NSWindowWillMiniaturizeNotification, nil];
-//        [self registerForWindowNotifications:notificationList];
+        
   }
   return self;
 }
@@ -126,6 +116,16 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, ClothoPr
     EventHandlerUPP handlerFunction = NewEventHandlerUPP(appChanged);
     OSStatus err = InstallApplicationEventHandler(handlerFunction, 1, &eventType, self, NULL);
     if (err) NSLog(@"gmod registration err %d",err);
+}
+
+- (void)workspaceDoesFileOp:(NSNotification *)notif {
+    
+//    [self setCurrentDate:[NSDate date]];
+//    self.proID = 4;
+//    [self recordContext];
+    
+    NSLog(@"Directoryyasdvasdvjslvndiprugh");
+    [notif autorelease];
 }
 
 - (void)handleProcessEvent:(EventRef)theEvent {
@@ -146,8 +146,10 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, ClothoPr
         [self registerForSwitchNotificationsForApp:currentApp];
     
         if (window) [self handleWindowChange:window];
-        else self.proID = 3;
-        [self recordContext];
+        else {
+            self.proID = 3;
+            [self recordContext];
+        } 
         // [[NSNotificationCenter defaultCenter] postNotificationName:@"BTDNWindowFocused" object:[self frontWindowForAppElement:currentApp] userInfo:DXTitleForElement(currentApp)];
     }
 }
@@ -264,11 +266,7 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
     [self recordContext];
 }
 
-- (void)workspaceDoesFileOp:(NSNotification *)notif {
-    [self setCurrentDate:[NSDate date]];
-    self.proID = 4;
-    [self recordContext];
-}
+//  workspaceDoesFileOp was here
 
 - (void)workspaceCloseApp:(NSNotification *)notif {
     [self setCurrentDate:[NSDate date]];
@@ -302,18 +300,25 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
     [self recordContext];
 }
 
-- (void)recordContext{
+- (void)recordContext{    
+
+    if (threaded) {
+        NSInvocationOperation *processOp = 
+        [[NSInvocationOperation alloc] initWithTarget:self 
+                                             selector:@selector(recordContextThread) 
+                                               object:nil];
+
+        [opQueue addOperation:processOp];
+    }
+    else
+        [self recordContextThread];
+}
+
+- (void)recordContextThread {
     
     [self setCurrentDate:[NSDate date]];
-//    [self checkMinMax];
     
     NSMutableDictionary *activity = [NSMutableDictionary dictionary];
-    
-//    [activity setValue:[[self currentApp] title] forKey:@"application"];
-//    [activity setValue:[self currentDate] forKey:@"date"];
-//    [activity setValue:[[self currentWindow] title] forKey:@"window"];
-//    [activity setValue:[[self currentWindow] title] forKey:@"window"];
-//    [activity setValue:[NSNumber numberWithInt:state] forKey:@"state"];
   
     if ( ([self proID] == 5) || ([self proID] == 8) ) {
         [activity setValue:[self openCloseName] forKey:@"application"];
@@ -325,18 +330,23 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
     id window = [self currentWindow];
     if ([window isKindOfClass:[GTMAXUIElement class]]) {
         if ([self proID] == 3) {
-            [activity setValue:@"---see next logged process for this window name-" forKey:@"window"];
+            [activity setValue:@"some_process_event" forKey:@"window"];
         }
-        else if ( ([[activity valueForKey:@"application"] isEqualToString:@"Finder"])
-            && ([[window title] isEqualToString:@""]) )
-            [activity setValue:@"No name for Finder window" forKey:@"window"];
+        else if ([[activity valueForKey:@"application"] isEqualToString:@"Stickies"]) {
+            NSString *stickyString = [NSString stringWithFormat:@"%d-%@-DUMP",
+                                      [window processIdentifier], 
+                                      @"some_window"];
+            [activity setValue:stickyString forKey:@"window"];
+        }
         else
             [activity setValue:[self retrieveInfoForWindow:window] forKey:@"window"];
     }
-    else
+    else {
         NSLog(@"Is not of class");
-    [activity setValue:[NSNumber numberWithInt:state] forKey:@"state"];
-    [activity setValue:[NSNumber numberWithInt:proID] forKey:@"id"];
+        [activity setValue:@"not_of_GTMAXUIElement_class" forKey:@"window"];
+    }
+    [activity setValue:[NSNumber numberWithInt:[self state]] forKey:@"state"];
+    [activity setValue:[NSNumber numberWithInt:[self proID]] forKey:@"id"];
   
   if (self.lastActivity){
     float duration=[[self currentDate] timeIntervalSinceDate:[lastActivity valueForKey:@"date"]];
@@ -365,7 +375,8 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
     //      1. window owner pid
     //      2. window number
     NSString *stringToLog = [self checkForWindowNameInWindow:window];
-    if ([stringToLog length] > 0)
+//    if ([stringToLog length] > 0)
+    if ( !([stringToLog rangeOfString:@"some_window-DUMP"].length > 0) )
         return stringToLog;
     
     //  else take a system snapshot and repeat the thing above
@@ -377,29 +388,44 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
                                                             object:nil 
                                                           userInfo:theDate];
         stringToLog = [self checkForWindowNameInWindow:window];
-        if ([stringToLog length] > 0)
-            return stringToLog;
-        else
-            return @"--window name does not exist--";
+        
+        //  by this point, we will either retrieve the hash we need or we will return something with "DUMP"
+        return stringToLog;
     }
 }
 
 //  returns the window owner pid and window number in the form of "_, _"
 - (NSString *)checkForWindowNameInWindow:(id)window {
     
-    NSString *theString = @"";
+    NSString *theStringToReturn = @"";
     
     for (id element in [self theBuffer]) {
-        if ([[element objectForKey:@"kCGWindowName"] isEqualToString:[window title]]) {
-            theString = [NSString stringWithFormat:@"%@, %@, %@",
-                         [element objectForKey:@"kCGWindowOwnerPID"],
-                         [element objectForKey:@"kCGWindowNumber"],
-                         [window title]];
+        
+        NSString *hashedWindowName = [window title];
+
+        if ( ([[window title] isEqualToString:@""]) || ([window title] == nil) )
+            continue; 
+        else {
+            NSData *hashData = [hashedWindowName dataUsingEncoding:NSUTF8StringEncoding];
+            hashedWindowName = 
+            [[hashData description] stringByReplacingOccurrencesOfString:@" " withString:@""];
+        }
+        if ([[element objectForKey:@"kCGWindowIdent"] isEqualToString:hashedWindowName]) {
+            theStringToReturn = [NSString stringWithFormat:@"%d-%d-%@", 
+                                 [[element objectForKey:@"kCGWindowOwnerPID"] intValue],
+                                 [[element objectForKey:@"kCGWindowNumber"] intValue],
+                                 hashedWindowName];
             break;
         }
     }
     
-    return theString;
+    //  we didn't find anything...
+    if ([theStringToReturn isEqualToString:@""])
+        theStringToReturn = [NSString stringWithFormat:@"%d-%@-DUMP",
+                             [window processIdentifier], 
+                             @"some_window"];
+    
+    return theStringToReturn;
     
 }
 

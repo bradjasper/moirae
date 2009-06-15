@@ -6,8 +6,11 @@
 //  Copyright 2008 Blacktree. All rights reserved.
 //
 
+//#import <Foundation/Foundation.h>
+
 #import "ClothoLogger.h"
 #import "ClothoScreenWatcher.h"
+#import "UKKQueue.h"
 
 @class NDProcess;
 @class GTMAXUIElement;
@@ -26,6 +29,9 @@
   NSTimer *timer;
     NSString *openCloseName;
     NSMetadataQuery *metadataQuery;
+    NSOperationQueue *opQueue;
+    BOOL threaded;
+    UKKQueue *theQueue;
 }
 
 
@@ -34,6 +40,8 @@
 @property(retain) GTMAXUIElement *currentApp;
 @property(retain) GTMAXUIElement *currentWindow;
 @property(retain) NSMutableDictionary *lastActivity;
+@property(retain) NSOperationQueue *opQueue;
+@property(retain) UKKQueue *theQueue;
 
 @property(assign) NSInteger state;
 @property(assign) NSInteger proID;
