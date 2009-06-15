@@ -37,9 +37,10 @@
 
 //- (NSString *)formatDateToAppend:(NSString *)dateToAppend;
 - (void)moveFilesToFolderForDate:(NSString *)theDate;
-
+- (NSMutableArray *)changeWindowName:(NSMutableArray *)arrayOfSnapshots;
 - (NSMutableArray *)compareAppFolderToProcess:(NSMutableArray *)processList;
 - (NSMutableArray *)filterArrayWithOptions:(NSMutableArray *)processList options:(NSArray *)optionList;
+- (NSString *)hashString:(NSString *)inputString;
 - (NSArray *)scanAppFolder;
 - (NSArray *)optionNotOnScreen:(NSMutableArray *)runningApps;
 

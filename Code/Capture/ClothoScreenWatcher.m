@@ -9,7 +9,6 @@
 #import "ClothoScreenWatcher.h"
 #import <Foundation/NSZone.h>
 #include <ApplicationServices/ApplicationServices.h>
-#include <openssl/md5.h>
 
 @implementation ClothoScreenWatcher
 
@@ -31,7 +30,14 @@
     if(captureScreenShot){
 		[self captureScreen];
 	}
-	[self captureSystemSnapshot];
+//	[self captureSystemSnapshot];
+    NSInvocationOperation *systemSnapshot = 
+    [[NSInvocationOperation alloc] initWithTarget:self 
+                                         selector:@selector(captureSystemSnapshot) 
+                                           object:nil];
+    NSOperationQueue *opQueue = [[[NSOperationQueue alloc] init] autorelease];
+    [opQueue addOperation:systemSnapshot];
+    
 	[self captureMousePosition];
     
     shouldLogCPU = YES;
@@ -43,29 +49,26 @@
 	return self;
 }
 
-
 - (void)catpureWindowRects {
 	
 }
-
 
 - (void)captureKeyWindow {
 	
 	
 } 
 
-
-
-- (void) captureWindowWithID:(NSUInteger)windowID {
+- (void)captureWindowWithID:(NSUInteger)windowID {
 	CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, windowID, kCGWindowImageDefault);
 	CGImageRelease(windowImage);  
 }
 
-- (void) captureMousePosition_helper{
+- (void)captureMousePosition_helper{
     NSPoint mouseCoordinates = [NSEvent mouseLocation];
     [self logMouse:mouseCoordinates];
 }
-- (void) captureMousePosition{
+
+- (void)captureMousePosition{
 	[self captureMousePosition_helper];
 	
 	[self performSelector:@selector(captureMousePosition) withObject:nil afterDelay:114.0];
@@ -101,8 +104,10 @@
     optAll = [self compareAppFolderToProcess:optAll];
     NSDictionary *applicationPaths = [optAll lastObject];
     [optAll removeLastObject];
+    optAll = [self changeWindowName:optAll];
     onScreen = [self compareAppFolderToProcess:onScreen];
     [onScreen removeLastObject];
+    onScreen = [self changeWindowName:onScreen];
     onScreen = [self filterArrayWithOptions:onScreen options:[NSArray arrayWithObjects:
                                                               @"kCGWindowNumber", @"kCGWindowOwnerPID", nil]];
     
@@ -111,12 +116,12 @@
 
     [toLog addObject:[NSDictionary dictionaryWithObject:[self retrieveDesktopSize] forKey:@"DesktopSize"]];
     
-//    if (shouldLogCPU)
+    if (shouldLogCPU)
         [toLog addObject:[NSDictionary dictionaryWithObject:[self retrieveCPUusage] forKey:@"CPUUsage"]];
-//    else {
-//        [toLog addObject:[NSDictionary dictionaryWithObject:@"Process System Snapshot" forKey:@"CPUUsage"]];
-//        shouldLogCPU = YES;
-//    }
+    else {
+        [toLog addObject:[NSDictionary dictionaryWithObject:@"Process System Snapshot" forKey:@"CPUUsage"]];
+        shouldLogCPU = YES;
+    }
     
     [toLog addObject:applicationPaths];
     
@@ -134,7 +139,8 @@
 }
 
 - (void)forceSystemSnapshot:(NSNotification *)notif {
-    shouldLogCPU = NO;
+    shouldLogCPU = YES;
+    
     [self captureSystemSnapshot_help:[[notif userInfo] objectForKey:@"TheDate"]];
 }
 
@@ -143,9 +149,8 @@
     task = [[NSTask alloc] init];
     [task setLaunchPath:@"/usr/bin/top"];
     
-    // "-l2" is the number of times top is run
-//    NSArray *arguments = [NSArray arrayWithObjects:@"-FR", @"-l3", nil];
-    NSArray *arguments = [NSArray arrayWithObjects:@"-ocpu", @"-FR", @"-l5", nil];
+    // "-l_" is the number of times top is run
+    NSArray *arguments = [NSArray arrayWithObjects:@"-ocpu", @"-FR", @"-l3", nil];
     [task setArguments:arguments];
     
     NSPipe *pipe = [NSPipe pipe];
@@ -153,7 +158,7 @@
     
     NSFileHandle *file = [pipe fileHandleForReading];
     
-    //  run terminal command: "top -ocpu -FR -l5"
+    //  run terminal command: "top -ocpu -FR -l_"
     [task launch];
     
     NSData *data = [file readDataToEndOfFile];
@@ -161,29 +166,20 @@
     NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *outputComponents = [NSArray arrayWithArray:[output componentsSeparatedByString:@"Processes:"]];
     [output release];
-//    for (id topOutput in outputComponents) {
-//        NSRange usageRange = [topOutput rangeOfString:@"CPU usage:"];
-//        if (usageRange.length != 0) {
-//            usageRange.length += 38;
-//            
-//            NSString *justUsage = [topOutput substringWithRange:usageRange];
-//            NSRange percentage;
-//            percentage.length = 6;
-//            
-//            percentage.location = 10;
-//            NSString *user = [justUsage substringWithRange:percentage];
-//            percentage.location = 23;
-//            NSString *sys = [justUsage substringWithRange:percentage];
-//            percentage.location = 35;
-//            NSString *idle = [justUsage substringWithRange:percentage];
-//            
-//            [CPUsamples addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                   user, @"user",
-//                                   sys, @"sys",
-//                                   idle, @"idle", nil]];
-//        }
-//    }
-    return [outputComponents objectAtIndex:4];
+    
+//    NSString *returnString = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n%@\n%@\n%@\n%@\n%@\n%@",
+    NSString *returnString = [NSString stringWithFormat:@"%@\n%@\n%@",
+                              [outputComponents objectAtIndex:1],
+                              [outputComponents objectAtIndex:2],
+                              [outputComponents objectAtIndex:3]];
+//                              [outputComponents objectAtIndex:4],
+//                              [outputComponents objectAtIndex:5],
+//                              [outputComponents objectAtIndex:6],
+//                              [outputComponents objectAtIndex:7],
+//                              [outputComponents objectAtIndex:8],
+//                              [outputComponents objectAtIndex:9]];
+    
+    return returnString;
 }
 
 // The screen containing the menu bar is always the first object (index 0) in the array returned 

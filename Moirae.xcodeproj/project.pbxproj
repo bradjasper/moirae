@@ -8,9 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		492A06FF0FE4303500D2ED02 /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 492A06F70FE4303500D2ED02 /* UKFileWatcher.m */; };
+		492A07000FE4303500D2ED02 /* UKFNSubscribeFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 492A06F90FE4303500D2ED02 /* UKFNSubscribeFileWatcher.m */; };
+		492A07010FE4303500D2ED02 /* UKKQueue Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 492A06FA0FE4303500D2ED02 /* UKKQueue Readme.txt */; };
+		492A07020FE4303500D2ED02 /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 492A06FC0FE4303500D2ED02 /* UKKQueue.m */; };
+		492A07030FE4303500D2ED02 /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 492A06FE0FE4303500D2ED02 /* UKMainThreadProxy.m */; };
 		492B67640FDAF9A900D1CF76 /* clotho_logger2.icns in Resources */ = {isa = PBXBuildFile; fileRef = 492B67630FDAF9A900D1CF76 /* clotho_logger2.icns */; };
 		494FE80E0F440F8300608BC8 /* ClothoLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FE80D0F440F8300608BC8 /* ClothoLogger.m */; };
 		498CCE360FC88CB800A153B1 /* ProcessStateKeyValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498CCE350FC88CB800A153B1 /* ProcessStateKeyValue.plist */; };
+		49E081050FE61BB9006E4AA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49E081030FE61BB9006E4AA3 /* InfoPlist.strings */; };
 		49EB68040FD33E8A0053663A /* ProcessIDKeyValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49EB68030FD33E8A0053663A /* ProcessIDKeyValue.plist */; };
 		7F4F33FA0E9EC1800061161A /* ClothoiTunesWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F30E9EC1800061161A /* ClothoiTunesWatcher.m */; };
 		7F4F33FB0E9EC1800061161A /* ClothoProcessWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F33F50E9EC1800061161A /* ClothoProcessWatcher.m */; };
@@ -48,10 +54,20 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Clotho Logger_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Clotho Logger_Prefix.pch"; sourceTree = "<group>"; };
+		492A06F60FE4303500D2ED02 /* UKFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFileWatcher.h; sourceTree = "<group>"; };
+		492A06F70FE4303500D2ED02 /* UKFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKFileWatcher.m; sourceTree = "<group>"; };
+		492A06F80FE4303500D2ED02 /* UKFNSubscribeFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFNSubscribeFileWatcher.h; sourceTree = "<group>"; };
+		492A06F90FE4303500D2ED02 /* UKFNSubscribeFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKFNSubscribeFileWatcher.m; sourceTree = "<group>"; };
+		492A06FA0FE4303500D2ED02 /* UKKQueue Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UKKQueue Readme.txt"; sourceTree = "<group>"; };
+		492A06FB0FE4303500D2ED02 /* UKKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKKQueue.h; sourceTree = "<group>"; };
+		492A06FC0FE4303500D2ED02 /* UKKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKKQueue.m; sourceTree = "<group>"; };
+		492A06FD0FE4303500D2ED02 /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMainThreadProxy.h; sourceTree = "<group>"; };
+		492A06FE0FE4303500D2ED02 /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
 		492B67630FDAF9A900D1CF76 /* clotho_logger2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clotho_logger2.icns; sourceTree = "<group>"; };
 		494FE80C0F440F8300608BC8 /* ClothoLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothoLogger.h; sourceTree = "<group>"; };
 		494FE80D0F440F8300608BC8 /* ClothoLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothoLogger.m; sourceTree = "<group>"; };
 		498CCE350FC88CB800A153B1 /* ProcessStateKeyValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProcessStateKeyValue.plist; sourceTree = "<group>"; };
+		49E081040FE61BB9006E4AA3 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49EB68030FD33E8A0053663A /* ProcessIDKeyValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProcessIDKeyValue.plist; sourceTree = "<group>"; };
 		7F4F33F20E9EC1800061161A /* ClothoiTunesWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClothoiTunesWatcher.h; path = Capture/ClothoiTunesWatcher.h; sourceTree = "<group>"; };
 		7F4F33F30E9EC1800061161A /* ClothoiTunesWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClothoiTunesWatcher.m; path = Capture/ClothoiTunesWatcher.m; sourceTree = "<group>"; };
@@ -93,7 +109,7 @@
 		7FE546440E86B1B000DD28E4 /* Discipline.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Discipline.icns; path = Resources/Discipline.icns; sourceTree = "<group>"; };
 		7FE546460E86B1B900DD28E4 /* Whip.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = Whip.aiff; path = Resources/Whip.aiff; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D15AC370486D014006FF6A4 /* Discipline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discipline.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D15AC370486D014006FF6A4 /* Clotho Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clotho Logger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +150,7 @@
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D15AC370486D014006FF6A4 /* Discipline.app */,
+				8D15AC370486D014006FF6A4 /* Clotho Logger.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +184,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				49E081030FE61BB9006E4AA3 /* InfoPlist.strings */,
 				492B67630FDAF9A900D1CF76 /* clotho_logger2.icns */,
 				7FDBF53F0E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib */,
 				7FDBF5420E99BB9B00DD9B7F /* ClothoTaskPrompt.xib */,
@@ -192,6 +209,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		492A06F50FE4303500D2ED02 /* UKKQueue */ = {
+			isa = PBXGroup;
+			children = (
+				492A06F60FE4303500D2ED02 /* UKFileWatcher.h */,
+				492A06F70FE4303500D2ED02 /* UKFileWatcher.m */,
+				492A06F80FE4303500D2ED02 /* UKFNSubscribeFileWatcher.h */,
+				492A06F90FE4303500D2ED02 /* UKFNSubscribeFileWatcher.m */,
+				492A06FA0FE4303500D2ED02 /* UKKQueue Readme.txt */,
+				492A06FB0FE4303500D2ED02 /* UKKQueue.h */,
+				492A06FC0FE4303500D2ED02 /* UKKQueue.m */,
+				492A06FD0FE4303500D2ED02 /* UKMainThreadProxy.h */,
+				492A06FE0FE4303500D2ED02 /* UKMainThreadProxy.m */,
+			);
+			path = UKKQueue;
+			sourceTree = "<group>";
+		};
 		7FE544F70E86294000DD28E4 /* Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +244,7 @@
 				7F4F33F70E9EC1800061161A /* ClothoScreenWatcher.m */,
 				7F4F33F80E9EC1800061161A /* ClothoTaskPrompter.h */,
 				7F4F33F90E9EC1800061161A /* ClothoTaskPrompter.m */,
+				492A06F50FE4303500D2ED02 /* UKKQueue */,
 				7FE544FA0E86294000DD28E4 /* External */,
 			);
 			path = Code;
@@ -240,9 +274,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D15AC270486D014006FF6A4 /* Discipline */ = {
+		8D15AC270486D014006FF6A4 /* Clotho Logger */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Discipline" */;
+			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Clotho Logger" */;
 			buildPhases = (
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
@@ -252,10 +286,10 @@
 			);
 			dependencies = (
 			);
-			name = Discipline;
+			name = "Clotho Logger";
 			productInstallPath = "$(HOME)/Applications";
 			productName = Discipline;
-			productReference = 8D15AC370486D014006FF6A4 /* Discipline.app */;
+			productReference = 8D15AC370486D014006FF6A4 /* Clotho Logger.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -270,7 +304,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D15AC270486D014006FF6A4 /* Discipline */,
+				8D15AC270486D014006FF6A4 /* Clotho Logger */,
 			);
 		};
 /* End PBXProject section */
@@ -290,6 +324,8 @@
 				498CCE360FC88CB800A153B1 /* ProcessStateKeyValue.plist in Resources */,
 				49EB68040FD33E8A0053663A /* ProcessIDKeyValue.plist in Resources */,
 				492B67640FDAF9A900D1CF76 /* clotho_logger2.icns in Resources */,
+				492A07010FE4303500D2ED02 /* UKKQueue Readme.txt in Resources */,
+				49E081050FE61BB9006E4AA3 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +351,10 @@
 				7F4F34060E9EC1890061161A /* DXApp.m in Sources */,
 				7FDD12720EC285E5004C5873 /* GTMAXUIElement.m in Sources */,
 				494FE80E0F440F8300608BC8 /* ClothoLogger.m in Sources */,
+				492A06FF0FE4303500D2ED02 /* UKFileWatcher.m in Sources */,
+				492A07000FE4303500D2ED02 /* UKFNSubscribeFileWatcher.m in Sources */,
+				492A07020FE4303500D2ED02 /* UKKQueue.m in Sources */,
+				492A07030FE4303500D2ED02 /* UKMainThreadProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +375,14 @@
 				2A37F4BAFDCFA73011CA2CEA /* English */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		49E081030FE61BB9006E4AA3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49E081040FE61BB9006E4AA3 /* English */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		7FDBF53F0E99BB8A00DD9B7F /* DisciplineTaskPrompt.xib */ = {
@@ -369,7 +417,7 @@
 				GCC_PREFIX_HEADER = "Clotho Logger_Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = Discipline;
+				PRODUCT_NAME = "Clotho Logger";
 			};
 			name = Debug;
 		};
@@ -416,7 +464,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Discipline" */ = {
+		C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Clotho Logger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C05733C808A9546B00998B17 /* Debug */,

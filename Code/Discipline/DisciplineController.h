@@ -10,4 +10,8 @@
 @interface DisciplineController : NSObject {
 }
 
+- (void)addSelfToLoginItems;
+- (void)openLogFolder;
+- (void)quitClotho;
+
 @end
