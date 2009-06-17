@@ -32,10 +32,10 @@
 	}
 //	[self captureSystemSnapshot];
     NSInvocationOperation *systemSnapshot = 
-    [[NSInvocationOperation alloc] initWithTarget:self 
+    [[[NSInvocationOperation alloc] initWithTarget:self 
                                          selector:@selector(captureSystemSnapshot) 
-                                           object:nil];
-    NSOperationQueue *opQueue = [[[NSOperationQueue alloc] init] autorelease];
+                                           object:nil] autorelease];
+    NSOperationQueue *opQueue = [NSOperationQueue new];
     [opQueue addOperation:systemSnapshot];
     
 	[self captureMousePosition];

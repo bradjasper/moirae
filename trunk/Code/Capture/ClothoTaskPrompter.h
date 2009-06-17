@@ -28,9 +28,11 @@
 
 @property(retain) NSArray *taskIntervals;
 @property(copy) NSString *breakpointUsed;
+@property(retain) NSDate *checkDate;
 
 - (NSNumber *)randomInterval;
 - (void)resetTimer;
 - (void)checkIdle;
-
+- (void)handleResult:(int)result;
+- (void)createShieldWindow;
 @end

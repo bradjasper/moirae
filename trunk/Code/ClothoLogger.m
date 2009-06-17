@@ -331,7 +331,7 @@
                                                            forKey:@"OnScreenUpdate"];
                                 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"OnScreenUpdate" 
-                                                        object:nil 
+                                                        object:self 
                                                       userInfo:bufferDict];
     
     return arrayToReturn;
