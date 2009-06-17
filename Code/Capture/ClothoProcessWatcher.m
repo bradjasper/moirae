@@ -9,6 +9,7 @@
 //#import <openssl/evp.h>
 #import "GTMAXUIElement.h"
 #import "ClothoProcessWatcher.h"
+//#import "ClothoProcessThread.h"
 #import "Carbon/Carbon.h"
 #import "NDProcess.h"
 #import "stdio.h"
@@ -35,9 +36,10 @@
 - (BOOL)registerForTitleNotificationsForWindow:(GTMAXUIElement *)element;
 - (void)handleWindowChange:(GTMAXUIElement *) element;
 - (void)recordContext;
-- (void)recordContextThread;
+- (void)recordContextThread:(NSInvocationOperation *)theThread;
+- (void)recordContextThread3:(NSInvocationOperation *)theThread;
 - (NSString *)retrieveInfoForWindow:(id)window;
-- (NSString *)checkForWindowNameInWindow:(id)window;
+- (BOOL)checkForWindowNameInWindow:(id)window;
 - (void)registerForWindowNotifications:(NSArray *)windowNotifications;
 - (void)updateTheBuffer:(NSNotification *)notif;
 - (void)checkMinMax;
@@ -45,7 +47,7 @@
 
 @implementation ClothoProcessWatcher
 @synthesize currentDate, currentApp, currentWindow, state, lastActivity, timer, 
-            proID, openCloseName, opQueue, theQueue;
+            proID, openCloseName, theQueue;
 
 - (NSString *)logName {
   return @"Process_";
@@ -59,9 +61,10 @@
     self = [super init];
     if (self != nil) {
         [self registerForAppChangeNotifications];
-        threaded = YES;
+        threaded = NO;
+        windowBufferReady = YES;
         if (threaded)
-            opQueue = [[NSOperationQueue alloc] init];
+            opQueue = [NSOperationQueue new];
         [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self 
                                                                selector:@selector(workspaceSleep:) 
                                                                    name:NSWorkspaceWillSleepNotification 
@@ -303,28 +306,37 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
 - (void)recordContext{    
 
     if (threaded) {
-        NSInvocationOperation *processOp = 
-        [[NSInvocationOperation alloc] initWithTarget:self 
-                                             selector:@selector(recordContextThread) 
-                                               object:nil];
+        NSInvocationOperation *processOp = [NSInvocationOperation alloc];
+        [processOp initWithTarget:self selector:@selector(recordContextThread:) object:processOp];
+//        [[NSInvocationOperation alloc] initWithTarget:self 
+//                                             selector:@selector(recordContextThread:) 
+//                                               object:nil];
 
+//        ClothoProcessThread *processOp = [[[ClothoProcessThread alloc] initWithProcessWatcher:self] autorelease];
         [opQueue addOperation:processOp];
+        NSLog(@"Thread start, operation queue: %d", [[opQueue operations] count]);    
     }
     else
-        [self recordContextThread];
+        [self recordContextThread:nil];
 }
 
-- (void)recordContextThread {
+- (void)recordContextThread:(NSInvocationOperation *)theThread {
+    
+    while (!windowBufferReady) {
+        NSLog(@"not ready");
+    } // snapshot not done
     
     [self setCurrentDate:[NSDate date]];
     
     NSMutableDictionary *activity = [NSMutableDictionary dictionary];
   
     if ( ([self proID] == 5) || ([self proID] == 8) ) {
+        [activity setValue:[NSNumber numberWithInt:[self proID]] forKey:@"id"];
         [activity setValue:[self openCloseName] forKey:@"application"];
     }
     else {
         [activity setValue:[[self currentApp] title] forKey:@"application"];
+        [activity setValue:[NSNumber numberWithInt:[self proID]] forKey:@"id"];
     }
     [activity setValue:[self currentDate] forKey:@"date"];
     id window = [self currentWindow];
@@ -338,22 +350,21 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
                                       @"some_window"];
             [activity setValue:stickyString forKey:@"window"];
         }
-        else
+        else {
             [activity setValue:[self retrieveInfoForWindow:window] forKey:@"window"];
+        }
     }
     else {
         NSLog(@"Is not of class");
         [activity setValue:@"not_of_GTMAXUIElement_class" forKey:@"window"];
     }
     [activity setValue:[NSNumber numberWithInt:[self state]] forKey:@"state"];
-    [activity setValue:[NSNumber numberWithInt:[self proID]] forKey:@"id"];
+
   
   if (self.lastActivity){
     float duration=[[self currentDate] timeIntervalSinceDate:[lastActivity valueForKey:@"date"]];
     [lastActivity setValue:[NSNumber numberWithFloat:duration] forKey:@"duration"];
 
-        //  if "application" is (null), then assume (null) should be the application
-        //  that is logged right above where this one will be logged
         if (duration > 0.01) {
             NSString *message = [NSString stringWithFormat:@"%@\t%@\t%@\t%@\t%@\t%@\n",
                                  [lastActivity valueForKey:@"date"],
@@ -367,37 +378,47 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
         }
     }
     self.lastActivity = activity;
+    
+    if (threaded)
+        [self recordContextThread3:theThread];
+}
+
+- (void)recordContextThread3:(NSInvocationOperation *)theThread {
+    [theThread cancel];
+    [theThread release];
+    theThread = nil;
 }
 
 - (NSString *)retrieveInfoForWindow:(id)window {
 //    NSLog(@"Window title: %@", [window title]);
     //  if previous system snapshot has the current window, log it's 
     //      1. window owner pid
-    //      2. window number
-    NSString *stringToLog = [self checkForWindowNameInWindow:window];
-//    if ([stringToLog length] > 0)
-    if ( !([stringToLog rangeOfString:@"some_window-DUMP"].length > 0) )
-        return stringToLog;
+    //      2. window name hash
     
-    //  else take a system snapshot and repeat the thing above
-    else {
-        //  force system snapshot!
+    //  hash the window's title
+    NSString *hashedWindowName = [window title];
+    NSData *hashData = [hashedWindowName dataUsingEncoding:NSUTF8StringEncoding];
+    hashedWindowName = 
+    [[hashData description] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    //  create the string to log: "window_owner_PID-hashed_window_name"
+    NSString *stringToLog = [NSString stringWithFormat:@"%d-%@", 
+                             [window processIdentifier], 
+                             hashedWindowName];
+    
+    if ([self checkForWindowNameInWindow:window] == NO) {
+        windowBufferReady = NO;
         NSDictionary *theDate = [NSDictionary dictionaryWithObject:[self currentDate] 
-                                                            forKey:@"TheDate"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"DoSystemSnapshot" 
-                                                            object:nil 
-                                                          userInfo:theDate];
-        stringToLog = [self checkForWindowNameInWindow:window];
-        
-        //  by this point, we will either retrieve the hash we need or we will return something with "DUMP"
-        return stringToLog;
+                                                            forKey:@"TheDate"];     
+        NSNotification *sysNotif = [NSNotification notificationWithName:@"DoSystemSnapshot" object:self userInfo:theDate];
+        [[NSNotificationQueue defaultQueue] enqueueNotification:sysNotif postingStyle:NSPostASAP];
     }
+    
+    return stringToLog;
 }
 
-//  returns the window owner pid and window number in the form of "_, _"
-- (NSString *)checkForWindowNameInWindow:(id)window {
-    
-    NSString *theStringToReturn = @"";
+//  returns whether the window is in theBuffer or not
+- (BOOL)checkForWindowNameInWindow:(id)window {
     
     for (id element in [self theBuffer]) {
         
@@ -410,22 +431,13 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
             hashedWindowName = 
             [[hashData description] stringByReplacingOccurrencesOfString:@" " withString:@""];
         }
-        if ([[element objectForKey:@"kCGWindowIdent"] isEqualToString:hashedWindowName]) {
-            theStringToReturn = [NSString stringWithFormat:@"%d-%d-%@", 
-                                 [[element objectForKey:@"kCGWindowOwnerPID"] intValue],
-                                 [[element objectForKey:@"kCGWindowNumber"] intValue],
-                                 hashedWindowName];
-            break;
-        }
+        
+        if ([[element objectForKey:@"kCGWindowIdent"] isEqualToString:hashedWindowName])
+            return YES; //  found the window in the buffer
     }
     
     //  we didn't find anything...
-    if ([theStringToReturn isEqualToString:@""])
-        theStringToReturn = [NSString stringWithFormat:@"%d-%@-DUMP",
-                             [window processIdentifier], 
-                             @"some_window"];
-    
-    return theStringToReturn;
+    return NO;
     
 }
 
@@ -601,6 +613,7 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
     NSArray *updateInfo = [[notif userInfo] objectForKey:@"OnScreenUpdate"];
     [theBuffer release];
     theBuffer = [[NSMutableArray alloc] initWithArray:updateInfo];
+    windowBufferReady = YES;
 }
 
 - (void)checkMinMax {

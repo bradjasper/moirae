@@ -10,6 +10,7 @@
 @interface DisciplineController : NSObject {
 }
 
+- (void)makeProcessThread;
 - (void)addSelfToLoginItems;
 - (void)openLogFolder;
 - (void)quitClotho;

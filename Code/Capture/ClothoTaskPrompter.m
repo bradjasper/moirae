@@ -11,7 +11,7 @@
 
 @implementation ClothoTaskPrompter
 
-@synthesize taskIntervals, breakpointUsed;
+@synthesize taskIntervals, breakpointUsed, checkDate;
 
 //  Name of log file
 - (NSString *)logName {
@@ -26,7 +26,7 @@
 - (id)init {
     self = [super initPlist];
     if (self != nil) {
-        isShortInterval = NO;
+        isShortInterval = YES;
         interval = 10;
         askTimer = [[NSTimer scheduledTimerWithTimeInterval:10
                                                      target:self
@@ -79,13 +79,13 @@
 
 //  Ask the user what they're doing so they can type it in and we can log it
 - (void)askUser:(NSTimer *)timer {
-    [[NSSound soundNamed:@"Whip"]play];
+    [[NSSound soundNamed:@"Whip"] play];
   
     if (!shieldWindow) {
         [self createShieldWindow];
     }
-    [shieldWindow setAlphaValue:0.0];	
-    [shieldWindow orderFront:nil];
+    [shieldWindow setAlphaValue:0.0];
+    [shieldWindow orderFront:self];
     [[shieldWindow animator] setAlphaValue:1.0];
   
     if (!alertWindow) {	
@@ -140,17 +140,19 @@
     [self hideWindows];
     NSDate *lastDate=[[checkDate retain] autorelease];
     [self setCheckDate:	[NSDate date]];
-    ClothoScreenWatcher *watcher = [[ClothoScreenWatcher alloc] init];
-    [watcher captureSystemSnapshot_help:checkDate];
-    [watcher release];
+    
+    //  force a system snapshot
+    NSDictionary *theDate = [NSDictionary dictionaryWithObject:[self checkDate] forKey:@"TheDate"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DoSystemSnapshot" 
+                                                        object:self 
+                                                      userInfo:theDate];
     
     if (result) {
         NSString *string;
         if (isIdle)
             string = [NSString stringWithString:@"--idle--"];
         else
-            string = [[alertWindow initialFirstResponder] stringValue];
-        //NSLog(@"string %@",string);
+            string = [(NSComboBox *)[alertWindow initialFirstResponder] stringValue];
         [self willChangeValueForKey:@"activityNames"];
         [pastActivities removeObject:string];
         [pastActivities addObject:string];
@@ -161,16 +163,11 @@
         
         [activity setValue:string forKey:@"name"];
         [activity setValue:checkDate forKey:@"date"];
-        [activity setValue:([NSNumber numberWithFloat:[checkDate timeIntervalSinceDate:lastDate]]) forKey:@"duration"];
+        [activity setValue:([NSNumber numberWithFloat:[checkDate timeIntervalSinceDate:lastDate]]) 
+                    forKey:@"duration"];
         [activity setValue:[NSNumber numberWithInt:result] forKey:@"positivity"];
         [activity setValue:breakpointUsed forKey:@"breakpoint"];
-    /*
-        NSString *message = [NSString stringWithFormat:@"%@\t%@\t%@\n",
-                                 [activity valueForKey:@"date"],
-                                 [activity valueForKey:@"name"],
-                                 [activity valueForKey:@"duration"]];
-    
-        [self logTask:message]; */
+
         [self logTask:activity];
     }
     [self resetTimer];
@@ -222,7 +219,7 @@
                                                selector:@selector(askUser:) 
                                                userInfo:nil 
                                                 repeats:NO] retain];	
-    NSLog(@"timer %f",interval);
+//    NSLog(@"timer %f",interval);
 }
 
 - (NSNumber *)randomInterval {

@@ -31,6 +31,7 @@
     NSMetadataQuery *metadataQuery;
     NSOperationQueue *opQueue;
     BOOL threaded;
+    BOOL windowBufferReady;
     UKKQueue *theQueue;
 }
 
@@ -40,7 +41,6 @@
 @property(retain) GTMAXUIElement *currentApp;
 @property(retain) GTMAXUIElement *currentWindow;
 @property(retain) NSMutableDictionary *lastActivity;
-@property(retain) NSOperationQueue *opQueue;
 @property(retain) UKKQueue *theQueue;
 
 @property(assign) NSInteger state;

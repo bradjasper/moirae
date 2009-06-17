@@ -30,7 +30,13 @@
                                                attributes:nil
                                                     error:nil];
     [[ClothoProcessWatcher alloc] init];
-    [[ClothoScreenWatcher alloc] init];
+    NSOperationQueue *theQueue = [NSOperationQueue new];
+    NSInvocationOperation *theProcess = 
+    [[NSInvocationOperation alloc] initWithTarget:self 
+                                         selector:@selector(makeProcessThread) 
+                                           object:nil];
+    [theQueue addOperation:theProcess];
+    
     [[ClothoTaskPrompter alloc] init];
     if (shouldLogITunes)
         [[ClothoiTunesWatcher alloc] init];
@@ -59,6 +65,10 @@
     
     [self addSelfToLoginItems];
     
+}
+
+- (void)makeProcessThread {
+    [[ClothoScreenWatcher alloc] init];
 }
 
 - (void)addSelfToLoginItems {
