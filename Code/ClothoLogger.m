@@ -114,6 +114,8 @@
 // (void)logTask=============================.PLIST
 //      - writes theData to the Task log file
 - (void)logTask:(NSMutableDictionary *)theData {
+    
+    //  check if we should create a new log file for the new day
     if ([self logShouldRoll])
         NSLog(@"New log created today");
     NSMutableArray *combinedDictionaries = [NSMutableArray arrayWithCapacity:1];
