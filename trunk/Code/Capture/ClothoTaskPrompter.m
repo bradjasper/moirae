@@ -26,7 +26,7 @@
 - (id)init {
     self = [super initPlist];
     if (self != nil) {
-        isShortInterval = YES;
+        isShortInterval = NO;
         interval = 10;
         askTimer = [[NSTimer scheduledTimerWithTimeInterval:10
                                                      target:self
@@ -43,11 +43,12 @@
                             [NSNumber numberWithInt:40], nil];
         }
         else {
+            
             courseBreaks = [NSArray arrayWithObjects:
-                                     [NSNumber numberWithInt:380], 
-                                     [NSNumber numberWithInt:570], [NSNumber numberWithInt:570],
-                                     [NSNumber numberWithInt:760], [NSNumber numberWithInt:760],
-                                     [NSNumber numberWithInt:950], nil];
+                                     [NSNumber numberWithInt:380], // 0
+                                     [NSNumber numberWithInt:570], [NSNumber numberWithInt:570], // 1, 2
+                                     [NSNumber numberWithInt:760], [NSNumber numberWithInt:760], // 3, 4
+                                     [NSNumber numberWithInt:950], nil]; // 5
              mediumBreaks = [NSArray arrayWithObjects:
                                      [NSNumber numberWithInt:316], 
                                      [NSNumber numberWithInt:474], [NSNumber numberWithInt:474],
@@ -55,7 +56,7 @@
                                      [NSNumber numberWithInt:790], nil];
         }   
         taskIntervals = [[NSArray alloc] initWithObjects:courseBreaks, mediumBreaks, nil];
-        breakpointUsed = @"first run";
+        breakpointUsed = @"0CC";
     }
     return self;
 }
@@ -224,24 +225,52 @@
 
 - (NSNumber *)randomInterval {
     
-    NSString *bPointToLog;    
-    NSNumber *chosenBPoint = [[[NSNumber alloc] init] autorelease];
+    NSString *breakPointToUse, *bPointSet;
+    NSInteger bPoint;
+    NSArray *breakpointsToUse;
+    NSNumber *chosenBPoint;
     
     //  choose a breakpoint set (course or medium breakpoints):
-    NSInteger bPoint = (random() % 2);
+    bPoint = (random() % 2);
     if (bPoint == 0)
-        bPointToLog = @"C";
+        bPointSet = @"C";
     else
-        bPointToLog = @"M";
-    NSArray *breakpointsToUse = [taskIntervals objectAtIndex:bPoint];
+        bPointSet = @"M";
+    breakpointsToUse = [taskIntervals objectAtIndex:bPoint];
     
-    //  choose a breakpoint: 
+    //  choose a new breakpoint: 
     bPoint = (random() % [breakpointsToUse count]);
-    bPointToLog = [bPointToLog stringByAppendingString:
-    [[NSNumber numberWithInt:bPoint] stringValue]];
-    chosenBPoint = [breakpointsToUse objectAtIndex:bPoint];
+    breakPointToUse = [[[NSNumber numberWithInt:bPoint] stringValue]
+                       stringByAppendingFormat:@"%c", [breakpointUsed characterAtIndex:2]];
     
-    [self setBreakpointUsed:bPointToLog];
+    //  check the old breakpoint:
+    if ( ([breakpointUsed characterAtIndex:2] == 'C') && ([bPointSet isEqualToString:@"M"]) ) {
+        // 203 + v
+        // v = f(n-1)
+        if ( (bPoint == 2) || (bPoint == 4) )
+            chosenBPoint = [NSNumber numberWithInt:([[breakpointsToUse objectAtIndex:(bPoint-2)] intValue] + 203)];
+        else if (bPoint == 0)
+            chosenBPoint = [NSNumber numberWithInt:(158 + 203)];
+        else
+            chosenBPoint = [NSNumber numberWithInt:([[breakpointsToUse objectAtIndex:(bPoint-1)] intValue] + 203)];
+        breakPointToUse = [breakPointToUse stringByAppendingString:@"M"];
+    }
+    else if ( ([breakpointUsed characterAtIndex:2] == 'M') && ([bPointSet isEqualToString:@"C"]) ) {
+        // 385 + v
+        // v = f(n-1)
+        if ( (bPoint == 2) || (bPoint == 4) )
+            chosenBPoint = [NSNumber numberWithInt:([[breakpointsToUse objectAtIndex:(bPoint-2)] intValue] + 385)];
+        else if (bPoint == 0)
+            chosenBPoint = [NSNumber numberWithInt:(190 + 385)];
+        else
+            chosenBPoint = [NSNumber numberWithInt:([[breakpointsToUse objectAtIndex:(bPoint-1)] intValue] + 385)];
+        breakPointToUse = [breakPointToUse stringByAppendingString:@"M"];
+    }
+    else {
+        chosenBPoint = [breakpointsToUse objectAtIndex:bPoint];
+        breakPointToUse = [breakPointToUse stringByAppendingFormat:@"%c", [breakPointToUse characterAtIndex:1]];
+    }
+    [self setBreakpointUsed:breakPointToUse];
     return chosenBPoint;
     
 }
