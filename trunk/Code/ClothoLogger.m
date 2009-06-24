@@ -272,7 +272,22 @@
     for(id dictEntry in processList) {
         nameFromProcess = [dictEntry objectForKey:@"kCGWindowOwnerName"];
         if( (![userAppList containsObject:nameFromProcess]) ) {
-            [markedForDeletion addObject:dictEntry];
+
+            BOOL isNotFound = YES;
+            for (NSString *appName in userAppList) {
+                
+                if ( ([appName rangeOfString:nameFromProcess].length > 0) 
+                    || ([nameFromProcess rangeOfString:appName].length > 0) ) {
+                    [markedToAdd setObject:[appPaths objectForKey:appName] 
+                                    forKey:nameFromProcess];
+                    isNotFound = NO;
+                    break;
+                }
+                
+            }
+                if (isNotFound)
+                    [markedForDeletion addObject:dictEntry];                
+
         }
         else {
             [markedToAdd setObject:[appPaths objectForKey:nameFromProcess] 
@@ -499,34 +514,52 @@
 
     //  Check /Applications folder
     for(NSString *appName in appNames) {
+        
+        //  If the file we're looking at is an app, we're done
         if ([[appName pathExtension] isEqualToString:@"app"]) {
             [appPathWithoutApp addObject:[appName stringByDeletingPathExtension]];
             [appPathDict setObject:[appPath stringByAppendingPathComponent:appName] 
                             forKey:[appName stringByDeletingPathExtension]];
         }
+        
+        //  Otherwise, if it's a folder, check it's contents
         else {
+            
             NSString *subpath = [appPath stringByAppendingPathComponent:appName];
             if ([theDefaultMan fileExistsAtPath:subpath isDirectory:&isDir] && isDir) {
+                
                 subpathContents = [theDefaultMan contentsOfDirectoryAtPath:subpath 
                                                                      error:nil];
                 for(id subName in subpathContents) {
+                    
                     if ([[subName pathExtension] isEqualToString:@"app"]) {
+                        
                         [appPathWithoutApp addObject:[subName stringByDeletingPathExtension]];
                         [appPathDict setObject:[subpath stringByAppendingPathComponent:subName] 
                                         forKey:[subName stringByDeletingPathExtension]];
+                        
                     }
+                    
                     else {
-                        NSString *subSubpath = [subpath stringByAppendingPathComponent:subName];
+                        
+                        NSString *subSubpath = [subpath stringByAppendingPathComponent:subName];                        
+                        if ([theDefaultMan fileExistsAtPath:subSubpath
+                                                 isDirectory:&isDir] && isDir) {
+                        
                         subSubpathContents = [theDefaultMan contentsOfDirectoryAtPath:subSubpath 
                                                                                 error:nil];
                         for (id subSubName in subSubpathContents) {
+                            
                             if ([[subSubName pathExtension] isEqualToString:@"app"]) {
+                                
                                 [appPathWithoutApp addObject:[subSubName stringByDeletingPathExtension]];
                                 [appPathDict setObject:[subSubpath stringByAppendingPathComponent:subSubName] 
                                                 forKey:[subSubName stringByDeletingPathExtension]];
+                            
+                                }                        
                             }
                         }
-                    }
+                    } 
                 }
                 isDir = NO;
             }
