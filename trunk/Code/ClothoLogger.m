@@ -23,7 +23,8 @@
     [self setLogDate:[self todaysDate]];
     NSString *path = [logPath stringByAppendingPathComponent:[[self logName]
                                        stringByAppendingString:[logDate
-                                       stringByAppendingString:@".log"]]];
+                                       stringByAppendingPathExtension:@"log"]]];
+    
     log = fopen([path fileSystemRepresentation], "a");
     theBuffer = [[NSMutableArray alloc] init];
 
@@ -58,7 +59,7 @@
     if ([nameOfLog isEqualToString:@"Mouse_"]) {
         [self setLogDate:[self todaysDate]];
         path = [directory stringByAppendingPathComponent:
-                [[nameOfLog stringByAppendingString:logDate] stringByAppendingString:@".log"]];
+                [[nameOfLog stringByAppendingString:logDate] stringByAppendingPathExtension:@"log"]];
         log = fopen([path fileSystemRepresentation], "a");
         return self;
     }
