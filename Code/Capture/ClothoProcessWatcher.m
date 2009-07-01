@@ -323,7 +323,7 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
 - (void)recordContextThread:(NSInvocationOperation *)theThread {
     
     while (!windowBufferReady) {
-        NSLog(@"not ready");
+        //NSLog(@"not ready");
     } // snapshot not done
     
     [self setCurrentDate:[NSDate date]];

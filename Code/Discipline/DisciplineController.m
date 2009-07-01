@@ -18,18 +18,20 @@
 
 @implementation DisciplineController
 
+
 - (void)applicationDidFinishLaunching:(NSApplication *)theApplication {
     
     BOOL shouldLogITunes = NO;
     QSEnableAccessibility();
-  
+    
     NSString *directory = [@"~/Library/Logs/Discipline" stringByStandardizingPath];
-  
     [[NSFileManager defaultManager] createDirectoryAtPath:directory
                               withIntermediateDirectories:YES
                                                attributes:nil
                                                     error:nil];
+    
     [[ClothoProcessWatcher alloc] init];
+    
     NSOperationQueue *theQueue = [NSOperationQueue new];
     NSInvocationOperation *theProcess = 
     [[NSInvocationOperation alloc] initWithTarget:self 
@@ -38,13 +40,16 @@
     [theQueue addOperation:theProcess];
     
     [[ClothoTaskPrompter alloc] init];
+    
     if (shouldLogITunes)
         [[ClothoiTunesWatcher alloc] init];
     
+    //  create Clotho Logger icon
     NSImage *image = [NSImage imageNamed:@"clotho_logger2"];
     image = [image copy];
     [image setSize:NSMakeSize(16, 16)];
     
+    //  set up Clotho Logger menu item
     NSMenu *pulldownMenu = [[NSMenu alloc] init];
     [NSMenu setMenuBarVisible:YES];
     NSMenuItem *quitButton = [[NSMenuItem alloc] initWithTitle:@"Quit Clotho" 
@@ -56,6 +61,7 @@
     [pulldownMenu insertItem:openFolderButton atIndex:0];
     [pulldownMenu insertItem:quitButton atIndex:1];
     
+    //  create Clotho Logger menu bar item 
     NSStatusItem *item = 
     [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
     [item retain];
@@ -64,7 +70,7 @@
     [item setHighlightMode:YES];
     
     [self addSelfToLoginItems];
-    
+
 }
 
 - (void)makeProcessThread {
