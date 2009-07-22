@@ -13,6 +13,7 @@
 @synthesize logDate, logPath, theBuffer;
 
 - (id)init {
+    
     if (!(self = [super init]))
         return nil;
     
@@ -29,9 +30,11 @@
     theBuffer = [[NSMutableArray alloc] init];
 
     return self;
+    
 }
 
 - (id)initPlist {
+
     if (!(self = [super init]))
         return nil;
     
@@ -42,37 +45,46 @@
     [self setLogDate:[self todaysDate]];
 
     return self;        
+
 }
 
 - (id)initWithNameAndDirectory:(NSString *)nameOfLog 
                      directory:(NSString *)directoryOfLog 
                        forDate:(NSDate *)dateToUse {
+
+    NSString *path;
     NSString *directory = [@"~/Library/Logs/Discipline/Log/" stringByStandardizingPath];
     directory = [directory stringByAppendingPathComponent:directoryOfLog];
     [self setLogPath:directory];
-    NSString *path;
     
     [[NSFileManager defaultManager] 
      createDirectoryAtPath:[directory stringByStandardizingPath]
      withIntermediateDirectories:YES attributes:nil error:nil];
     
     if ([nameOfLog isEqualToString:@"Mouse_"]) {
+        
         [self setLogDate:[self todaysDate]];
         path = [directory stringByAppendingPathComponent:
                 [[nameOfLog stringByAppendingString:logDate] stringByAppendingPathExtension:@"log"]];
         log = fopen([path fileSystemRepresentation], "a");
         return self;
+        
     }
     else if ([nameOfLog isEqualToString:@"System_Snapshot_"]) {
+        
         path = [directory stringByAppendingPathComponent:
                 [nameOfLog stringByAppendingString:[dateToUse description]]];
         return path;
+        
     }
     else {
+        
         path = [directory stringByAppendingPathComponent:
                 [nameOfLog stringByAppendingString:[[NSDate date] description]]];
         return path;        
+        
     }
+
 }
 
 - (void) dealloc {
@@ -101,24 +113,14 @@
 #pragma mark -
 #pragma mark Logging functions
 
-/*
-  // (void)logTask===========================.LOG
-  //      - writes theData to the Task log file
-- (void)logTask:(NSString *)theData {
-    if ([self logShouldRoll])
-        NSLog(@"New log created today");
-    fprintf(log, [theData UTF8String]);
-    fflush(log);
-}
-*/
-
-// (void)logTask=============================.PLIST
+// (void)logTask
 //      - writes theData to the Task log file
 - (void)logTask:(NSMutableDictionary *)theData {
     
     //  check if we should create a new log file for the new day
     if ([self logShouldRoll])
-        NSLog(@"New log created today");
+        NSLog(@"New task log created today");
+    
     NSMutableArray *combinedDictionaries = [NSMutableArray arrayWithCapacity:1];
     NSString *dictPath = [[logPath stringByAppendingPathComponent:
                            [[self logName] stringByAppendingString:logDate]]
@@ -150,17 +152,21 @@
   // (void)logProcess
   //      - writes theData to the Process log file
 - (void)logProcess:(NSString *)theData {
+    
     if ([self logShouldRoll])
-        NSLog(@"New log created today");
-//    NSLog(@"Data logged: %@", theData);
+        NSLog(@"New process log created today");
+    
     fprintf(log, [theData UTF8String]);
     fflush(log);
+    
 }
 
 
 - (void)logMouse:(NSPoint)coordinates {
+    
     if ([self logShouldRoll])
-        NSLog(@"New log created today");
+        NSLog(@"New mouse log created today");
+    
     NSString *logged = [NSString stringWithFormat:@"%@\t%f\t%f\n",
                         [[NSDate date] description],
                         coordinates.x,
@@ -169,6 +175,7 @@
     [self initWithNameAndDirectory:@"Mouse_" directory:@"Mouse" forDate:nil];
     fprintf(log, [logged UTF8String]);
     fflush(log);
+    
 }
 
 - (void)logScreenShot:(CGImageRef)screenShot {
@@ -177,6 +184,7 @@
 }
 
 - (void)logSystemSnapshot:(NSMutableArray *)list forDate:(NSDate *)dateToLog {
+    
     BOOL isDir;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -207,6 +215,7 @@
     //        [self moveFilesToFolderForDate:logDate];
 
     [dateFormatter release];
+    
 }
 
 
@@ -406,17 +415,17 @@
     
     [today getCharacters:theDay range:theRange];
     today = [NSString stringWithCharacters:theDay length:sizeof(theDay)+6];
-    
     free(theDay);
+    
     if ([logDate isEqualToString:today])
         return FALSE;
+    
     else {
         
         if ([[self logName] isEqualToString:@"Task_"])
-            [self initPlist];
+            self = [self initPlist];
         else
-            [self init];
-        //[self logWithNewDate:today];
+            self = [self init];
         return TRUE;
         
     }
