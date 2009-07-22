@@ -399,11 +399,9 @@
 // (BOOL)logShouldRoll
 //      - determines if new log file needs to be created 
 - (BOOL)logShouldRoll {
-    NSString *today = [[NSDate date] description];
     
-    NSRange theRange;
-    theRange.location = 0;
-    theRange.length = 10;
+    NSString *today = [[NSDate date] description];
+    NSRange theRange = NSMakeRange(0, 10);
     unichar *theDay = malloc((theRange.length)*(sizeof(unichar)));
     
     [today getCharacters:theDay range:theRange];
@@ -413,13 +411,16 @@
     if ([logDate isEqualToString:today])
         return FALSE;
     else {
+        
         if ([[self logName] isEqualToString:@"Task_"])
             [self initPlist];
         else
             [self init];
         //[self logWithNewDate:today];
         return TRUE;
+        
     }
+    
 }
 
 // (void)logWithNewDate:(NSString *)newLogDate
@@ -505,8 +506,17 @@
     NSFileManager *theDefaultMan = [NSFileManager defaultManager];
     NSString *appPath = [@"/Applications" stringByStandardizingPath];
     NSString *devPath = [@"/Developer/Applications" stringByStandardizingPath];
-    NSArray *appNames = [theDefaultMan contentsOfDirectoryAtPath:appPath error:nil];
-    NSArray *devAppNames = [theDefaultMan contentsOfDirectoryAtPath:devPath error:nil];
+    NSError *err;
+    
+    NSArray *appNames = [theDefaultMan contentsOfDirectoryAtPath:appPath error:&err];
+    if (!appNames)
+        NSLog(@"ClothoLogger.m:512 error - %@", [err localizedDescription]);
+    err = nil;
+    
+    NSArray *devAppNames = [theDefaultMan contentsOfDirectoryAtPath:devPath error:&err];
+    if (!devAppNames)
+            NSLog(@"CLothoLogger.m:517 error - %@", [err localizedDescription]);
+    
     NSArray *subpathContents;
     NSArray *subSubpathContents;
     NSMutableDictionary *appPathDict = [NSMutableDictionary dictionary];
@@ -514,7 +524,11 @@
     NSMutableArray *devPathWithoutApp = [NSMutableArray arrayWithCapacity:[devAppNames count]];
 
     //  Check /Applications folder
-    for(NSString *appName in appNames) {
+//    for(NSString *appName in appNames) {
+    int i;
+    for(i=0; i<[appNames count]; i++) {
+        
+        NSString *appName = [appNames objectAtIndex:i];
         
         //  If the file we're looking at is an app, we're done
         if ([[appName pathExtension] isEqualToString:@"app"]) {
@@ -568,7 +582,10 @@
     }
     
     //  Check /Developer/Applications folder
-    for(NSString *devName in devAppNames) {
+//    for(NSString *devName in devAppNames) {
+    for(i=0; i<[devAppNames count]; i++) {
+        
+        NSString *devName = [devAppNames objectAtIndex:i];
         if ([[devName pathExtension] isEqualToString:@"app"]) {
             [devPathWithoutApp addObject:[devName stringByDeletingPathExtension]];
             [appPathDict setObject:[devPath stringByAppendingPathComponent:devName] 
@@ -606,10 +623,9 @@
 // (NSString *)todaysDate
 //      - sets logDate. Is of the form YYYY-MM-DD
 - (NSString *)todaysDate {
+    
     NSString *theDate;
-    NSRange theRange;
-    theRange.location = 0;
-    theRange.length = 10;
+    NSRange theRange = NSMakeRange(0, 10);
     unichar *str = malloc((theRange.length)*(sizeof(unichar)));
     
     // Sets current date of log

@@ -73,6 +73,12 @@
 
 }
 
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
+    
+    NSLog(@"Terminating Clotho Logger with event type: %d", [[[aNotification object] currentEvent] type]);
+    
+}
+
 - (void)makeProcessThread {
     [[ClothoScreenWatcher alloc] init];
 }

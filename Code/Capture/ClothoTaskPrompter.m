@@ -11,7 +11,7 @@
 
 @implementation ClothoTaskPrompter
 
-@synthesize taskIntervals, breakpointUsed, checkDate;
+@synthesize taskIntervals, breakpointUsed, checkDate, lastDate;
 
 //  Name of log file
 - (NSString *)logName {
@@ -28,35 +28,32 @@
     if (self != nil) {
         isShortInterval = NO;
         interval = 10;
+        
+        NSArray *courseBreaks = [NSArray arrayWithObjects:
+                                 [NSNumber numberWithInt:380], // 0
+                                 [NSNumber numberWithInt:570], [NSNumber numberWithInt:570], // 1, 2
+                                 [NSNumber numberWithInt:760], [NSNumber numberWithInt:760], // 3, 4
+                                 [NSNumber numberWithInt:950], nil]; // 5
+        NSArray *mediumBreaks = [NSArray arrayWithObjects:
+                                 [NSNumber numberWithInt:316], 
+                                 [NSNumber numberWithInt:474], [NSNumber numberWithInt:474],
+                                 [NSNumber numberWithInt:632], [NSNumber numberWithInt:632],
+                                 [NSNumber numberWithInt:790], nil];
+
+        taskIntervals = [[NSArray alloc] initWithObjects:courseBreaks, mediumBreaks, nil];
+        breakpointUsed = @"0CC";    
+
         askTimer = [[NSTimer scheduledTimerWithTimeInterval:10
                                                      target:self
                                                    selector:@selector(askUser:) 
                                                    userInfo:nil
                                                     repeats:NO] retain];
         [askTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-        NSArray *courseBreaks;
-        NSArray *mediumBreaks;
-        if (isShortInterval) {
-            courseBreaks = [NSArray arrayWithObjects:
-                              [NSNumber numberWithInt:40],  nil];
-            mediumBreaks = [NSArray arrayWithObjects:
-                            [NSNumber numberWithInt:40], nil];
-        }
-        else {
-            
-            courseBreaks = [NSArray arrayWithObjects:
-                                     [NSNumber numberWithInt:380], // 0
-                                     [NSNumber numberWithInt:570], [NSNumber numberWithInt:570], // 1, 2
-                                     [NSNumber numberWithInt:760], [NSNumber numberWithInt:760], // 3, 4
-                                     [NSNumber numberWithInt:950], nil]; // 5
-             mediumBreaks = [NSArray arrayWithObjects:
-                                     [NSNumber numberWithInt:316], 
-                                     [NSNumber numberWithInt:474], [NSNumber numberWithInt:474],
-                                     [NSNumber numberWithInt:632], [NSNumber numberWithInt:632],
-                                     [NSNumber numberWithInt:790], nil];
-        }   
-        taskIntervals = [[NSArray alloc] initWithObjects:courseBreaks, mediumBreaks, nil];
-        breakpointUsed = @"0CC";
+        [self setCheckDate:[askTimer fireDate]];
+        NSRunLoop *mainRL = [NSRunLoop mainRunLoop];
+        [mainRL addTimer:askTimer forMode:@"NSDefaultRunLoopMode"];
+        
+        
     }
     return self;
 }
@@ -80,6 +77,10 @@
 
 //  Ask the user what they're doing so they can type it in and we can log it
 - (void)askUser:(NSTimer *)timer {
+    
+    [self setLastDate:checkDate];
+    [self setCheckDate:[timer fireDate]];
+    
     [[NSSound soundNamed:@"Whip"] play];
   
     if (!shieldWindow) {
@@ -88,7 +89,7 @@
     [shieldWindow setAlphaValue:0.0];
     [shieldWindow orderFront:self];
     [[shieldWindow animator] setAlphaValue:1.0];
-  
+    
     if (!alertWindow) {	
         NSArray *names=nil;
         //[[[[self managedObjectContext]registeredObjects]valueForKey:@"name"]allObjects];
@@ -139,8 +140,8 @@
     [idleTimer release];
     
     [self hideWindows];
-    NSDate *lastDate=[[checkDate retain] autorelease];
-    [self setCheckDate:	[NSDate date]];
+//    NSDate *lastDate=[[checkDate retain] autorelease];
+//    [self setCheckDate:	[NSDate date]];
     
     //  force a system snapshot
     NSDictionary *theDate = [NSDictionary dictionaryWithObject:[self checkDate] forKey:@"TheDate"];
@@ -214,16 +215,23 @@
         [askTimer invalidate];
     [askTimer release];
     
-    interval = [[self randomInterval] floatValue];
-    askTimer = [[NSTimer scheduledTimerWithTimeInterval:interval
+    interval = [[self randomInterval] doubleValue];
+
+    askTimer = [[NSTimer scheduledTimerWithTimeInterval:10
                                                  target:self 
                                                selector:@selector(askUser:) 
                                                userInfo:nil 
-                                                repeats:NO] retain];	
+                                                repeats:NO] retain];
+    [askTimer setFireDate:[checkDate addTimeInterval:interval]];
+    NSRunLoop *mainRL = [NSRunLoop mainRunLoop];
+    [mainRL addTimer:askTimer forMode:@"NSDefaultRunLoopMode"];
 //    NSLog(@"timer %f",interval);
 }
 
 - (NSNumber *)randomInterval {
+    
+    if (isShortInterval)
+        return [NSNumber numberWithInt:40];
     
     NSString *breakPointToUse, *bPointSet;
     NSInteger bPoint;
