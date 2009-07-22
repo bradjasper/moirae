@@ -18,6 +18,7 @@
     IBOutlet NSWindow *alertWindow;
     IBOutlet NSWindow *shieldWindow;
     IBOutlet NSArrayController *arrayController;
+    NSDate *lastDate;
     NSDate *checkDate;
     id currentActivity;
     NSMutableArray *pastActivities;
@@ -29,7 +30,7 @@
 @property(retain) NSArray *taskIntervals;
 @property(copy) NSString *breakpointUsed;
 @property(retain) NSDate *checkDate;
-
+@property(retain) NSDate *lastDate;
 - (NSNumber *)randomInterval;
 - (void)resetTimer;
 - (void)checkIdle;

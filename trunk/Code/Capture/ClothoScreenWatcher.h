@@ -12,9 +12,11 @@
 
 @interface ClothoScreenWatcher : ClothoLogger {
     BOOL shouldLogCPU;
+    NSDate *lastDate;
 }
 
 @property(assign) BOOL shouldLogCPU;
+@property(retain) NSDate *lastDate;
 
 - (void)captureScreen;
 - (void)captureScreen_helper;

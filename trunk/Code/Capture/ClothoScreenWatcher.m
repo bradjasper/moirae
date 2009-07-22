@@ -12,7 +12,7 @@
 
 @implementation ClothoScreenWatcher
 
-@synthesize shouldLogCPU;
+@synthesize shouldLogCPU, lastDate;
 
 - (NSString *)logName {
     return @"System_Snapshots_";
@@ -31,6 +31,7 @@
         return nil;
     
     [self setLogDate:[self todaysDate]];
+    [self setLastDate:[NSDate date]];
 	BOOL captureScreenShot = NO;
     if(captureScreenShot){
 		[self captureScreen];
@@ -39,35 +40,24 @@
     shouldLogCPU = YES;
     
     NSInvocationOperation *systemSnapshot = 
-    [[[NSInvocationOperation alloc] initWithTarget:self 
-                                         selector:@selector(captureSystemSnapshot) 
-                                           object:nil] autorelease];
+        [[[NSInvocationOperation alloc] initWithTarget:self 
+                                              selector:@selector(captureSystemSnapshot) 
+                                                object:nil] autorelease];
+    NSInvocationOperation *mouseLoca = 
+        [[[NSInvocationOperation alloc] initWithTarget:self 
+                                              selector:@selector(captureMousePosition) 
+                                                object:nil] autorelease];
+    
     NSOperationQueue *opQueue = [NSOperationQueue new];
     [opQueue addOperation:systemSnapshot];
+    [opQueue addOperation:mouseLoca];
     
-	[self captureMousePosition];
+//	[self captureMousePosition];
     
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(forceSystemSnapshot:)
                                                  name:@"DoSystemSnapshot" 
                                                object:nil];
-    
-//    NSTimer *timer1 = [[NSTimer scheduledTimerWithTimeInterval:5.0
-//                                                       target:self
-//                                                     selector:@selector(captureMousePosition_helper)
-//                                                     userInfo:nil
-//                                                      repeats:YES] retain];
-//    NSTimer *timer2 = [[NSTimer scheduledTimerWithTimeInterval:5.0
-//                                                       target:self
-//                                                     selector:@selector(captureSystemSnapshot_help:)
-//                                                     userInfo:[NSDate date]
-//                                                      repeats:YES] retain];  
-//    NSPort *dummyPort = [[NSPort port] retain];
-//    NSRunLoop *theRL = [NSRunLoop currentRunLoop]; 
-//    [theRL addTimer:timer1 forMode:@"NSDefaultRunLoopMode"];
-//    [theRL addTimer:timer2 forMode:@"NSDefaultRunLoopMode"];
-//    [theRL addPort:dummyPort forMode:@"NSDefaultRunLoopMode"];
-//    [theRL run];
     
 	return self;
 }
@@ -94,11 +84,11 @@
 - (void)captureMousePosition{
 	[self captureMousePosition_helper];
 
-    NSTimer *theTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 
-                                                         target:self
-                                                       selector:@selector(captureMousePosition)
-                                                       userInfo:nil
-                                                        repeats:NO];
+    NSTimer *theTimer = [NSTimer scheduledTimerWithTimeInterval:114.0 
+                                     target:self
+                                   selector:@selector(captureMousePosition)
+                                   userInfo:nil
+                                    repeats:NO];
     NSRunLoop *theRL = [NSRunLoop currentRunLoop];
     [theRL addTimer:theTimer forMode:@"NSDefaultRunLoopMode"];
     [theRL run];
@@ -162,13 +152,15 @@
 
 - (void)captureSystemSnapshot{
 	
-	[self captureSystemSnapshot_help:[NSDate date]];
+	[self captureSystemSnapshot_help:lastDate];
 
-    NSTimer *theTimer = [NSTimer scheduledTimerWithTimeInterval:114.0 
+    [self setLastDate:[lastDate addTimeInterval:114]];
+    NSTimer *theTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 
                                                          target:self 
                                                        selector:@selector(captureSystemSnapshot) 
                                                        userInfo:nil 
                                                         repeats:NO];
+    [theTimer setFireDate:lastDate];
     NSRunLoop *theRL = [NSRunLoop currentRunLoop];
     [theRL addTimer:theTimer forMode:@"NSDefaultRunLoopMode"];
     [theRL run];
