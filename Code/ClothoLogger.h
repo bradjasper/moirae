@@ -27,7 +27,7 @@
 - (NSString *)todaysDate;
 
 - (BOOL)logShouldRoll;
-- (void)logWithNewDate:(NSString *)newLogDate;
+- (void)logWithNewDate;
 //- (void)logTask:(NSString *)theData; //log
 - (void)logTask:(NSMutableDictionary *)theData; //plist
 - (void)logProcess:(NSString *)theData;
