@@ -268,9 +268,10 @@
 //  /Developer/Applications folder, keep it in the process list
 - (NSMutableArray *)compareAppFolderToProcess:(NSMutableArray *)processList {
     
-    //  get all application names. last object in userAppList will be a dictionary of
-    //  the application names and their paths
+    //  application names from /Applications and /Developer/Applications
     NSMutableArray *userAppList = [NSMutableArray arrayWithArray:[self scanAppFolder]];
+    
+    //  application names - application paths dictionary
     NSDictionary *appPaths = [userAppList lastObject];
     [userAppList removeLastObject];
     
@@ -295,8 +296,8 @@
                 }
                 
             }
-                if (isNotFound)
-                    [markedForDeletion addObject:dictEntry];                
+            if (isNotFound)
+                [markedForDeletion addObject:dictEntry];                
 
         }
         else {
@@ -417,15 +418,27 @@
     today = [NSString stringWithCharacters:theDay length:sizeof(theDay)+6];
     free(theDay);
     
-    if ([logDate isEqualToString:today])
+    if ([logDate isEqualToString:today])    
         return FALSE;
     
     else {
         
-        if ([[self logName] isEqualToString:@"Task_"])
+        if ([[self logName] isEqualToString:@"Task_"]) {
+            
+//            [self release];
             self = [self initPlist];
-        else
+            
+        }
+            
+        else {
+            
+//            [self setLogDate:[self todaysDate]];
+//            [self logWithNewDate];
+//            [self release];
             self = [self init];
+            
+        }
+            
         return TRUE;
         
     }
@@ -434,17 +447,16 @@
 
 // (void)logWithNewDate:(NSString *)newLogDate
 //      - creates a new log by appending the new date newLogDate
-- (void)logWithNewDate:(NSString *)newLogDate {
+- (void)logWithNewDate {
     fclose(log);
     
     // Create directory path
     NSString *directory = [self pathOfCreatedDirectory];
     
     // Create current log file
-    [self todaysDate];
-    NSString *path = [directory stringByAppendingPathComponent:[[self logName]
-                                                                stringByAppendingString:[newLogDate
-                                                                                         stringByAppendingString:@".log"]]];
+    NSString *path = [directory stringByAppendingPathComponent:
+                      [[self logName] stringByAppendingString:
+                       [[self logDate] stringByAppendingString:@".log"]]];
     log = fopen([path fileSystemRepresentation], "a");
 }
 
@@ -570,24 +582,46 @@
                         if ([theDefaultMan fileExistsAtPath:subSubpath
                                                  isDirectory:&isDir] && isDir) {
                         
-                        subSubpathContents = [theDefaultMan contentsOfDirectoryAtPath:subSubpath 
-                                                                                error:nil];
-                        for (id subSubName in subSubpathContents) {
-                            
-                            if ([[subSubName pathExtension] isEqualToString:@"app"]) {
+                            subSubpathContents = [theDefaultMan contentsOfDirectoryAtPath:subSubpath 
+                                                                                    error:nil];
+                            for (id subSubName in subSubpathContents) {
                                 
-                                [appPathWithoutApp addObject:[subSubName stringByDeletingPathExtension]];
-                                [appPathDict setObject:[subSubpath stringByAppendingPathComponent:subSubName] 
-                                                forKey:[subSubName stringByDeletingPathExtension]];
+                                if ([[subSubName pathExtension] isEqualToString:@"app"]) {
+                                    
+                                    [appPathWithoutApp addObject:[subSubName stringByDeletingPathExtension]];
+                                    [appPathDict setObject:
+                                     [subSubpath stringByAppendingPathComponent:subSubName] 
+                                                    forKey:[subSubName stringByDeletingPathExtension]];
+                                
+                                    }                        
+                                
+                                //  account for Microsoft Office 2004
+                                else if (   ([subSubName isEqualToString:@"Microsoft Word"])
+                                         || ([subSubName isEqualToString:@"Microsoft Excel"])
+                                         || ([subSubName isEqualToString:@"Microsoft PowerPoint"])
+                                         || ([subSubName isEqualToString:@"Microsoft Entourage"]) ) {
+                                    
+                                    [appPathWithoutApp addObject:[subSubName stringByDeletingPathExtension]];
+                                    [appPathDict setObject:
+                                     [subSubpath stringByAppendingPathComponent:subSubName]
+                                                    forKey:[subSubName stringByDeletingPathExtension]];
+                                    
+                                }
+                                
+                            }   
                             
-                                }                        
-                            }
                         }
+                        
                     } 
+                    
                 }
+                
                 isDir = NO;
+                
             }
+            
         }
+        
     }
     
     //  Check /Developer/Applications folder
