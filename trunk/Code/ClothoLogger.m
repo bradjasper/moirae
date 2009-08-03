@@ -464,6 +464,7 @@
 //      - creates a new folder for theDate and moves the files that have
 //        theDate in the file's name into the new folder
 - (void)moveFilesToFolderForDate:(NSString *)theDate {
+    
     //  create date to append to folder name
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -499,6 +500,7 @@
         }
     }
     [dateFormatter release];
+    
 }
 
 // (NSString *)pathOfCreatedDirectory
@@ -551,23 +553,25 @@
         
         NSString *appName = [appNames objectAtIndex:i];
         
-        //  If the file we're looking at is an app, we're done
+        //  it's an app
         if ([[appName pathExtension] isEqualToString:@"app"]) {
             [appPathWithoutApp addObject:[appName stringByDeletingPathExtension]];
             [appPathDict setObject:[appPath stringByAppendingPathComponent:appName] 
                             forKey:[appName stringByDeletingPathExtension]];
         }
         
-        //  Otherwise, if it's a folder, check it's contents
         else {
             
             NSString *subpath = [appPath stringByAppendingPathComponent:appName];
+            
+            //  it's a directory            
             if ([theDefaultMan fileExistsAtPath:subpath isDirectory:&isDir] && isDir) {
                 
                 subpathContents = [theDefaultMan contentsOfDirectoryAtPath:subpath 
                                                                      error:nil];
                 for(id subName in subpathContents) {
                     
+                    //  it's an app
                     if ([[subName pathExtension] isEqualToString:@"app"]) {
                         
                         [appPathWithoutApp addObject:[subName stringByDeletingPathExtension]];
@@ -579,6 +583,8 @@
                     else {
                         
                         NSString *subSubpath = [subpath stringByAppendingPathComponent:subName];                        
+                        
+                        //  it's another directory
                         if ([theDefaultMan fileExistsAtPath:subSubpath
                                                  isDirectory:&isDir] && isDir) {
                         
@@ -593,22 +599,22 @@
                                      [subSubpath stringByAppendingPathComponent:subSubName] 
                                                     forKey:[subSubName stringByDeletingPathExtension]];
                                 
-                                    }                        
-                                
-                                //  account for Microsoft Office 2004
-                                else if (   ([subSubName isEqualToString:@"Microsoft Word"])
-                                         || ([subSubName isEqualToString:@"Microsoft Excel"])
-                                         || ([subSubName isEqualToString:@"Microsoft PowerPoint"])
-                                         || ([subSubName isEqualToString:@"Microsoft Entourage"]) ) {
-                                    
-                                    [appPathWithoutApp addObject:[subSubName stringByDeletingPathExtension]];
-                                    [appPathDict setObject:
-                                     [subSubpath stringByAppendingPathComponent:subSubName]
-                                                    forKey:[subSubName stringByDeletingPathExtension]];
-                                    
-                                }
+                                }                        
                                 
                             }   
+                            
+                        }
+                        
+                        //  account for Microsoft Office 2004
+                        if (   ([subName isEqualToString:@"Microsoft Word"])
+                            || ([subName isEqualToString:@"Microsoft Excel"])
+                            || ([subName isEqualToString:@"Microsoft PowerPoint"])
+                            || ([subName isEqualToString:@"Microsoft Entourage"]) ) {
+                        
+                            [appPathWithoutApp addObject:[subName stringByDeletingPathExtension]];
+                            [appPathDict setObject:
+                             [subpath stringByAppendingPathComponent:subName]
+                                            forKey:[subName stringByDeletingPathExtension]];
                             
                         }
                         
@@ -659,6 +665,7 @@
     NSArray *finalListOfApps = [NSArray arrayWithArray:appPathWithoutApp];
     
     return finalListOfApps;
+    
 }
 
 //- (NSDate *)formatDateToAppend:(NSString *)dateToAppend
