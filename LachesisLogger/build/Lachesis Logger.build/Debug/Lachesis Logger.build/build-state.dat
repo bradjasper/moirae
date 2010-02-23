@@ -1,0 +1,1468 @@
+TLachesis Logger
+v7
+r0
+t288385622.782757
+cCheck dependencies
+cProcessInfoPlistFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Info.plist" Info.plist
+cCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/Credits.rtf" English.lproj/Credits.rtf
+cCompileXIB "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib"
+cCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/Discipline.icns" Resources/Discipline.icns
+cCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/Whip.aiff" Resources/Whip.aiff
+cCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/DisciplineSilhouette.pdf" Resources/DisciplineSilhouette.pdf
+cCompileXIB "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/DisciplineTaskPrompt.xib"
+cCompileXIB "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib"
+cCopyPlistFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/ProcessStateKeyValue.plist" ProcessStateKeyValue.plist
+cCopyPlistFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/ProcessIDKeyValue.plist" ProcessIDKeyValue.plist
+cCopyStringsFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/InfoPlist.strings" English.lproj/InfoPlist.strings
+cCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/UKKQueue Readme.txt" "../ClothesisData/UKKQueue/UKKQueue Readme.txt"
+cCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/lachisis_512_log.icns" lachisis_512_log.icns
+cProcessPCH "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch.gch" "Lachesis Logger_Prefix.pch" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NDProcess.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSString+NDCarbonUtilities.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSURL+NDCarbonUtilities.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSAccessibility.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSIdleWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSIdleWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/main.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/main.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoiTunesWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoProcessWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoProcessWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoScreenWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoTaskPrompter.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoTaskPrompter.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineController.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineTaskPrompter.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineTaskPrompter.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DXApp.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DXApp.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/GTMAXUIElement.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/GTMAXUIElement.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoLogger.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFileWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFileWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFNSubscribeFileWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFNSubscribeFileWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKKQueue.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKMainThreadProxy.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKMainThreadProxy.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/MacOS/Lachesis Logger" normal i386
+cTouch "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app"
+
+N/Developer/SDKs/MacOSX10.5.sdk
+c000000004AC4F6E200000000000000EE
+t1254422242
+s238
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/AppKit.framework/Headers/AppKit.h
+c000000004864BB88000000000000170F
+t1214561160
+s5903
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices
+c000000004A0CC109000000000001F9A0
+t1242349833
+s129440
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/ApplicationServices.framework/Headers/ApplicationServices.h
+c0000000047BAEC060000000000000476
+t1203432454
+s1142
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Carbon.framework/Carbon
+c000000004A0CC10E00000000000049C0
+t1242349838
+s18880
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Carbon.framework/Headers/Carbon.h
+c000000004864BE3E00000000000005D7
+t1214561854
+s1495
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
+c0000000040C4AA6800000000000001E5
+t1086630504
+s485
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/CoreData.framework/Headers/CoreData.h
+c0000000047BADA0D0000000000000422
+t1203427853
+s1058
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004864A1C900000000000012EE
+t1214554569
+s4846
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSZone.h
+c000000004864A1CE0000000000000B87
+t1214554574
+s2951
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Security.framework/Headers/Authorization.h
+c00000000490261C3000000000000563B
+t1224892867
+s22075
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Security.framework/Headers/AuthorizationTags.h
+c00000000490261C30000000000000EC4
+t1224892867
+s3780
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Security.framework/Headers/Security.h
+c00000000490261C600000000000009CB
+t1224892870
+s2507
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Security.framework/Security
+c000000004A0CC11F0000000000066764
+t1242349855
+s419684
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/SecurityFoundation.framework/Headers/SFAuthorization.h
+c0000000047BAD95100000000000017D3
+t1203427665
+s6099
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/SecurityFoundation.framework/SecurityFoundation
+c000000004A0CC11F000000000001E800
+t1242349855
+s124928
+
+N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/SecurityInterface.framework/SecurityInterface
+c000000004A0CC11F000000000002238C
+t1242349855
+s140172
+
+N/Developer/SDKs/MacOSX10.5.sdk/usr/include/fcntl.h
+c0000000047BA993000000000000003EA
+t1203411248
+s1002
+
+N/Developer/SDKs/MacOSX10.5.sdk/usr/include/stdio.h
+c0000000047BA99310000000000003D1D
+t1203411249
+s15645
+
+N/Developer/SDKs/MacOSX10.5.sdk/usr/include/sys/event.h
+c0000000047E883CF0000000000002105
+t1206420431
+s8453
+
+N/Developer/SDKs/MacOSX10.5.sdk/usr/include/sys/types.h
+c0000000047E883D2000000000000290F
+t1206420434
+s10511
+
+N/Developer/SDKs/MacOSX10.5.sdk/usr/include/unistd.h
+c0000000047BA993200000000000053FF
+t1203411250
+s21503
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004AC4F70300000000000000EE
+t1254422275
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/AppKit.framework/Headers/AppKit.h
+c000000004A67D2A800000000000017ED
+t1248318120
+s6125
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices
+c000000004A769D99000000000001A384
+t1249287577
+s107396
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/ApplicationServices.framework/Headers/ApplicationServices.h
+c000000004A12050C0000000000000475
+t1242694924
+s1141
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Carbon.framework/Carbon
+c000000004A769D9A0000000000003A54
+t1249287578
+s14932
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Carbon.framework/Headers/Carbon.h
+c000000004A7680BE00000000000005FE
+t1249280190
+s1534
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
+c0000000040C4AA6800000000000001E5
+t1086630504
+s485
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreData.framework/Headers/CoreData.h
+c000000004A583802000000000000043A
+t1247295490
+s1082
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004A600B8400000000000013E6
+t1247808388
+s5094
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSZone.h
+c000000004A600B860000000000000BDD
+t1247808390
+s3037
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Security.framework/Headers/Authorization.h
+c000000004A4D51FA00000000000056D5
+t1246581242
+s22229
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Security.framework/Headers/AuthorizationTags.h
+c000000004A4D51FA0000000000000EC4
+t1246581242
+s3780
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Security.framework/Headers/Security.h
+c000000004A4D51FB00000000000009CB
+t1246581243
+s2507
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Security.framework/Security
+c000000004A769D9D000000000006603C
+t1249287581
+s417852
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/SecurityFoundation.framework/Headers/SFAuthorization.h
+c000000004A441543000000000000186E
+t1245975875
+s6254
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/SecurityFoundation.framework/SecurityFoundation
+c000000004A769D9D0000000000021510
+t1249287581
+s136464
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/SecurityInterface.framework/SecurityInterface
+c000000004A769D9D000000000001AB80
+t1249287581
+s109440
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/fcntl.h
+c000000004A5C14A600000000000003EA
+t1247548582
+s1002
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004A5C14A70000000000004174
+t1247548583
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/event.h
+c000000004A73D650000000000000304A
+t1249105488
+s12362
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/types.h
+c000000004A73D6550000000000002905
+t1249105493
+s10501
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/unistd.h
+c000000004A5C14A7000000000000563E
+t1247548583
+s22078
+
+N/System/Library/Frameworks/Cocoa.framework/Cocoa
+c000000004A1F2D63000000000000A5E0
+t1243557219
+s42464
+
+N/Users/JC/Documents/xCode Projects/ClothesisData/UKKQueue/UKFNSubscribeFileWatcher.h
+c000000004414B11D00000000000006B2
+t1142206749
+s1714
+i<Cocoa/Cocoa.h>
+i"UKFileWatcher.h"
+i<Carbon/Carbon.h>
+
+N/Users/JC/Documents/xCode Projects/ClothesisData/UKKQueue/UKFileWatcher.h
+c000000004A3401BA0000000000000890
+t1244922298
+s2192
+
+N/Users/JC/Documents/xCode Projects/ClothesisData/UKKQueue/UKKQueue.h
+c000000004A35C5BD00000000000014F9
+t1245038013
+s5369
+i<Foundation/Foundation.h>
+i<sys/types.h>
+i<sys/event.h>
+i"UKFileWatcher.h"
+
+N/Users/JC/Documents/xCode Projects/ClothesisData/UKKQueue/UKMainThreadProxy.h
+c000000004414B1FA000000000000069F
+t1142206970
+s1695
+i<Cocoa/Cocoa.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFNSubscribeFileWatcher.m
+c000000004414B23D0000000000001A29
+t1142207037
+s6697
+i"UKFNSubscribeFileWatcher.h"
+i<Carbon/Carbon.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFileWatcher.m
+c000000004414AEBB000000000000065C
+t1142206139
+s1628
+i<Cocoa/Cocoa.h>
+i"UKFileWatcher.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue Readme.txt
+c000000004414B3D10000000000000780
+t1142207441
+s1920
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue.h
+c000000004A35C5BD00000000000014F9
+t1245038013
+s5369
+i<Foundation/Foundation.h>
+i<sys/types.h>
+i<sys/event.h>
+i"UKFileWatcher.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue.m
+c000000004A35C5C90000000000003A7A
+t1245038025
+s14970
+i"UKKQueue.h"
+i"UKMainThreadProxy.h"
+i<unistd.h>
+i<fcntl.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKMainThreadProxy.m
+c000000004414B1E80000000000000F4D
+t1142206952
+s3917
+i"UKMainThreadProxy.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Clotho Logger_Prefix.pch
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoProcessWatcher.h
+c000000004B0CD15C0000000000000495
+t1259131228
+s1173
+i"ClothoLogger.h"
+i"ClothoScreenWatcher.h"
+i"UKKQueue.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoProcessWatcher.m
+c000000004B0CD15C0000000000005DB1
+t1259131228
+s23985
+i"GTMAXUIElement.h"
+i"ClothoProcessWatcher.h"
+i"Carbon/Carbon.h"
+i"NDProcess.h"
+i"stdio.h"
+i"UKKQueue.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.h
+c000000004B0CD15C0000000000000302
+t1259131228
+s770
+i<Cocoa/Cocoa.h>
+i"ClothoLogger.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m
+c000000004B0D9DCE0000000000002909
+t1259183566
+s10505
+i"ClothoScreenWatcher.h"
+i<Foundation/NSZone.h>
+i<ApplicationServices/ApplicationServices.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoTaskPrompter.h
+c000000004B0CD15C00000000000003C1
+t1259131228
+s961
+i<Cocoa/Cocoa.h>
+i"ClothoLogger.h"
+i"ClothoScreenWatcher.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoTaskPrompter.m
+c000000004B0EF67F0000000000002926
+t1259271807
+s10534
+i"ClothoTaskPrompter.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.h
+c000000004B0CD15C00000000000000F9
+t1259131228
+s249
+i<Cocoa/Cocoa.h>
+i"ClothoLogger.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m
+c000000004B0CD15C0000000000000491
+t1259131228
+s1169
+i"ClothoiTunesWatcher.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.h
+c000000004B0CD15C0000000000000667
+t1259131228
+s1639
+i<Cocoa/Cocoa.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m
+c000000004B7F5DF20000000000006831
+t1266638322
+s26673
+i"ClothoLogger.h"
+i"ClothoScreenWatcher.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DXApp.h
+c000000004B0CD15C00000000000000E1
+t1259131228
+s225
+i<Cocoa/Cocoa.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DXApp.m
+c000000004B0D813C0000000000000618
+t1259176252
+s1560
+i"ClothoProcessWatcher.h"
+i"DXApp.h"
+i"NSEvent+BLTRExtensions.h"
+i"NDProcess.h"
+i<ApplicationServices/ApplicationServices.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineController.h
+c000000004B0EFB9B0000000000000149
+t1259273115
+s329
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineController.m
+c000000004B8032D200000000000016C5
+t1266692818
+s5829
+i"DisciplineController.h"
+i"ClothoProcessWatcher.h"
+i"ClothoScreenWatcher.h"
+i"ClothoiTunesWatcher.h"
+i"DisciplineTaskPrompter.h"
+i"ClothoTaskPrompter.h"
+i"QSAccessibility.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineTaskPrompter.h
+c000000004B0CD15C000000000000010F
+t1259131228
+s271
+i<Cocoa/Cocoa.h>
+i"ClothoTaskPrompter.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineTaskPrompter.m
+c000000004B0CD15C000000000000037E
+t1259131228
+s894
+i"DisciplineTaskPrompter.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/GTMAXUIElement.h
+c000000004B0CD15C0000000000000E97
+t1259131228
+s3735
+i<Foundation/Foundation.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/GTMAXUIElement.m
+c000000004B0DA2C90000000000003B39
+t1259184841
+s15161
+i"GTMAXUIElement.h"
+i<unistd.h>
+i<AppKit/AppKit.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.h
+c000000004B0CD15C0000000000002F73
+t1259131228
+s12147
+i<Cocoa/Cocoa.h>
+i<Carbon/Carbon.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m
+c000000004B0D9C9900000000000032D1
+t1259183257
+s13009
+i"NDProcess.h"
+i"NSURL+NDCarbonUtilities.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSEvent+BLTRExtensions.h
+c000000004B0CD15C0000000000000221
+t1259131228
+s545
+i<Carbon/Carbon.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.h
+c000000004B0D9A750000000000000FEB
+t1259182709
+s4075
+i<Cocoa/Cocoa.h>
+i<Carbon/Carbon.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m
+c000000004B0D9BCE00000000000007DA
+t1259183054
+s2010
+i"NSString+NDCarbonUtilities.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.h
+c000000004B0CD15C0000000000001E0E
+t1259131228
+s7694
+i<Foundation/Foundation.h>
+i<Carbon/Carbon.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m
+c000000004B0CD15C0000000000000E91
+t1259131228
+s3729
+i"NSURL+NDCarbonUtilities.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.h
+c000000004B0CD15C0000000000000477
+t1259131228
+s1143
+i<Security/Authorization.h>
+i<Security/AuthorizationTags.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m
+c000000004B0D981A00000000000009F1
+t1259182106
+s2545
+i"QSAccessibility.h"
+i<ApplicationServices/ApplicationServices.h>
+i"unistd.h"
+i<SecurityFoundation/SFAuthorization.h>
+i<Security/Security.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSIdleWatcher.h
+c000000004B0CD15C0000000000000198
+t1259131228
+s408
+i<Cocoa/Cocoa.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSIdleWatcher.m
+c000000004B0CD15C000000000000143D
+t1259131228
+s5181
+i"QSIdleWatcher.h"
+i"QSMacros.h"
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSMacros.h
+c000000004B0CD15C0000000000000368
+t1259131228
+s872
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Code/main.m
+c000000004B0CD15C0000000000000104
+t1259131228
+s260
+i<Cocoa/Cocoa.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib
+c000000004B0D9CE9000000000000B57F
+t1259183337
+s46463
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/Credits.rtf
+c000000004B0CD16B00000000000001B4
+t1259131243
+s436
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/DisciplineTaskPrompt.xib
+c000000004B0CD16B00000000000077FD
+t1259131243
+s30717
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/InfoPlist.strings
+c000000004B0CD16B0000000000000087
+t1259131243
+s135
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib
+c000000004B0D96990000000000023752
+t1259181721
+s145234
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Lachesis Logger_Prefix.pch
+c000000004B0CD16B00000000000000DF
+t1259131243
+s223
+i<Foundation/Foundation.h>
+i<CoreData/CoreData.h>
+i<Cocoa/Cocoa.h>
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/ProcessIDKeyValue.plist
+c000000004B0CD16B000000000000027B
+t1259131243
+s635
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/ProcessStateKeyValue.plist
+c000000004B0CD16B0000000000000170
+t1259131243
+s368
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Discipline.icns
+c000000004B0CD16B000000000000E141
+t1259131243
+s57665
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/DisciplineSilhouette.pdf
+c000000004B0CD16B0000000000037BF9
+t1259131243
+s228345
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Whip.aiff
+c000000004B0CD16B0000000000005B84
+t1259131243
+s23428
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app
+t1259174022
+s102
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Info.plist
+t1259174314
+s940
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/MacOS/Clotho Logger
+t2
+s0
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/PkgInfo
+t1259174314
+s8
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/Discipline.icns
+t1259174022
+s57665
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/DisciplineSilhouette.pdf
+t1259174022
+s228345
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/English.lproj/ClothoTaskPrompt.nib
+t1259174022
+s6995
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/English.lproj/Credits.rtf
+t1259174022
+s436
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/English.lproj/DisciplineTaskPrompt.nib
+t1259174022
+s9053
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/English.lproj/InfoPlist.strings
+t1259174022
+s270
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/English.lproj/MainMenu.nib
+t1259174022
+s27225
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/ProcessIDKeyValue.plist
+t1259174022
+s635
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/ProcessStateKeyValue.plist
+t1259174022
+s368
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/Whip.aiff
+t1259174022
+s23428
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/clotho_logger2.icns
+t1259174022
+s71292
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app
+t1266692822
+s102
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Info.plist
+t1266599730
+s944
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/MacOS/Lachesis Logger
+t1266692822
+s169528
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/PkgInfo
+t1266599730
+s8
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/Discipline.icns
+t1259174606
+s57665
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/DisciplineSilhouette.pdf
+t1259174606
+s228345
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/ClothoTaskPrompt.nib
+t1259183340
+s6995
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/Credits.rtf
+t1259174606
+s436
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/DisciplineTaskPrompt.nib
+t1259174606
+s9053
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/InfoPlist.strings
+t1259174607
+s270
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/MainMenu.nib
+t1259181725
+s27225
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/ProcessIDKeyValue.plist
+t1259174606
+s635
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/ProcessStateKeyValue.plist
+t1259174606
+s368
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/UKKQueue Readme.txt
+t1259175061
+s1920
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/Whip.aiff
+t1259174606
+s23428
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/clotho_logger2.icns
+t1259174606
+s71292
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/lachisis_512_log.icns
+t1266599730
+s233707
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/Clotho Logger.LinkFileList
+c000000004B0D7886000000000000087E
+t1259174022
+s2174
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoLogger.o
+t1266691776
+s53644
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoProcessWatcher.o
+t1259185008
+s59772
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoScreenWatcher.o
+t1259185008
+s42572
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoTaskPrompter.o
+t1259271813
+s44960
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoiTunesWatcher.o
+t1259185007
+s11856
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DXApp.o
+t1259185009
+s15952
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineController.o
+t1266692822
+s37636
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineTaskPrompter.o
+t1259185008
+s21156
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/GTMAXUIElement.o
+t1259185009
+s39392
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/Lachesis Logger.LinkFileList
+c000000004B0D7C940000000000000AC0
+t1259175060
+s2752
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NDProcess.o
+t1259185007
+s37624
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSString+NDCarbonUtilities.o
+t1259185007
+s16984
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSURL+NDCarbonUtilities.o
+t1259185007
+s17044
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSAccessibility.o
+t1259185007
+s12260
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSIdleWatcher.o
+t1259185007
+s22556
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFNSubscribeFileWatcher.o
+t1259185009
+s16572
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFileWatcher.o
+t1259185009
+s6712
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKKQueue.o
+t1259185009
+s26044
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKMainThreadProxy.o
+t1259185009
+s13696
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/main.o
+t1259185007
+s4892
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/clotho_logger2.icns
+c000000004B0CD16B000000000001167C
+t1259131243
+s71292
+
+N/Users/JC/Documents/xCode Projects/LachesisLogger/lachisis_512_log.icns
+c000000004B7EC60A00000000000390EB
+t1266599434
+s233707
+
+N/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Clotho Logger_Prefix-ghkqpazkiwbmywekscvklnziybvh/Clotho Logger_Prefix.pch.gch
+t2
+s0
+
+N/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-abufapedbovvogbwszqvqewmhpgx/Lachesis Logger_Prefix.pch.gch
+t1259183629
+s56796976
+
+N/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-avparaozplzfctgppkgapccfqagd/Lachesis Logger_Prefix.pch.gch
+t1259174768
+s54084016
+
+N/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch.gch
+t1259185006
+s56809264
+
+N/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-edeohmykfhjyesgsqwywimlkdbiv/Lachesis Logger_Prefix.pch.gch
+t1259183783
+s56809264
+
+NInfo.plist
+c000000004B7EC72E00000000000003B0
+t1266599726
+s944
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies288385621#288385621#0(0"0(0#1#0"4300882208#0"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoLogger.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s288384569.124408
+e288384576.457462
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoLogger.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger logTask:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:141: warning: format not a string literal and no format arguments
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger logProcess:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:160: warning: format not a string literal and no format arguments
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger logMouse:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:177: warning: format not a string literal and no format arguments
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger logSystemSnapshot:forDate:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:212: warning: 'createDirectoryAtPath:attributes:' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSFileManager.h:168)
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger moveFilesToFolderForDate:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:478: warning: 'directoryContentsAtPath:' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSFileManager.h:164)
+lSLF07#2@77"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m288384569#288384576#0(1501"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger logTask:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:141: warning: format not a string literal and no format arguments/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger logProcess:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:160: warning: format not a string literal and no format arguments/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger logMouse:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:177: warning: format not a string literal and no format arguments/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger logSystemSnapshot:forDate:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:212: warning: 'createDirectoryAtPath:attributes:' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSFileManager.h:168)/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m: In function '-[ClothoLogger moveFilesToFolderForDate:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m:478: warning: 'directoryContentsAtPath:' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSFileManager.h:164)5(22@51"Format not a string literal and no format arguments288384574#111#136#0(6@69"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m288331122#141#0#141#0#51"format not a string literal and no format arguments0(22@51"Format not a string literal and no format arguments288384574#361#136#0(6@69"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m288331122#160#0#160#0#51"format not a string literal and no format arguments0(22@51"Format not a string literal and no format arguments288384574#609#136#0(6@69"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m288331122#177#0#177#0#51"format not a string literal and no format arguments0(22@169"'createDirectoryAtPath:attributes:' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSFileManager.h:168)288384574#874#254#0(6@69"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m288331122#212#0#212#0#33"'*' is deprecated (declared at *)0(22@160"'directoryContentsAtPath:' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSFileManager.h:164)288384575#1256#245#0(6@69"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m288331122#478#0#478#0#33"'*' is deprecated (declared at *)0(0#0#69"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m4300882208#1778"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/ClothoLogger.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoLogger.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoProcessWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoProcessWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877807.866197
+e280877808.366465
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoProcessWatcher.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoProcessWatcher.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@93"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoProcessWatcher.m280877807#280877808#0(0"0(0#0#85"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoProcessWatcher.m4300882208#1802"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoProcessWatcher.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoProcessWatcher.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoScreenWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877807.923992
+e280877808.182744
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoScreenWatcher.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m: In function '-[ClothoScreenWatcher captureSystemSnapshot]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m:157: warning: 'addTimeInterval:' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSDate.h:27)
+lSLF07#2@92"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m280877807#280877808#0(390"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m: In function '-[ClothoScreenWatcher captureSystemSnapshot]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m:157: warning: 'addTimeInterval:' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSDate.h:27)1(22@144"'addTimeInterval:' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSDate.h:27)280877808#146#244#0(6@84"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m280876366#157#0#157#0#33"'*' is deprecated (declared at *)0(0#0#84"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m4300882208#1800"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoScreenWatcher.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoScreenWatcher.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoTaskPrompter.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoTaskPrompter.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280964608.173938
+e280964613.117589
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoTaskPrompter.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoTaskPrompter.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@91"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoTaskPrompter.m280964608#280964613#0(0"0(0#0#83"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoTaskPrompter.m3418906561919011840#1798"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoTaskPrompter.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoTaskPrompter.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoiTunesWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877807.701402
+e280877807.923865
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoiTunesWatcher.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m: In function '-[ClothoiTunesWatcher trackChanged:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m:39: warning: format not a string literal and no format arguments
+lSLF07#2@92"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m280877807#280877807#0(288"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m: In function '-[ClothoiTunesWatcher trackChanged:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m:39: warning: format not a string literal and no format arguments1(22@51"Format not a string literal and no format arguments280877807#138#150#0(6@84"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m280824028#39#0#39#0#51"format not a string literal and no format arguments0(0#0#84"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m4300882208#1800"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Capture/ClothoiTunesWatcher.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/ClothoiTunesWatcher.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DXApp.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DXApp.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877808.674017
+e280877809.194219
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DXApp.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DXApp.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DXApp.m280877808#280877809#0(0"0(0#0#73"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DXApp.m4300882208#1775"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DXApp.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DXApp.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineController.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s288385621.278144
+e288385622.465443
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineController.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@96"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineController.m288385621#288385622#0(0"0(0#0#88"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineController.m4300882208#1805"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineController.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineController.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineTaskPrompter.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineTaskPrompter.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877808.529002
+e280877808.830279
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineTaskPrompter.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineTaskPrompter.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@98"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineTaskPrompter.m280877808#280877808#0(0"0(0#0#90"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineTaskPrompter.m4300882208#1809"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/Discipline/DisciplineTaskPrompter.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/DisciplineTaskPrompter.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/GTMAXUIElement.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/GTMAXUIElement.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877808.830392
+e280877809.066331
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/GTMAXUIElement.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/GTMAXUIElement.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@88"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/GTMAXUIElement.m280877808#280877809#0(0"0(0#0#80"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/GTMAXUIElement.m4300882208#1791"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/GTMAXUIElement.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/GTMAXUIElement.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NDProcess.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877806.635859
+e280877807.279257
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NDProcess.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m: In function '-[NDProcess(ProcessInfoRec) name]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m:549: warning: pointer targets in assignment differ in signedness
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m: In function '-[NDProcess(ProcessInfoRec) url]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m:618: warning: 'FSpMakeFSRef' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:7501)
+lSLF07#2@83"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m280877806#280877807#0(658"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m: In function '-[NDProcess(ProcessInfoRec) name]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m:549: warning: pointer targets in assignment differ in signedness/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m: In function '-[NDProcess(ProcessInfoRec) url]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m:618: warning: 'FSpMakeFSRef' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:7501)2(22@50"Pointer targets in assignment differ in signedness280877807#126#141#0(6@75"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m280876057#549#0#549#0#0"0(22@175"'FSpMakeFSRef' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:7501)280877807#392#266#0(6@75"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m280876057#618#0#618#0#33"'*' is deprecated (declared at *)0(0#0#75"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m4300882208#1781"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NDProcess.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NDProcess.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSString+NDCarbonUtilities.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877806.685165
+e280877807.203791
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSString+NDCarbonUtilities.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m: In function '-[NSString(NDCarbonUtilitiesPaths) getFSRef:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m:19: warning: pointer targets in passing argument 1 of 'FSPathMakeRef' differ in signedness
+lSLF07#2@100"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m280877806#280877807#0(339"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m: In function '-[NSString(NDCarbonUtilitiesPaths) getFSRef:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m:19: warning: pointer targets in passing argument 1 of 'FSPathMakeRef' differ in signedness1(22@77"Pointer targets in passing argument 1 of 'FSPathMakeRef' differ in signedness280877807#155#184#0(6@92"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m280875854#19#0#19#0#65"pointer targets in passing argument * of '*' differ in signedness0(0#0#92"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m4300882208#1815"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSString+NDCarbonUtilities.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSString+NDCarbonUtilities.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSURL+NDCarbonUtilities.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877807.203919
+e280877807.668902
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSURL+NDCarbonUtilities.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m: In function '-[NSURL(NDCarbonUtilities) finderInfoFlags:type:creator:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:94: warning: 'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m: In function '-[NSURL(NDCarbonUtilities) finderLocation]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:115: warning: 'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m: In function '-[NSURL(NDCarbonUtilities) setFinderInfoFlags:mask:type:creator:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:132: warning: 'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:138: warning: 'FSpSetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10225)
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m: In function '-[NSURL(NDCarbonUtilities) setFinderLocation:]':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:153: warning: 'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:158: warning: 'FSpSetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10225)
+lSLF07#2@97"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m280877807#280877807#0(2317"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m: In function '-[NSURL(NDCarbonUtilities) finderInfoFlags:type:creator:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:94: warning: 'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m: In function '-[NSURL(NDCarbonUtilities) finderLocation]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:115: warning: 'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m: In function '-[NSURL(NDCarbonUtilities) setFinderInfoFlags:mask:type:creator:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:132: warning: 'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:138: warning: 'FSpSetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10225)/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m: In function '-[NSURL(NDCarbonUtilities) setFinderLocation:]':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:153: warning: 'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m:158: warning: 'FSpSetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10225)6(22@175"'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)280877807#164#279#0(6@89"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m280824028#94#0#94#0#33"'*' is deprecated (declared at *)0(22@175"'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)280877807#592#280#0(6@89"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m280824028#115#0#115#0#33"'*' is deprecated (declared at *)0(22@175"'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)280877807#1044#280#0(6@89"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m280824028#132#0#132#0#33"'*' is deprecated (declared at *)0(22@175"'FSpSetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10225)280877807#1324#280#0(6@89"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m280824028#138#0#138#0#33"'*' is deprecated (declared at *)0(22@175"'FSpGetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10207)280877807#1757#280#0(6@89"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m280824028#153#0#153#0#33"'*' is deprecated (declared at *)0(22@175"'FSpSetFInfo' is deprecated (declared at /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:10225)280877807#2037#280#0(6@89"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m280824028#158#0#158#0#33"'*' is deprecated (declared at *)0(0#0#89"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m4300882208#1809"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/NSURL+NDCarbonUtilities.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/NSURL+NDCarbonUtilities.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSAccessibility.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877807.279366
+e280877807.474539
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSAccessibility.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m: In function 'QSEnableAccessibility':
+o/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m:39: warning: passing argument 4 of 'AuthorizationExecuteWithPrivileges' from incompatible pointer type
+lSLF07#2@89"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m280877807#280877807#0(305"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m: In function 'QSEnableAccessibility':/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m:39: warning: passing argument 4 of 'AuthorizationExecuteWithPrivileges' from incompatible pointer type1(22@89"Passing argument 4 of 'AuthorizationExecuteWithPrivileges' from incompatible pointer type280877807#120#185#0(6@81"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m280874906#39#0#39#0#56"passing argument * of '*' from incompatible pointer type0(0#0#81"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m4300882208#1793"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSAccessibility.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSAccessibility.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSIdleWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSIdleWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877807.474648
+e280877807.701280
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSIdleWatcher.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSIdleWatcher.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@87"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSIdleWatcher.m280877807#280877807#0(0"0(0#0#79"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSIdleWatcher.m4300882208#1789"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/External/QSIdleWatcher.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/QSIdleWatcher.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFNSubscribeFileWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFNSubscribeFileWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877809.393015
+e280877809.895519
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFNSubscribeFileWatcher.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFNSubscribeFileWatcher.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@110"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFNSubscribeFileWatcher.m280877809#280877809#0(0"0(0#0#102"/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFNSubscribeFileWatcher.m4300882208#1823"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFNSubscribeFileWatcher.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFNSubscribeFileWatcher.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFileWatcher.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFileWatcher.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877809.194324
+e280877809.465748
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFileWatcher.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFileWatcher.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@99"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFileWatcher.m280877809#280877809#0(0"0(0#0#91"/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFileWatcher.m4300882208#1801"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKFileWatcher.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKFileWatcher.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKKQueue.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877809.465852
+e280877809.695445
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKKQueue.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@94"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue.m280877809#280877809#0(0"0(0#0#86"/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue.m4300882208#1791"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKKQueue.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKMainThreadProxy.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKMainThreadProxy.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877809.695702
+e280877809.896443
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKMainThreadProxy.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKMainThreadProxy.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@103"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKMainThreadProxy.m280877809#280877809#0(0"0(0#0#95"/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKMainThreadProxy.m4300882208#1809"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKMainThreadProxy.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/UKMainThreadProxy.o"0#
+
+CCompileC "build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/main.o" "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/main.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877807.669013
+e280877807.866073
+r1
+xCompileC
+xbuild/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/main.o
+x/Users/JC/Documents/xCode Projects/LachesisLogger/Code/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@69"Compile /Users/JC/Documents/xCode Projects/LachesisLogger/Code/main.m280877807#280877807#0(0"0(0#0#61"/Users/JC/Documents/xCode Projects/LachesisLogger/Code/main.m4300882208#1762"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -include "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Code/main.m" -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/main.o"0#
+
+CCompileXIB "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib"
+s280876139.613685
+e280876141.043581
+r1
+xCompileXIB
+x/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib
+o/* com.apple.ibtool.document.warnings */
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib:-2: warning: The 'ok:' action of 'File's Owner' is connected to 'Round Textured Button (OK)' but 'ok:' is no longer defined on 'MyDocument'.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib:-2: warning: The 'alertWindow' outlet of 'File's Owner' is connected to 'Panel' but 'alertWindow' is no longer defined on MyDocument.
+lSLF07#2@45"CompileXIB English.lproj/ClothoTaskPrompt.xib280876139#280876141#0(486"/* com.apple.ibtool.document.warnings *//Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib:-2: warning: The 'ok:' action of 'File's Owner' is connected to 'Round Textured Button (OK)' but 'ok:' is no longer defined on 'MyDocument'./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib:-2: warning: The 'alertWindow' outlet of 'File's Owner' is connected to 'Panel' but 'alertWindow' is no longer defined on MyDocument.2(22@127"The 'ok:' action of 'File's Owner' is connected to 'Round Textured Button (OK)' but 'ok:' is no longer defined on 'MyDocument'.280876141#18446744073709551615#0#0(6@84"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib280876137#18446744073709551614#0#18446744073709551614#0#0"0(22@120"The 'alertWindow' outlet of 'File's Owner' is connected to 'Panel' but 'alertWindow' is no longer defined on MyDocument.280876141#18446744073709551615#0#0(6@84"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib280876137#18446744073709551614#0#18446744073709551614#0#0"0(0#0#84"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib4300882208#390"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/ClothoTaskPrompt.nib" "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/ClothoTaskPrompt.xib"0#
+
+CCompileXIB "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/DisciplineTaskPrompt.xib"
+s280867406.494101
+e280867406.772219
+r1
+xCompileXIB
+x/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/DisciplineTaskPrompt.xib
+lSLF07#2@49"CompileXIB English.lproj/DisciplineTaskPrompt.xib280867406#280867406#0(0"0(0#0#88"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/DisciplineTaskPrompt.xib4300882208#398"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/DisciplineTaskPrompt.nib" "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/DisciplineTaskPrompt.xib"0#
+
+CCompileXIB "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib"
+s280874524.704937
+e280874525.234878
+r1
+xCompileXIB
+x/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib
+o/* com.apple.ibtool.document.warnings */
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:269: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:247: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:219: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:225: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:267: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:239: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:245: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:231: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:223: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:237: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:243: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:221: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:229: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:235: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+o/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:233: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.
+lSLF07#2@37"CompileXIB English.lproj/MainMenu.xib280874524#280874525#0(3176"/* com.apple.ibtool.document.warnings *//Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:269: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:247: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:219: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:225: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:267: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:239: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:245: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:231: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:223: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:237: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:243: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:221: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:229: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:235: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size./Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib:233: warning: The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.15(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#269#0#269#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#247#0#247#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#219#0#219#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#225#0#225#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#267#0#267#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#239#0#239#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#245#0#245#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#231#0#231#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#223#0#223#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#237#0#237#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#243#0#243#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#221#0#221#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#229#0#229#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#235#0#235#0#0"0(22@117"The image scaling property should not be used with checkboxes.  A checkbox should always appear at the standard size.280874525#18446744073709551615#0#0(6@76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib280874521#233#0#233#0#0"0(0#0#76"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib4300882208#374"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/MainMenu.nib" "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/MainMenu.xib"0#
+
+CCopyPlistFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/ProcessIDKeyValue.plist" ProcessIDKeyValue.plist
+s280866822.794984
+e280866822.816795
+r1
+xCopyPlistFile
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/ProcessIDKeyValue.plist
+xProcessIDKeyValue.plist
+lSLF07#2@28"Copy ProcessIDKeyValue.plist280866822#280866822#0(0"0(0#0#73"/Users/JC/Documents/xCode Projects/LachesisLogger/ProcessIDKeyValue.plist4300882208#284"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copyplist ProcessIDKeyValue.plist --outdir "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources"0#
+
+CCopyPlistFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/ProcessStateKeyValue.plist" ProcessStateKeyValue.plist
+s280866822.771909
+e280866822.794887
+r1
+xCopyPlistFile
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/ProcessStateKeyValue.plist
+xProcessStateKeyValue.plist
+lSLF07#2@31"Copy ProcessStateKeyValue.plist280866822#280866822#0(0"0(0#0#76"/Users/JC/Documents/xCode Projects/LachesisLogger/ProcessStateKeyValue.plist4300882208#287"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copyplist ProcessStateKeyValue.plist --outdir "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources"0#
+
+CCopyPlistFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/ProcessIDKeyValue.plist" ProcessIDKeyValue.plist
+s280867406.931383
+e280867406.960746
+r1
+xCopyPlistFile
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/ProcessIDKeyValue.plist
+xProcessIDKeyValue.plist
+lSLF07#2@28"Copy ProcessIDKeyValue.plist280867406#280867406#0(0"0(0#0#73"/Users/JC/Documents/xCode Projects/LachesisLogger/ProcessIDKeyValue.plist4300882208#286"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copyplist ProcessIDKeyValue.plist --outdir "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources"0#
+
+CCopyPlistFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/ProcessStateKeyValue.plist" ProcessStateKeyValue.plist
+s280867406.906661
+e280867406.931292
+r1
+xCopyPlistFile
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/ProcessStateKeyValue.plist
+xProcessStateKeyValue.plist
+lSLF07#2@31"Copy ProcessStateKeyValue.plist280867406#280867406#0(0"0(0#0#76"/Users/JC/Documents/xCode Projects/LachesisLogger/ProcessStateKeyValue.plist4300882208#289"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copyplist ProcessStateKeyValue.plist --outdir "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources"0#
+
+CCopyStringsFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/English.lproj/InfoPlist.strings" English.lproj/InfoPlist.strings
+s280866822.817538
+e280866822.847807
+r1
+xCopyStringsFile
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/English.lproj/InfoPlist.strings
+xEnglish.lproj/InfoPlist.strings
+lSLF07#2@36"Copy English.lproj/InfoPlist.strings280866822#280866822#0(0"0(0#0#81"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/InfoPlist.strings4300882208#397"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv ICONV /usr/bin/iconv    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copystrings --validate --inputencoding utf-8 --outputencoding UTF-16 English.lproj/InfoPlist.strings --outdir "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/English.lproj"0#
+
+CCopyStringsFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/InfoPlist.strings" English.lproj/InfoPlist.strings
+s280867406.961613
+e280867407.005113
+r1
+xCopyStringsFile
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/InfoPlist.strings
+xEnglish.lproj/InfoPlist.strings
+lSLF07#2@36"Copy English.lproj/InfoPlist.strings280867406#280867407#0(0"0(0#0#81"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/InfoPlist.strings4300882208#399"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv ICONV /usr/bin/iconv    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copystrings --validate --inputencoding utf-8 --outputencoding UTF-16 English.lproj/InfoPlist.strings --outdir "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj"0#
+
+CCpResource "build/Debug/Clotho Logger.app/Contents/Resources/Discipline.icns" Resources/Discipline.icns
+s280866822.369558
+e280866822.376880
+r1
+xCpResource
+xbuild/Debug/Clotho Logger.app/Contents/Resources/Discipline.icns
+xResources/Discipline.icns
+lSLF07#2@30"Copy Resources/Discipline.icns280866822#280866822#0(0"0(0#0#75"/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Discipline.icns4300882208#386"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Discipline.icns" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources"0#
+
+CCpResource "build/Debug/Clotho Logger.app/Contents/Resources/DisciplineSilhouette.pdf" Resources/DisciplineSilhouette.pdf
+s280866822.370821
+e280866822.386209
+r1
+xCpResource
+xbuild/Debug/Clotho Logger.app/Contents/Resources/DisciplineSilhouette.pdf
+xResources/DisciplineSilhouette.pdf
+lSLF07#2@39"Copy Resources/DisciplineSilhouette.pdf280866822#280866822#0(0"0(0#0#84"/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/DisciplineSilhouette.pdf4300882208#395"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/DisciplineSilhouette.pdf" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources"0#
+
+CCpResource "build/Debug/Clotho Logger.app/Contents/Resources/English.lproj/Credits.rtf" English.lproj/Credits.rtf
+s280866822.363956
+e280866822.369466
+r1
+xCpResource
+xbuild/Debug/Clotho Logger.app/Contents/Resources/English.lproj/Credits.rtf
+xEnglish.lproj/Credits.rtf
+lSLF07#2@30"Copy English.lproj/Credits.rtf280866822#280866822#0(0"0(0#0#75"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/Credits.rtf4300882208#400"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/Credits.rtf" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources/English.lproj"0#
+
+CCpResource "build/Debug/Clotho Logger.app/Contents/Resources/Whip.aiff" Resources/Whip.aiff
+s280866822.370199
+e280866822.381064
+r1
+xCpResource
+xbuild/Debug/Clotho Logger.app/Contents/Resources/Whip.aiff
+xResources/Whip.aiff
+lSLF07#2@24"Copy Resources/Whip.aiff280866822#280866822#0(0"0(0#0#69"/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Whip.aiff4300882208#380"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Whip.aiff" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources"0#
+
+CCpResource "build/Debug/Clotho Logger.app/Contents/Resources/clotho_logger2.icns" clotho_logger2.icns
+s280866822.816888
+e280866822.822214
+r1
+xCpResource
+xbuild/Debug/Clotho Logger.app/Contents/Resources/clotho_logger2.icns
+xclotho_logger2.icns
+lSLF07#2@24"Copy clotho_logger2.icns280866822#280866822#0(0"0(0#0#69"/Users/JC/Documents/xCode Projects/LachesisLogger/clotho_logger2.icns4300882208#380"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/clotho_logger2.icns" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Resources"0#
+
+CCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/Discipline.icns" Resources/Discipline.icns
+s280867406.489741
+e280867406.496246
+r1
+xCpResource
+xbuild/Debug/Lachesis Logger.app/Contents/Resources/Discipline.icns
+xResources/Discipline.icns
+lSLF07#2@30"Copy Resources/Discipline.icns280867406#280867406#0(0"0(0#0#75"/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Discipline.icns4300882208#388"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Discipline.icns" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources"0#
+
+CCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/DisciplineSilhouette.pdf" Resources/DisciplineSilhouette.pdf
+s280867406.492468
+e280867406.503231
+r1
+xCpResource
+xbuild/Debug/Lachesis Logger.app/Contents/Resources/DisciplineSilhouette.pdf
+xResources/DisciplineSilhouette.pdf
+lSLF07#2@39"Copy Resources/DisciplineSilhouette.pdf280867406#280867406#0(0"0(0#0#84"/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/DisciplineSilhouette.pdf4300882208#397"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/DisciplineSilhouette.pdf" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources"0#
+
+CCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/Credits.rtf" English.lproj/Credits.rtf
+s280867406.478531
+e280867406.489639
+r1
+xCpResource
+xbuild/Debug/Lachesis Logger.app/Contents/Resources/English.lproj/Credits.rtf
+xEnglish.lproj/Credits.rtf
+lSLF07#2@30"Copy English.lproj/Credits.rtf280867406#280867406#0(0"0(0#0#75"/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/Credits.rtf4300882208#402"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/English.lproj/Credits.rtf" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources/English.lproj"0#
+
+CCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/UKKQueue Readme.txt" "../ClothesisData/UKKQueue/UKKQueue Readme.txt"
+s280867860.994007
+e280867861.011046
+r1
+xCpResource
+xbuild/Debug/Lachesis Logger.app/Contents/Resources/UKKQueue Readme.txt
+x../ClothesisData/UKKQueue/UKKQueue Readme.txt
+lSLF07#2@50"Copy ../ClothesisData/UKKQueue/UKKQueue Readme.txt280867860#280867861#0(0"0(0#0#95"/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue Readme.txt4300882208#408"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/../ClothesisData/UKKQueue/UKKQueue Readme.txt" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources"0#
+
+CCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/Whip.aiff" Resources/Whip.aiff
+s280867406.490787
+e280867406.500762
+r1
+xCpResource
+xbuild/Debug/Lachesis Logger.app/Contents/Resources/Whip.aiff
+xResources/Whip.aiff
+lSLF07#2@24"Copy Resources/Whip.aiff280867406#280867406#0(0"0(0#0#69"/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Whip.aiff4300882208#382"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/Resources/Whip.aiff" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources"0#
+
+CCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/clotho_logger2.icns" clotho_logger2.icns
+s280867406.960839
+e280867406.966673
+r1
+xCpResource
+xbuild/Debug/Lachesis Logger.app/Contents/Resources/clotho_logger2.icns
+xclotho_logger2.icns
+lSLF07#2@24"Copy clotho_logger2.icns280867406#280867406#0(0"0(0#0#69"/Users/JC/Documents/xCode Projects/LachesisLogger/clotho_logger2.icns4300882208#382"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/clotho_logger2.icns" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources"0#
+
+CCpResource "build/Debug/Lachesis Logger.app/Contents/Resources/lachisis_512_log.icns" lachisis_512_log.icns
+s288292530.704850
+e288292530.758945
+r1
+xCpResource
+xbuild/Debug/Lachesis Logger.app/Contents/Resources/lachisis_512_log.icns
+xlachisis_512_log.icns
+lSLF07#2@26"Copy lachisis_512_log.icns288292530#288292530#0(0"0(0#0#71"/Users/JC/Documents/xCode Projects/LachesisLogger/lachisis_512_log.icns4300882208#384"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/JC/Documents/xCode Projects/LachesisLogger/lachisis_512_log.icns" "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Resources"0#
+
+CLd "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/MacOS/Clotho Logger" normal i386
+r0
+
+CLd "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/MacOS/Lachesis Logger" normal i386
+s288385622.465539
+e288385622.763816
+r1
+xLd
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/MacOS/Lachesis Logger
+xnormal
+xi386
+lSLF07#2@117"Link /Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/MacOS/Lachesis Logger288385622#288385622#0(0"0(0#0#0"4300882208#771"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/SDKs/MacOSX10.6.sdk "-L/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" -filelist "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Objects-normal/i386/Lachesis Logger.LinkFileList" -mmacosx-version-min=10.6 -framework Cocoa -framework SecurityFoundation -framework Carbon -framework SecurityInterface -framework Security -framework ApplicationServices -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/MacOS/Lachesis Logger"0#
+
+CProcessInfoPlistFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Info.plist" Info.plist
+s280867114.353547
+e280867114.362066
+r1
+xProcessInfoPlistFile
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Info.plist
+xInfo.plist
+lSLF07#2@18"Process Info.plist280867114#280867114#0(0"0(0#0#60"/Users/JC/Documents/xCode Projects/LachesisLogger/Info.plist4300882208#353"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    builtin-infoPlistUtility Info.plist -genpkginfo "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/PkgInfo" -expandbuildsettings -platform macosx -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app/Contents/Info.plist"0#
+
+CProcessInfoPlistFile "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Info.plist" Info.plist
+s288292530.677480
+e288292530.703319
+r1
+xProcessInfoPlistFile
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Info.plist
+xInfo.plist
+lSLF07#2@18"Process Info.plist288292530#288292530#0(0"0(0#0#60"/Users/JC/Documents/xCode Projects/LachesisLogger/Info.plist4300882208#357"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    builtin-infoPlistUtility Info.plist -genpkginfo "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/PkgInfo" -expandbuildsettings -platform macosx -o "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app/Contents/Info.plist"0#
+
+CProcessPCH "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Clotho Logger_Prefix-ghkqpazkiwbmywekscvklnziybvh/Clotho Logger_Prefix.pch.gch" "Clotho Logger_Prefix.pch" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280867407.054610
+e280867407.095312
+r0
+xProcessPCH
+x/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Clotho Logger_Prefix-ghkqpazkiwbmywekscvklnziybvh/Clotho Logger_Prefix.pch.gch
+xClotho Logger_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+oi686-apple-darwin10-gcc-4.2.1: /Users/JC/Documents/xCode Projects/LachesisLogger/Clotho Logger_Prefix.pch: No such file or directory
+oi686-apple-darwin10-gcc-4.2.1: warning: '-x objective-c-header' after last input file has no effect
+oi686-apple-darwin10-gcc-4.2.1: no input files
+lSLF07#2@35"Precompile Clotho Logger_Prefix.pch280867407#280867407#0(338"i686-apple-darwin10-gcc-4.2.1: /Users/JC/Documents/xCode Projects/LachesisLogger/Clotho Logger_Prefix.pch: No such file or directoryi686-apple-darwin10-gcc-4.2.1: warning: '-x objective-c-header' after last input file has no effecti686-apple-darwin10-gcc-4.2.1: no input filesCommand /Developer/usr/bin/gcc-4.2 failed with exit code 11(4@58"Command /Developer/usr/bin/gcc-4.2 failed with exit code 1280867407#18446744073709551615#0#0(1@0"0(0#0#74"/Users/JC/Documents/xCode Projects/LachesisLogger/Clotho Logger_Prefix.pch4300882208#1628"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Clotho Logger_Prefix.pch" -o "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Clotho Logger_Prefix-ghkqpazkiwbmywekscvklnziybvh/Clotho Logger_Prefix.pch.gch"1#
+
+CProcessPCH "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-abufapedbovvogbwszqvqewmhpgx/Lachesis Logger_Prefix.pch.gch" "Lachesis Logger_Prefix.pch" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280876419.220737
+e280876429.708647
+r1
+xProcessPCH
+x/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-abufapedbovvogbwszqvqewmhpgx/Lachesis Logger_Prefix.pch.gch
+xLachesis Logger_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@37"Precompile Lachesis Logger_Prefix.pch280876419#280876429#0(0"0(0#0#76"/Users/JC/Documents/xCode Projects/LachesisLogger/Lachesis Logger_Prefix.pch4300882208#1634"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Lachesis Logger_Prefix.pch" -o "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-abufapedbovvogbwszqvqewmhpgx/Lachesis Logger_Prefix.pch.gch"0#
+
+CProcessPCH "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-avparaozplzfctgppkgapccfqagd/Lachesis Logger_Prefix.pch.gch" "Lachesis Logger_Prefix.pch" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280867564.757503
+e280867568.674446
+r1
+xProcessPCH
+x/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-avparaozplzfctgppkgapccfqagd/Lachesis Logger_Prefix.pch.gch
+xLachesis Logger_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@37"Precompile Lachesis Logger_Prefix.pch280867564#280867568#0(0"0(0#0#76"/Users/JC/Documents/xCode Projects/LachesisLogger/Lachesis Logger_Prefix.pch4300882208#1634"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Lachesis Logger_Prefix.pch" -o "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-avparaozplzfctgppkgapccfqagd/Lachesis Logger_Prefix.pch.gch"0#
+
+CProcessPCH "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch.gch" "Lachesis Logger_Prefix.pch" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280877799.654084
+e280877806.635582
+r1
+xProcessPCH
+x/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch.gch
+xLachesis Logger_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@37"Precompile Lachesis Logger_Prefix.pch280877799#280877806#0(0"0(0#0#76"/Users/JC/Documents/xCode Projects/LachesisLogger/Lachesis Logger_Prefix.pch4300882208#1644"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Lachesis Logger_Prefix.pch" -o "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-blwhrypvzcisgmbfjnmuaushdtwo/Lachesis Logger_Prefix.pch.gch"0#
+
+CProcessPCH "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-edeohmykfhjyesgsqwywimlkdbiv/Lachesis Logger_Prefix.pch.gch" "Lachesis Logger_Prefix.pch" normal i386 objective-c com.apple.compilers.gcc.4_2
+s280876578.733585
+e280876583.729780
+r1
+xProcessPCH
+x/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-edeohmykfhjyesgsqwywimlkdbiv/Lachesis Logger_Prefix.pch.gch
+xLachesis Logger_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@37"Precompile Lachesis Logger_Prefix.pch280876578#280876583#0(0"0(0#0#76"/Users/JC/Documents/xCode Projects/LachesisLogger/Lachesis Logger_Prefix.pch4300882208#1649"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fobjc-gc-only -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-generated-files.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-own-target-headers.hmap" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-all-target-headers.hmap" -iquote "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/Lachesis Logger-project-headers.hmap" "-F/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/include" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources/i386" "-I/Users/JC/Documents/xCode Projects/LachesisLogger/build/Lachesis Logger.build/Debug/Lachesis Logger.build/DerivedSources" -c "/Users/JC/Documents/xCode Projects/LachesisLogger/Lachesis Logger_Prefix.pch" -o "/var/folders/Qh/QhSWHZ1fH9iEamS2EgFk2++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Lachesis Logger_Prefix-edeohmykfhjyesgsqwywimlkdbiv/Lachesis Logger_Prefix.pch.gch"0#
+
+CTouch "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Clotho Logger.app"
+r0
+
+CTouch "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app"
+s288385622.763958
+e288385622.782589
+r1
+xTouch
+x/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app
+lSLF07#2@87"Touch /Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app288385622#288385622#0(0"0(0#0#0"4300882208#165"    cd "/Users/JC/Documents/xCode Projects/LachesisLogger"    /usr/bin/touch -c "/Users/JC/Documents/xCode Projects/LachesisLogger/build/Debug/Lachesis Logger.app"0#
+
