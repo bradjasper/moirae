@@ -38,11 +38,13 @@ int main(void)
     size_t addr_len;
     char s[INET6_ADDRSTRLEN];
 
+    // initialize variables
     memset(&hints, 0, sizeof hints);
     hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
     hints.ai_socktype = SOCK_DGRAM;
     hints.ai_flags = AI_PASSIVE; // use my IP
 
+    // retrieve address info for the given port
     if ((rv = getaddrinfo(NULL, MYPORT, &hints, &servinfo)) != 0) {
         fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
         return 1;
@@ -65,6 +67,7 @@ int main(void)
         break;
     }
 
+    // if addrinfo is null, then unable to bind
     if (p == NULL) {
         fprintf(stderr, "listener: failed to bind socket\n");
         return 2;
@@ -72,6 +75,7 @@ int main(void)
 
     freeaddrinfo(servinfo);
 
+    // wait to receive something
     printf("listener: waiting to recvfrom...\n");
 
     addr_len = sizeof their_addr;
@@ -81,6 +85,7 @@ int main(void)
         exit(1);
     }
 
+    // print out data received
     printf("listener: got packet from %s\n",
         inet_ntop(their_addr.ss_family,
             get_in_addr((struct sockaddr *)&their_addr),
@@ -89,6 +94,7 @@ int main(void)
     buf[numbytes] = '\0';
     printf("listener: packet contains \"%s\"\n", buf);
 
+    // close socket
     close(sockfd);
 
     return 0;
