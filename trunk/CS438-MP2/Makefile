@@ -1,4 +1,4 @@
-TARGETS=client server
+TARGETS=client server listener talker
 
 CC=gcc
 CCOPTS=-Wall
