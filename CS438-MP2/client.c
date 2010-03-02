@@ -1,5 +1,7 @@
 /*
  * talker.c -- a datagram "client" demo
+ * Code is derived from Beej's Guide: 
+ * http://beej.us/guide/bgnet/output/html/multipage/clientserver.html#simpleserver
  */
 
 #include <stdio.h>

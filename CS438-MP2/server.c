@@ -1,5 +1,7 @@
 /*
- * Listener.c -- a datagram sockets "server" demo
+ * listener.c -- a datagram sockets "server" demo
+ * Code is derived from Beej's Guide: 
+ * http://beej.us/guide/bgnet/output/html/multipage/clientserver.html#simpleserver
  */
 
 #include <stdio.h>
@@ -27,7 +29,7 @@ void *get_in_addr(struct sockaddr *sa)
     return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-int main(void)
+int main(int argc, char * argv[])
 {
     int sockfd;
     struct addrinfo hints, *servinfo, *p;
@@ -35,14 +37,33 @@ int main(void)
     int numbytes;
     struct sockaddr_storage their_addr;
     char buf[MAXBUFLEN];
+    char fname[MAXBUFLEN];
+    int fsize;
     size_t addr_len;
     char s[INET6_ADDRSTRLEN];
+
+    // check number of arguments
+    if (argc != 2) {
+    	fprintf(stderr,"usage: server filename\n");
+	exit(1);
+    }
 
     // initialize variables
     memset(&hints, 0, sizeof hints);
     hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
     hints.ai_socktype = SOCK_DGRAM;
     hints.ai_flags = AI_PASSIVE; // use my IP
+    
+    memcpy(fname, argv[1], sizeof(argv[1])); 
+    FILE *fp = fopen(argv[1], "r");
+    if (fp == NULL) {
+    	fprintf(stderr,"***ERROR: %d\n", errno);
+    	exit(1);
+    }
+
+    fseek(fp, 0, SEEK_END);
+    fsize = ftell(fp); // determine file size
+    fseek(fp, 0, SEEK_SET);
 
     // retrieve address info for the given port
     if ((rv = getaddrinfo(NULL, MYPORT, &hints, &servinfo)) != 0) {
