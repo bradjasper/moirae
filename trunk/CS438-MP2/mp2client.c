@@ -14,7 +14,9 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+
 #include "mp2_given/mp2.h"
+#include "frame.h"
 
 #define SERVERPORT "1357"    // the port users will be connecting to
 
