@@ -15,14 +15,30 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
-#define SERVERPORT "4950"    // the port users will be connecting to
+#define SERVERPORT "1357"    // the port users will be connecting to
+
+#define MAXBUFLEN 100
+
+// get sockaddr, IPv4 or IPv6:
+void *get_in_addr(struct sockaddr *sa)
+{
+    if (sa->sa_family == AF_INET) {
+        return &(((struct sockaddr_in*)sa)->sin_addr);
+    }
+
+    return &(((struct sockaddr_in6*)sa)->sin6_addr);
+}
 
 int main(int argc, char *argv[])
 {
     int sockfd;
     struct addrinfo hints, *servinfo, *p;
-    int rv;
+    struct sockaddr_storage their_addr;
+	size_t addr_len;
+	int rv;
     int numbytes;
+	char buf[MAXBUFLEN];
+	char s[INET6_ADDRSTRLEN];
 
     // check number of arguments
     if (argc != 3) {
@@ -65,10 +81,50 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    // close socket
+    printf("client: sent %d bytes to %s\n", numbytes, argv[1]);
+	
+	// wait to receive:
+    printf("client: waiting to recvfrom...\n");
+	
+	// 1. file name	
+    addr_len = sizeof their_addr;
+    if ((numbytes = recvfrom(sockfd, buf, MAXBUFLEN-1 , 0,
+        (struct sockaddr *)&their_addr, &addr_len)) == -1) {
+        perror("client: recvfrom for file");
+        exit(1);
+    }
+
+	// 1.5 print file name
+	printf("*******************************\n");
+	printf("client: got file name from %s\n", 
+		inet_ntop(their_addr.ss_family,
+			get_in_addr((struct sockaddr *)&their_addr),
+			s, sizeof s));
+	printf("client: packet is %d bytes long\n", numbytes);
+	buf[numbytes] = '\0';
+	printf("client: file name is \"%s\"\n", buf);
+
+	// 2. file size
+    addr_len = sizeof their_addr;
+    if ((numbytes = recvfrom(sockfd, buf, MAXBUFLEN-1 , 0,
+        (struct sockaddr *)&their_addr, &addr_len)) == -1) {
+        perror("recvfrom");
+        exit(1);
+    }
+
+	// 2.5 print file name
+	printf("*******************************\n");
+	printf("client: got file size from %s\n", 
+		inet_ntop(their_addr.ss_family,
+			get_in_addr((struct sockaddr *)&their_addr),
+			s, sizeof s));
+	printf("client: packet is %d bytes long\n", numbytes);
+	buf[numbytes] = '\0';
+	printf("client: file size is \"%s\"\n", buf);
+    
+	// close socket
     freeaddrinfo(servinfo);
 
-    printf("client: sent %d bytes to %s\n", numbytes, argv[1]);
     close(sockfd);
 
     return 0;
