@@ -38,7 +38,7 @@ int main(int argc, char * argv[])
     struct sockaddr_storage their_addr;
     char buf[MAXBUFLEN];
     char fname[MAXBUFLEN];
-    int fsize;
+    long fsize;
     size_t addr_len;
     char s[INET6_ADDRSTRLEN];
 
@@ -61,9 +61,11 @@ int main(int argc, char * argv[])
     	exit(1);
     }
 
+    // determine file size
     fseek(fp, 0, SEEK_END);
-    fsize = ftell(fp); // determine file size
+    fsize = ftell(fp); 
     fseek(fp, 0, SEEK_SET);
+    printf("File size: %ld \n", fsize);
 
     // retrieve address info for the given port
     if ((rv = getaddrinfo(NULL, MYPORT, &hints, &servinfo)) != 0) {
