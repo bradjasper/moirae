@@ -1,15 +1,17 @@
-TARGETS=client server
 
-CC=gcc
-CCOPTS=-Wall
+CC = gcc
+CCOPTS = -Wall
+LIBS = -lpthread
 
-.PHONY: all clean
+all: mp2server mp2client
 
-all: $(TARGETS)
+mp2server: mp2server.c
+	$(CC) -c -D __REENTRANT mp2server.c
+	$(CC) $(CCOPTS) -o $@ $< $(LIBS)
+
+mp2client: mp2client.c
+	$(CC) -c -D __REENTRANT mp2client.c
+	$(CC) $(CCOPTS) -o $@ $< $(LIBS)
 
 clean:
-	rm -f $(TARGETS)
-
-%: %.c 
-	$(CC) $(CCOPTS) -o $@ $<
-
+	rm -rf mp2server mp2client
