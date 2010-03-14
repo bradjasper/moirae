@@ -1,5 +1,5 @@
 /*
- * talker.c -- a datagram "client" demo
+ * client.c -- a datagram "client" demo
  * Code is derived from Beej's Guide: 
  * http://beej.us/guide/bgnet/output/html/multipage/clientserver.html#simpleserver
  */
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
     // check number of arguments
     if (argc != 3) {
-        fprintf(stderr,"usage: talker hostname message\n");
+        fprintf(stderr,"usage: client hostname message\n");
         exit(1);
     }
 
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     for(p = servinfo; p != NULL; p = p->ai_next) {
         if ((sockfd = socket(p->ai_family, p->ai_socktype,
                 p->ai_protocol)) == -1) {
-            perror("talker: socket");
+            perror("client: socket");
             continue;
         }
 
@@ -54,21 +54,21 @@ int main(int argc, char *argv[])
 
     // if addrinfo p is null, then unable to bind
     if (p == NULL) {
-        fprintf(stderr, "talker: failed to bind socket\n");
+        fprintf(stderr, "client: failed to bind socket\n");
         return 2;
     }
 
     // send message 
     if ((numbytes = sendto(sockfd, argv[2], strlen(argv[2]), 0,
              p->ai_addr, p->ai_addrlen)) == -1) {
-        perror("talker: sendto");
+        perror("client: sendto");
         exit(1);
     }
 
     // close socket
     freeaddrinfo(servinfo);
 
-    printf("talker: sent %d bytes to %s\n", numbytes, argv[1]);
+    printf("client: sent %d bytes to %s\n", numbytes, argv[1]);
     close(sockfd);
 
     return 0;
