@@ -6,6 +6,7 @@
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
+#import "ClothoProcessWatcher.h"
 #import "DXApp.h"
 #import "NSEvent+BLTRExtensions.h"
 #import "NDProcess.h"
@@ -14,14 +15,6 @@
 
 
 @implementation DXApp
-
-- (void)sendEvent:(NSEvent *)theEvent {
-    NSLog(@"theEvent %@", theEvent);
-    if ([theEvent type]==NSProcessNotificationEvent){
-        [self handleProcessEvent:theEvent];
-    }	
-    [super sendEvent:theEvent];
-}
 
 - (BOOL)handleProcessEvent:(NSEvent *)theEvent {
 //  ProcessSerialNumber psn;
@@ -53,5 +46,13 @@
 }
 
 // THERE WAS A SEMICOLON HERE. IT MIGHT HAVE PREVENTED THE CODE FROM WORKING
+
+- (void)sendEvent:(NSEvent *)theEvent {
+    NSLog(@"theEvent %@", theEvent);
+    if ([theEvent type]==NSProcessNotificationEvent){
+        [self handleProcessEvent:theEvent];
+    }	
+    [super sendEvent:theEvent];
+}
 
 @end

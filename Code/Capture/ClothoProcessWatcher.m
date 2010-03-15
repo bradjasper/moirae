@@ -420,7 +420,8 @@ void windowObserverCallbackFunction(AXObserverRef windowObserver, AXUIElementRef
 //  returns whether the window is in theBuffer or not
 - (BOOL)checkForWindowNameInWindow:(id)window {
     
-    for (id element in [self theBuffer]) {
+	NSArray *buffArr = [NSArray arrayWithArray:[self theBuffer]];
+    for (id element in buffArr) {
         
         NSString *hashedWindowName = [window title];
 

@@ -222,7 +222,7 @@
                                                selector:@selector(askUser:) 
                                                userInfo:nil 
                                                 repeats:NO] retain];
-    [askTimer setFireDate:[checkDate addTimeInterval:interval]];
+    [askTimer setFireDate:[checkDate dateByAddingTimeInterval:interval]];
     NSRunLoop *mainRL = [NSRunLoop mainRunLoop];
     [mainRL addTimer:askTimer forMode:@"NSDefaultRunLoopMode"];
 //    NSLog(@"timer %f",interval);

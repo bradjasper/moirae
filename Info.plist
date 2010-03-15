@@ -5,9 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>Clotho Logger</string>
+	<string>Lachesis Logger</string>
 	<key>CFBundleIconFile</key>
-	<string>clotho_logger2</string>
+	<string>lachisis_512_log</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.blacktree.Discipline</string>
 	<key>CFBundleInfoDictionaryVersion</key>

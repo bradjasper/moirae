@@ -8,11 +8,14 @@
 
 
 @interface DisciplineController : NSObject {
+	
+	NSStatusItem *menuIcon;
+	
 }
 
 - (void)makeProcessThread;
 - (void)addSelfToLoginItems;
 - (void)openLogFolder;
-- (void)quitClotho;
+- (void)quitLachesis;
 
 @end

@@ -15,17 +15,52 @@
 #import "QSAccessibility.h"
 
 #define DOC_PATH [@"~/Library/Application Support/Discipline/" stringByStandardizingPath]
+#define LOG_PATH [@"~/Library/Logs/Discipline" stringByStandardizingPath]
+#define LOGIN_PATH [@"~/Library/Preferences/loginwindow.plist" stringByExpandingTildeInPath]
 
 @implementation DisciplineController
 
+- (id)init {
+	
+	if (self = [super init]) {
+		
+		//  create Clotho Logger icon
+		NSImage *image = [NSImage imageNamed:@"lachisis_512_log"];
+		image = [image copy];
+		[image setSize:NSMakeSize(16, 16)];
+		
+		//  set up Clotho Logger menu item
+		NSMenu *pulldownMenu = [[NSMenu alloc] init];
+		[NSMenu setMenuBarVisible:YES];
+		NSMenuItem *quitButton = [[NSMenuItem alloc] initWithTitle:@"Quit Lachesis" 
+															action:@selector(quitLachesis) 
+													 keyEquivalent:[NSString string]];
+		NSMenuItem *openFolderButton = [[NSMenuItem alloc] initWithTitle:@"Open Log Folder"
+																  action:@selector(openLogFolder)
+														   keyEquivalent:[NSString string]];
+		[pulldownMenu insertItem:openFolderButton atIndex:0];
+		[pulldownMenu insertItem:quitButton atIndex:1];
+		
+		//  create Clotho Logger menu bar item 
+		menuIcon = 
+		[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
+		[menuIcon setImage:image];
+		[menuIcon setMenu:pulldownMenu];
+		[menuIcon setHighlightMode:YES];
+		[menuIcon retain];
+		
+	}
+	
+	return self;
+	
+}
 
-- (void)applicationDidFinishLaunching:(NSApplication *)theApplication {
+- (void)applicationDidFinishLaunching:(NSNotification *)theApplication {
     
     BOOL shouldLogITunes = NO;
     QSEnableAccessibility();
     
-    NSString *directory = [@"~/Library/Logs/Discipline" stringByStandardizingPath];
-    [[NSFileManager defaultManager] createDirectoryAtPath:directory
+    [[NSFileManager defaultManager] createDirectoryAtPath:LOG_PATH
                               withIntermediateDirectories:YES
                                                attributes:nil
                                                     error:nil];
@@ -44,38 +79,13 @@
     if (shouldLogITunes)
         [[ClothoiTunesWatcher alloc] init];
     
-    //  create Clotho Logger icon
-    NSImage *image = [NSImage imageNamed:@"clotho_logger2"];
-    image = [image copy];
-    [image setSize:NSMakeSize(16, 16)];
-    
-    //  set up Clotho Logger menu item
-    NSMenu *pulldownMenu = [[NSMenu alloc] init];
-    [NSMenu setMenuBarVisible:YES];
-    NSMenuItem *quitButton = [[NSMenuItem alloc] initWithTitle:@"Quit Clotho" 
-                                                        action:@selector(quitClotho) 
-                                                 keyEquivalent:[NSString string]];
-    NSMenuItem *openFolderButton = [[NSMenuItem alloc] initWithTitle:@"Open Log Folder"
-                                                              action:@selector(openLogFolder)
-                                                       keyEquivalent:[NSString string]];
-    [pulldownMenu insertItem:openFolderButton atIndex:0];
-    [pulldownMenu insertItem:quitButton atIndex:1];
-    
-    //  create Clotho Logger menu bar item 
-    NSStatusItem *item = 
-    [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
-    [item retain];
-    [item setImage:image];
-    [item setMenu:pulldownMenu];
-    [item setHighlightMode:YES];
-    
     [self addSelfToLoginItems];
 
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     
-    NSLog(@"Terminating Clotho Logger with event type: %d", [[[aNotification object] currentEvent] type]);
+    NSLog(@"Terminating Lachesis Logger with event type: %d", [[[aNotification object] currentEvent] type]);
     
 }
 
@@ -85,27 +95,26 @@
 
 - (void)addSelfToLoginItems {
     
-    NSString *path = [@"~/Library/Preferences/loginwindow.plist" stringByExpandingTildeInPath];
-    NSString *clothoAppPath = @"/Applications/Clotho/Clotho Logger.app";
+    NSString *clothoAppPath = @"/Applications/Lachesis/Lachesis Logger.app";
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:LOGIN_PATH]) {
         //  check if file exists
-        if (![NSFileHandle fileHandleForUpdatingAtPath:path]) {
-            NSLog(@"File not found");
+        if (![NSFileHandle fileHandleForUpdatingAtPath:LOGIN_PATH]) {
+            NSLog(@"***Error: loginwindow.plist does not exist");
         }        
         
         //  read in existing task file
         NSString *errorDesc = nil; 
         NSPropertyListFormat format; 
         NSData *plistXML = [[NSFileManager defaultManager] 
-                            contentsAtPath:path]; 
+                            contentsAtPath:LOGIN_PATH]; 
         NSMutableDictionary *loginItems = 
         (NSMutableDictionary *)[NSPropertyListSerialization 
                                 propertyListFromData:plistXML 
                                 mutabilityOption:NSPropertyListMutableContainersAndLeaves 
                                 format:&format errorDescription:&errorDesc]; 
         if (!loginItems) { 
-            NSLog(errorDesc); 
+            NSLog(@"%@",errorDesc); 
         }
         [errorDesc release]; 
         
@@ -127,12 +136,12 @@
             
             [autoLaunchedList addObject:clothoApp];
             [loginItems setObject:autoLaunchedList forKey:@"AutoLaunchedApplicationDictionary"];
-            [loginItems writeToFile:path atomically:NO];
+            [loginItems writeToFile:LOGIN_PATH atomically:NO];
         }
         
     }
     else {
-        NSLog(@"Unable to add to login items");
+        NSLog(@"***Error: unable to add Lachesis Logger to login applications");
     }
     
 }
@@ -143,17 +152,17 @@
     NSAppleScript *openFolder = [[NSAppleScript alloc] initWithSource:
                                  @"tell application \"Finder\" to open (path to home folder as text) & \"Library:Logs:Discipline\" as alias"];
     NSString *erro = @"";
-    if (![openFolder isCompiled]) {
+    if (![openFolder isCompiled])
         [openFolder compileAndReturnError:&errorDict];
-        NSLog(@"First: %@", erro);
-    }
+	
     erro = [[openFolder executeAndReturnError:&errorDict] stringValue];
-    NSLog(@"Second: %@", erro);
+    if (![erro isEqualToString:@""])
+		NSLog(@"***Error compiling OpenLogFolder: %@", erro);
     [openFolder release];
 
 }
 
-- (void)quitClotho {
+- (void)quitLachesis {
     [[NSApplication sharedApplication] terminate:[NSApplication sharedApplication]];
 }
 

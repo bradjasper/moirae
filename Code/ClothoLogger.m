@@ -7,6 +7,7 @@
 //
 
 #import "ClothoLogger.h"
+#import "ClothoScreenWatcher.h"
 
 @implementation ClothoLogger
 
@@ -180,7 +181,10 @@
 
 - (void)logScreenShot:(CGImageRef)screenShot {
     NSString *path = [self initWithNameAndDirectory:@"ScreenShots_" directory:@"ScreenShots" forDate:nil];
-    [self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
+	if ([self isKindOfClass:[ClothoScreenWatcher class]])
+		[(ClothoScreenWatcher *)self writeCGImage:screenShot toFile:[path stringByAppendingPathExtension:@"png"]];
+	else
+		NSLog(@"Class is not of ClothoScreenWatcher");
 }
 
 - (void)logSystemSnapshot:(NSMutableArray *)list forDate:(NSDate *)dateToLog {
@@ -529,12 +533,11 @@
     NSFileManager *theDefaultMan = [NSFileManager defaultManager];
     NSString *appPath = [@"/Applications" stringByStandardizingPath];
     NSString *devPath = [@"/Developer/Applications" stringByStandardizingPath];
-    NSError *err;
+    NSError *err = nil;
     
     NSArray *appNames = [theDefaultMan contentsOfDirectoryAtPath:appPath error:&err];
-    if (!appNames)
-        NSLog(@"ClothoLogger.m:512 error - %@", [err localizedDescription]);
-    err = nil;
+	if (err)
+		NSLog(@"ClothoLogger.m:scanAppFolder - appPath: %@ error: %@", appPath, [err localizedDescription]);
     
     NSArray *devAppNames = [theDefaultMan contentsOfDirectoryAtPath:devPath error:&err];
     if (!devAppNames)

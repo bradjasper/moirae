@@ -294,9 +294,9 @@
 - (NSString*)stringValueForAttribute:(NSString*)attribute {
   CFTypeRef cfValue = [self accessibilityCopyAttributeCFValue:attribute];
   NSString *stringValue = [self stringValueForCFType:cfValue];
-  if (cfValue) {
-    CFRelease(cfValue);
-  }
+//  if (cfValue) {
+//    CFRelease(cfValue);
+//  }
   return stringValue;
 }
 

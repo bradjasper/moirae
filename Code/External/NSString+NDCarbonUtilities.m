@@ -9,6 +9,13 @@
 
 @implementation NSString (NDCarbonUtilitiesPaths)
 
++ (NSString *)stringWithFSRef:(const FSRef *)fsRef {
+	
+	// TODO: implement stringWithFSRef
+	return [NSString string];
+	
+}
+
 - (BOOL)getFSRef:(FSRef *)aFSRef { return FSPathMakeRef( [self UTF8String] , aFSRef, NULL ) == noErr; }
 
 - (BOOL)getFSSpec:(FSSpec *)aFSSpec {
