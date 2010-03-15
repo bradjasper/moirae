@@ -159,8 +159,8 @@ NSString			* kBundleExecutableKey = @"CFBundleExecutable";
 		theOSType = [self type];
 		theSignature = [self signature];
 
-		theOSTypeString = (theOSType) ? [NSString stringWithCString:(char*)&theOSType length:4] : @"NULL";
-		theSignatureString = (theSignature) ? [NSString stringWithCString:(char*)&theSignature length:4] : @"NULL";
+		theOSTypeString = (theOSType) ? [NSString stringWithCString:(char*)&theOSType encoding:NSUTF8StringEncoding] : @"NULL";
+		theSignatureString = (theSignature) ? [NSString stringWithCString:(char*)&theSignature encoding:NSUTF8StringEncoding] : @"NULL";
 
 		theLaunchTime = [self launchTime];
 		return [NSString stringWithFormat:@"name:\"%@\"\ttime:[%ih %im %.1fs]\ttype:'%@'\tsignature:'%@'", [self name], (int)theLaunchTime/3600,((int)theLaunchTime/60)%60,fmod(theLaunchTime, 60), theOSTypeString, theSignatureString];

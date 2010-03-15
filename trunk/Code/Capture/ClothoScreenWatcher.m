@@ -179,7 +179,7 @@
     [task setLaunchPath:@"/usr/bin/top"];
     
     // "-l_" is the number of times top is run
-    NSArray *arguments = [NSArray arrayWithObjects:@"-ocpu", @"-FR", @"-l3", nil];
+    NSArray *arguments = [NSArray arrayWithObjects:@"-ocpu", @"-F", @"-l3", nil];
     [task setArguments:arguments];
     
     NSPipe *pipe = [NSPipe pipe];
@@ -245,7 +245,7 @@
 							 nil];
 	NSURL *url = [NSURL fileURLWithPath:path];
 	CGImageDestinationRef destination = CGImageDestinationCreateWithURL((CFURLRef)url, kUTTypePNG, 
-																		1, options);
+																		1, (CFDictionaryRef)options);
 	
 	void CGImageDestinationAddImage(CGImageDestinationRef idst,
 									CGImageRef image,
