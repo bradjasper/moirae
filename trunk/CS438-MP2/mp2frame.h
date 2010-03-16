@@ -1,6 +1,9 @@
 #ifndef MP2FRAME_H_
 #define MP2FRAME_H_
 
-int test();
+typedef struct 
+{
+	int poo;
+} frame;
 
 #endif
