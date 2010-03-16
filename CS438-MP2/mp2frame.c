@@ -8,13 +8,7 @@
 
 #include "mp2frame.h"
 
-int test() 
-{
-    return 113;
-}
-
 int main() 
 {
-	return test();
+	return 0;
 }
-

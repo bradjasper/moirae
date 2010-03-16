@@ -44,8 +44,10 @@ int main(int argc, char *argv[])
 	char buf[MAXBUFLEN];
 	char s[INET6_ADDRSTRLEN];
 
-    test();
-    // check number of arguments
+	frame swf;
+	swf.poo = 32;
+    
+	// check number of arguments
     if (argc != 3) {
         fprintf(stderr,"usage: client hostname message\n");
         exit(1);
