@@ -6,9 +6,15 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
-#include "frame.h"
+#include "mp2frame.h"
 
 int test() 
 {
     return 113;
 }
+
+int main() 
+{
+	return test();
+}
+

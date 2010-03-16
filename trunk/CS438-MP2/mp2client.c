@@ -16,7 +16,7 @@
 #include <netdb.h>
 
 #include "mp2_given/mp2.h"
-#include "frame.h"
+#include "mp2frame.h"
 
 #define SERVERPORT "1357"    // the port users will be connecting to
 
@@ -34,6 +34,7 @@ void *get_in_addr(struct sockaddr *sa)
 
 int main(int argc, char *argv[])
 {
+
     int sockfd;
     struct addrinfo hints, *servinfo, *p;
     struct sockaddr_storage their_addr;
@@ -43,6 +44,7 @@ int main(int argc, char *argv[])
 	char buf[MAXBUFLEN];
 	char s[INET6_ADDRSTRLEN];
 
+    test();
     // check number of arguments
     if (argc != 3) {
         fprintf(stderr,"usage: client hostname message\n");
