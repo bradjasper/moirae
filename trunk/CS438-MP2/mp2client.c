@@ -15,8 +15,8 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
-#include "mp2_given/mp2.h"
-#include "mp2frame.h"
+#include "mp2_given/mp2.c"
+#include "mp2frame.c"
 
 #define SERVERPORT "1357"    // the port users will be connecting to
 
@@ -44,9 +44,10 @@ int main(int argc, char *argv[])
 	char buf[MAXBUFLEN];
 	char s[INET6_ADDRSTRLEN];
 
-	frame swf;
-	swf.poo = 32;
-    
+    int thing = foo(); 
+
+	printf("YOU ARE: %d\n", thing);
+
 	// check number of arguments
     if (argc != 3) {
         fprintf(stderr,"usage: client hostname message\n");
@@ -136,3 +137,4 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+

@@ -1,9 +1,11 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
 #ifndef MP2FRAME_H_
 #define MP2FRAME_H_
 
-typedef struct 
-{
-	int poo;
-} frame;
+int foo();
 
 #endif
