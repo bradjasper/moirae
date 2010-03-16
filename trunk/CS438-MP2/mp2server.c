@@ -15,10 +15,20 @@ Beej's code modified as needed for mp2 cs438
 #include <netdb.h>
 #include <pthread.h>
 
+
 #define MYPORT "1357"	// the port users will be connecting to
 
-#define MAXBUFLEN 100
-#define NUMTHREADS 100
+#define MAXBUFLEN 10000
+#define FRAMESIZE 100
+
+
+struct frameHeader
+{
+	uint16_t checksum;
+	uint16_t frameNum;
+	uint8_t slt;
+	char data[FRAMESIZE];
+};
 
 
 // get sockaddr, IPv4 or IPv6:
@@ -42,9 +52,13 @@ int main(int argc, char *argv[])
 	char buf[MAXBUFLEN];
 	size_t addr_len;
 	char s[INET6_ADDRSTRLEN];
-	char fileContent[100];
+	char fileContent[10000];
 	char filesize[6];
 	FILE * fd;
+	
+	struct frameHeader frH;
+	memset(&frH, 0, sizeof(frH));
+
 	
 	//check if the name of the file present in the command line
 	if (argc < 2) {
@@ -56,7 +70,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	
-	//retrieve the first 100 bytes or less from the file
+	//retrieve the first N bytes or less from the file
 	memset(&fileContent, 0, sizeof(fileContent));
 	fd = fopen(argv[1], "r");
 	if(fd == NULL)
@@ -64,7 +78,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "error: file does not exist");
 		exit(1);
 	}
-	fgets(fileContent, 100, fd);
+	fgets(fileContent, 10000, fd);
 	fclose(fd);
 	
 
@@ -143,9 +157,39 @@ int main(int argc, char *argv[])
 	printf("server: sent %d bytes\n", numbytes);
 	printf("server: sent %s\n", filesize);
 	
-
 	
+	char * filePointer;
+	filePointer = fileContent;
+	printf("%d\n", strlen(filePointer));
+	frH.checksum = 0xaa;
+	frH.frameNum = 0x0;
+	frH.slt = 0x04;
+	uint8_t seq = 0x0;
+	uint8_t last = 0x1;
+	uint8_t type = 0x0;
 	
+	while(strlen(filePointer)/FRAMESIZE)
+	{
+		memcpy(frH.data, filePointer, FRAMESIZE);
+		if(strlen(filePointer) >= FRAMESIZE)
+		{
+			filePointer = filePointer+FRAMESIZE;
+			last = 0x0;
+			frH.slt &= last;
+		}
+		
+		frH.slt = (seq << 4) | (last << 3) | (type);
+			
+		printf("value: %02X \n", frH.slt);
+		printf("%d\n", strlen(filePointer));
+		
+		seq = seq + 0x01;
+	}
+	
+	last = 0x1;
+	frH.slt = (seq << 4) | (last << 3) | (type);	
+	printf("value: %02X \n", frH.slt);
+	printf("%d\n", strlen(filePointer));
 	
 	close(sockfd);
 
