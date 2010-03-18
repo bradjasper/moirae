@@ -20,7 +20,18 @@
 
 #define SERVERPORT "1357"    // the port users will be connecting to
 
-#define MAXBUFLEN 100
+#define MAXBUFLEN 1000
+#define FRAMESIZE 100
+
+
+struct frameHeader
+{
+	uint16_t checksum;
+	uint16_t frameNum;
+	uint8_t slt;
+	char data[FRAMESIZE];
+};
+
 
 // get sockaddr, IPv4 or IPv6:
 void *get_in_addr(struct sockaddr *sa)
@@ -43,16 +54,23 @@ int main(int argc, char *argv[])
     int numbytes;
 	char buf[MAXBUFLEN];
 	char s[INET6_ADDRSTRLEN];
-
-    int thing = foo(); 
-
-	printf("YOU ARE: %d\n", thing);
+	char * filename;
+	FILE * outputFile;
+	int filesize;
+	int i;
+	struct frameHeader frH;
+	
+	memset(&frH, 0, sizeof(frH));
 
 	// check number of arguments
-    if (argc != 3) {
-        fprintf(stderr,"usage: client hostname message\n");
-        exit(1);
-    }
+	if (argc < 3) {
+		fprintf(stderr,"usage: missing 2 arguments (hostname address and a message\n");
+		exit(1);
+	}
+	else if(argc > 3) {
+		fprintf(stderr,"usage: too many arguments\n");
+		exit(1);
+	}
 
     // initialize variables
     memset(&hints, 0, sizeof hints);
@@ -98,42 +116,76 @@ int main(int argc, char *argv[])
     addr_len = sizeof their_addr;
     if ((numbytes = recvfrom(sockfd, buf, MAXBUFLEN-1 , 0,
         (struct sockaddr *)&their_addr, &addr_len)) == -1) {
-        perror("client: recvfrom for file");
+        perror("client: recvfrom error\n");
         exit(1);
     }
 
 	// 1.5 print file name
 	printf("*******************************\n");
-	printf("client: got file name from %s\n", 
+	buf[numbytes] = '\0';
+	filename = buf;
+	printf("client: got file name \"%s\" from %s\n", filename, 
 		inet_ntop(their_addr.ss_family,
 			get_in_addr((struct sockaddr *)&their_addr),
 			s, sizeof s));
-	printf("client: packet is %d bytes long\n", numbytes);
-	buf[numbytes] = '\0';
-	printf("client: file name is \"%s\"\n", buf);
+
 
 	// 2. file size
     addr_len = sizeof their_addr;
     if ((numbytes = recvfrom(sockfd, buf, MAXBUFLEN-1 , 0,
         (struct sockaddr *)&their_addr, &addr_len)) == -1) {
-        perror("recvfrom");
+        perror("client: recvfrom error\n");
         exit(1);
     }
 
 	// 2.5 print file name
 	printf("*******************************\n");
-	printf("client: got file size from %s\n", 
+	buf[numbytes] = '\0';
+	filesize = atoi(buf);
+	printf("client: got file size \"%d\" from %s\n", filesize, 
 		inet_ntop(their_addr.ss_family,
 			get_in_addr((struct sockaddr *)&their_addr),
 			s, sizeof s));
-	printf("client: packet is %d bytes long\n", numbytes);
-	buf[numbytes] = '\0';
-	printf("client: file size is \"%d\"\n", atoi(buf));
-    
-	// close socket
-    freeaddrinfo(servinfo);
 
+    
+    freeaddrinfo(servinfo);
+	outputFile = fopen(filename, "w");
+	if(outputFile == NULL)
+	{
+		printf("client: output file open error\n");
+		exit(1);
+	}
+	
+	//receive each frame and write it to the file stream at the offset 
+	//location that we can find from multiplying frame number (found in 
+	//the header) by the frame size
+	for(i = (filesize/FRAMESIZE); i >= 0; i--)
+	{
+		if ((numbytes = recvfrom(sockfd, &frH, sizeof(struct frameHeader), 0,
+        (struct sockaddr *)&their_addr, &addr_len)) == -1) {
+			perror("client: recvfrom error\n");
+			exit(1);
+		}
+
+		//move the file pointer and write to that location
+		fseek(outputFile, (frH.frameNum * FRAMESIZE), SEEK_SET);
+		fputs(frH.data, outputFile);
+	}
+	
+	//output the final file content for testing purposes
+	printf("*******************************\n");
+	outputFile = freopen(filename, "r", outputFile);
+	char temp[10000];
+	rewind(outputFile);
+	printf("File content:\n");
+	fgets(temp, 10000, outputFile);
+	puts(temp);
+	
+	// close socket
     close(sockfd);
+	
+	//close file
+	fclose(outputFile);
 
     return 0;
 }
