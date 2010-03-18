@@ -15,6 +15,7 @@ Beej's code modified as needed for mp2 cs438
 #include <netdb.h>
 #include <pthread.h>
 
+#include "mp2.h"
 
 #define MYPORT "1357"	// the port users will be connecting to
 
@@ -136,9 +137,9 @@ int main(int argc, char *argv[])
 
 	
 	//send file name
-	if ((numbytes = sendto(sockfd, argv[1], strlen(argv[1]), 0,
+	if ((numbytes = mp2_sendto(sockfd, argv[1], strlen(argv[1]), 0,
 			 (struct sockaddr *) &their_addr, p->ai_addrlen)) == -1) {
-		perror("sendto error");
+		perror("sendto error 1");
 		exit(1);
 	}
 	printf("server: sent %d bytes\n", numbytes);
@@ -152,9 +153,9 @@ int main(int argc, char *argv[])
     printf("File size: %d \n", fsize);
 	sprintf(filesize, "%d", (int) fsize);
 	
-	if ((numbytes = sendto(sockfd, filesize, strlen(filesize), 0,
+	if ((numbytes = mp2_sendto(sockfd, filesize, strlen(filesize), 0,
 			 (struct sockaddr *) &their_addr, p->ai_addrlen)) == -1) {
-		perror("sendto error");
+		perror("sendto error 2");
 		exit(1);
 	}
 	printf("server: sent %d bytes\n", numbytes);
@@ -189,9 +190,9 @@ int main(int argc, char *argv[])
 		printf("frame: %d\n", frame);
 		printf("data: %s\n", frH.data);	
 		
-		if ((numbytes = sendto(sockfd, &frH, sizeof(frH), 0,
+		if ((numbytes = mp2_sendto(sockfd, &frH, sizeof(frH), 0,
 			 (struct sockaddr *) &their_addr, p->ai_addrlen)) == -1) {
-			perror("server: sendto error\n");
+			perror("server: sendto error 3\n");
 			exit(1);
 		}
 		
@@ -217,9 +218,9 @@ int main(int argc, char *argv[])
 	printf("frame: %d\n", frame);
 	printf("data: %s\n", frH.data);
 	
-	if ((numbytes = sendto(sockfd, &frH, sizeof(frH), 0,
+	if ((numbytes = mp2_sendto(sockfd, &frH, sizeof(frH), 0,
 			 (struct sockaddr *) &their_addr, p->ai_addrlen)) == -1) {
-		perror("server: sendto error\n");
+		perror("server: sendto error 4\n");
 		exit(1);
 	}
 	
