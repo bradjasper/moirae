@@ -52,11 +52,12 @@ int main(int argc, char *argv[])
 	char buf[MAXBUFLEN];
 	size_t addr_len;
 	char s[INET6_ADDRSTRLEN];
-	char fileContent[10000];
+	int fsize;
 	char filesize[6];
-	FILE * fd;
-	
+	FILE * inputFile;
 	struct frameHeader frH;
+	int i;
+	
 	memset(&frH, 0, sizeof(frH));
 
 	
@@ -70,16 +71,13 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	
-	//retrieve the first N bytes or less from the file
-	memset(&fileContent, 0, sizeof(fileContent));
-	fd = fopen(argv[1], "r");
-	if(fd == NULL)
+	//open the file for reading
+	inputFile = fopen(argv[1], "r");
+	if(inputFile == NULL)
 	{
 		fprintf(stderr, "error: file does not exist");
 		exit(1);
 	}
-	fgets(fileContent, 10000, fd);
-	fclose(fd);
 	
 
 	memset(&hints, 0, sizeof hints);
@@ -127,7 +125,7 @@ int main(int argc, char *argv[])
 	}
 
 	// print out data received
-    printf("listener: got packet from %s\n",
+    printf("server: got packet from %s\n",
         inet_ntop(their_addr.ss_family,
             get_in_addr((struct sockaddr *)&their_addr),
             s, sizeof s));
@@ -137,7 +135,7 @@ int main(int argc, char *argv[])
 		
 
 	
-	
+	//send file name
 	if ((numbytes = sendto(sockfd, argv[1], strlen(argv[1]), 0,
 			 (struct sockaddr *) &their_addr, p->ai_addrlen)) == -1) {
 		perror("sendto error");
@@ -146,8 +144,13 @@ int main(int argc, char *argv[])
 	printf("server: sent %d bytes\n", numbytes);
 	printf("server: sent %s\n", argv[1]);
 	
-	memset(&filesize, 0, sizeof(filesize));
-	sprintf(filesize, "%d", (int) (strlen(fileContent)));
+	
+	// determine and send file size
+    fseek(inputFile, 0, SEEK_END);
+    fsize = ftell(inputFile); 
+    fseek(inputFile, 0, SEEK_SET);
+    printf("File size: %d \n", fsize);
+	sprintf(filesize, "%d", (int) fsize);
 	
 	if ((numbytes = sendto(sockfd, filesize, strlen(filesize), 0,
 			 (struct sockaddr *) &their_addr, p->ai_addrlen)) == -1) {
@@ -158,40 +161,73 @@ int main(int argc, char *argv[])
 	printf("server: sent %s\n", filesize);
 	
 	
-	char * filePointer;
-	filePointer = fileContent;
-	printf("%d\n", strlen(filePointer));
-	frH.checksum = 0xaa;
-	frH.frameNum = 0x0;
-	frH.slt = 0x04;
+	//initialize and create frames
+	frH.checksum = 0xaa;	//checksum initialized to 16 bit ones
+	frH.frameNum = 0x0;		//frame number initialized to zero
+	frH.slt = 0x04;		//the last byte initialized to sequence number zero, last frame mark set to one, and the frame type 3 bit zeros
 	uint8_t seq = 0x0;
 	uint8_t last = 0x1;
 	uint8_t type = 0x0;
+	uint16_t frame = 0x0;
 	
-	while(strlen(filePointer)/FRAMESIZE)
+	//iterate through the content of a file and send data in separate frames
+	for(i = fsize/FRAMESIZE; i > 0; i--)
 	{
-		memcpy(frH.data, filePointer, FRAMESIZE);
-		if(strlen(filePointer) >= FRAMESIZE)
+		fseek(inputFile, (frame * FRAMESIZE), SEEK_SET);
+		fgets(frH.data, FRAMESIZE+1, inputFile);
+		printf("----------------\n");
+		
+		if((fsize-(frame*FRAMESIZE)) >= FRAMESIZE)
 		{
-			filePointer = filePointer+FRAMESIZE;
 			last = 0x0;
 			frH.slt &= last;
 		}
 		
 		frH.slt = (seq << 4) | (last << 3) | (type);
-			
-		printf("value: %02X \n", frH.slt);
-		printf("%d\n", strlen(filePointer));
+		frH.frameNum = frame;
 		
-		seq = seq + 0x01;
+		printf("frame: %d\n", frame);
+		printf("data: %s\n", frH.data);	
+		
+		if ((numbytes = sendto(sockfd, &frH, sizeof(frH), 0,
+			 (struct sockaddr *) &their_addr, p->ai_addrlen)) == -1) {
+			perror("server: sendto error\n");
+			exit(1);
+		}
+		
+		//wrap around sequence and frame numbers when they reach the limit
+		if(seq < 16)
+			seq = seq + 0x01;
+		else
+			seq = 0x0;
+			
+		if(frame < 65536)
+			frame = frame + 0x01;
+		else
+			frame = 0x0;
 	}
 	
+	//send the last frame for the file
 	last = 0x1;
-	frH.slt = (seq << 4) | (last << 3) | (type);	
-	printf("value: %02X \n", frH.slt);
-	printf("%d\n", strlen(filePointer));
+	frH.slt = (seq << 4) | (last << 3) | (type);
+	fseek(inputFile, (frame * FRAMESIZE), SEEK_SET);
+	fgets(frH.data, FRAMESIZE, inputFile);
+	frH.frameNum = frame;
+	printf("----------------\n");
+	printf("frame: %d\n", frame);
+	printf("data: %s\n", frH.data);
 	
+	if ((numbytes = sendto(sockfd, &frH, sizeof(frH), 0,
+			 (struct sockaddr *) &their_addr, p->ai_addrlen)) == -1) {
+		perror("server: sendto error\n");
+		exit(1);
+	}
+	
+	//close socket
 	close(sockfd);
+	
+	//close file
+	fclose(inputFile);
 
 	return 0;
 }
