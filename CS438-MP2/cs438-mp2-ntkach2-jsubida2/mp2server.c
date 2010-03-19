@@ -1,7 +1,12 @@
 /*
-Beej's code modified as needed for mp2 cs438
-** listener.c -- a datagram sockets "server" demo
-*/
+ * CS438 - MP2
+ * ntkach2, jsubida2
+ *
+ * mp2server.c -- a datagram sockets "server"
+ * 
+ * Beej's code modified as needed for mp2 cs438
+ * http://beej.us/guide/bgnet/output/html/multipage/clientserver.html#simpleserver
+ */
 
 #include <stdio.h>
 #include <stdlib.h>

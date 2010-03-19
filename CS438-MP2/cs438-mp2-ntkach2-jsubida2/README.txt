@@ -20,6 +20,8 @@ mp2client establishes a connection with the host. It sends a message
 to the server, stating that it is beginning. The client then waits
 to receive data from the server. 
 
+Special thanks for Beej!
+
 /////////////////////////////////////////////////////////////////////
 
 Zip Contents
