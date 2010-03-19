@@ -1,5 +1,9 @@
 /*
- * client.c -- a datagram "client" demo
+ * CS438 - MP2
+ * ntkach2, jsubida2
+ *
+ * mp2client.c -- a datagram "client"
+ *
  * Code is derived from Beej's Guide: 
  * http://beej.us/guide/bgnet/output/html/multipage/clientserver.html#simpleserver
  */
