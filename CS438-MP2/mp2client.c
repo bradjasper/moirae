@@ -63,11 +63,11 @@ int main(int argc, char *argv[])
 	memset(&frH, 0, sizeof(frH));
 
 	// check number of arguments
-	if (argc < 3) {
-		fprintf(stderr,"usage: missing 2 arguments (hostname address and a message\n");
+	if (argc < 2) {
+		fprintf(stderr,"usage: missing 1 argument (hostname address)\n");
 		exit(1);
 	}
-	else if(argc > 3) {
+	else if(argc > 2) {
 		fprintf(stderr,"usage: too many arguments\n");
 		exit(1);
 	}
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
     }
 
     // send message 
-    if ((numbytes = sendto(sockfd, argv[2], strlen(argv[2]), 0,
+    if ((numbytes = sendto(sockfd, "Beginning Client", strlen("Beginning Client"), 0,
              p->ai_addr, p->ai_addrlen)) == -1) {
         perror("client: sendto");
         exit(1);
