@@ -5,9 +5,10 @@
 #include <string.h>
 
 /**
- *  PARAM:
- * RETURN:
- *   FUNC:
+ *  PARAM: 	file - FILE * to the file being read
+ * RETURN: 	char * of the first line of file
+ *   FUNC:	Given the first input file, gets and returns
+ *			the number of nodes for it.
  */
 char * get_num_nodes(FILE * file)
 {
@@ -18,9 +19,11 @@ char * get_num_nodes(FILE * file)
 }
 
 /**
- *  PARAM:
- * RETURN:
- *   FUNC:
+ *  PARAM:	arr - array of ints
+ *			toFind - int to find in arr
+ * RETURN:  if found, index of toFind in arr; else -1
+ *   FUNC:  Checks if toFind exists in arr. If it does,
+ *			return the index. Otherwise, -1.
  */
 int index_of_int(int * arr, int toFind) 
 {
@@ -36,9 +39,10 @@ int index_of_int(int * arr, int toFind)
 }
 
 /**
- *  PARAM:
- * RETURN:
- *   FUNC:
+ *  PARAM: arr - array of ints
+ * RETURN: length of the array
+ *   FUNC: Assuming arrays have their length at index 0,
+ *			return the length of the array.
  */
 int length(int * arr)
 {
@@ -68,3 +72,19 @@ int get_num_lines(FILE * file)
 	rewind(file);
 	return num_lines;
 }
+
+/**
+ *  PARAM:
+ * RETURN:
+ *   FUNC:
+ */
+void print_int_array(int * arr)
+{
+	int len = arr[0];
+	int i;
+	for (i=0; i<len; i++)
+	{
+		printf("%d,\n", arr[i]);
+	}
+}
+

@@ -32,7 +32,7 @@ struct node *initNode(int node, int arr_l, int cur_i,
 						int dest, int cost)
 {
 
-	struct node *n = malloc(sizeof(node));
+	struct node *n = malloc(sizeof(node) + (2 * (arr_l * sizeof(int))));
 
 	n->node_num = node;
 	n->arr_length = arr_l;
@@ -56,6 +56,27 @@ struct node *initNode(int node, int arr_l, int cur_i,
 	
 	return n;
 
+}
+
+/**
+ *	 PARAM:	n - pointer to a node struct
+ * 			dest - int to find in n
+ *	RETURN: int - 1 if dest exists in n->destin;
+ *			else 0
+ * 	  FUNC: Determines if dest exists in the destin
+ *			array of n
+ */
+int existsInDestin(struct node *n, int dest)
+{
+	int *destins = n->destin;
+	int len = n->arr_length;
+	int i;
+	for (i=0; i<len; i++)
+	{
+		if (destins[i] == dest)
+			return 1;
+	}
+	return 0;
 }
 
 /**

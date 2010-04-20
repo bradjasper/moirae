@@ -14,34 +14,95 @@
 #include "util.c"
 #include "node.c"
 
-/**
- *  PARAM:
- * RETURN:
- *   FUNC:
- */
-void create_node(struct node *topology, int line_nums, int index,
-					int src_node, int dest_node, int cost) 
+struct node *parse(char * file)
 {
-	struct node n;
+	// open file for reading
+	FILE * fp = fopen(file, "r");
+	if (fp == NULL)
+	{
+		printf("parser: file open error\n");
+		exit(1);
+	}
+
+	// get number of lines
+	int num_lines = get_num_lines(fp);
+
+	// get number of nodes
+	char *c_num_nodes = get_num_nodes(fp);	
+	int num_nodes = atoi((char*)&c_num_nodes);
 	
-	n.node_num = src_node;
+	// for each node, make a node struct
+	struct node *topology = malloc((num_nodes+1) * sizeof(struct node));
+	int j;
+	for(j=0; j<(num_nodes+1); j++)
+	{
+		struct node * n = initNode(-1, 0, 0, 0, 0);
+		topology[j] = *n;
+	}
 
-	n.arr_length = line_nums;
-
-	n.curr_index = 1;
-
-	n.destin = malloc(line_nums * sizeof(int));
-	n.destin[0] = dest_node;
+	int * knownNodes = malloc((num_nodes+1) * sizeof(int));
+	for(j=0; j<num_nodes+1; j++)
+		knownNodes[j] = -1;
+	knownNodes[0] = num_nodes;
 	
-	n.costs = malloc(line_nums * sizeof(int));
-	n.costs[0] = cost;
+	char *c_src = NULL;
+	char *c_dest = NULL;
+	char *c_cost = NULL;
+	int src, dest, cost;
+	int index = 1;
+	int ind_of_int = -1;
+	while (!feof(fp))
+	{
+		fscanf(fp, "%s", &c_src);
+		fscanf(fp, "%s", &c_dest);
+		fscanf(fp, "%s", &c_cost);
 
-	topology[index] = n;
+		src = atoi((char*)&c_src);
+		dest = atoi((char*)&c_dest);
+		cost = atoi((char*)&c_cost);
+
+		ind_of_int = index_of_int(knownNodes, src); 
+		if (ind_of_int != -1)
+		{
+			struct node *n = &topology[ind_of_int];
+			
+			if (!existsInDestin(n, dest))
+			{
+				n->destin[n->curr_index] = dest;
+				n->costs[n->curr_index] = cost;
+				n->curr_index++;
+			}
+		}
+		else
+		{
+			knownNodes[index] = src;
+
+			struct node *n = initNode(src, num_lines, 1, dest, cost);
+			topology[index] = *n;
+
+			index++;
+		}
+		//printf("%d %d %d\n", src, dest, cost);
+	}
+
+	return topology;
 }
 
 // temporary main to test parser
 int main(int argc, char *argv[])
 {
+	struct node * n = parse(argv[1]);
+
+	int j;
+	for(j=0; j<(10); j++)
+	{
+		print_node(&n[j]);
+	}
+
+
+	return 0;
+}
+/*
 	if (argc != 2)
 	{
 		fprintf(stderr, "usage: parser <filename.txt>\n");
@@ -68,12 +129,7 @@ int main(int argc, char *argv[])
 	int j;
 	for(j=0; j<(num_nodes+1); j++)
 	{
-		struct node * n;
-		n->node_num = -1;
-		n->arr_length = -1;
-		n->curr_index = -1;
-		n->destin = NULL;
-		n->costs = NULL;
+		struct node * n = initNode(-1, 0, 0, 0, 0);
 		topology[j] = n;
 	}
 
@@ -98,7 +154,8 @@ int main(int argc, char *argv[])
 		dest = atoi((char*)&c_dest);
 		cost = atoi((char*)&c_cost);
 
-		if (ind_of_int = index_of_int(knownNodes, src) != -1)
+		ind_of_int = index_of_int(knownNodes, src); 
+		if (ind_of_int != -1)
 		{
 			struct node *n = topology[ind_of_int];
 			n->destin[n->curr_index] = dest;
@@ -109,23 +166,20 @@ int main(int argc, char *argv[])
 		{
 			knownNodes[index] = src;
 
-			struct node *n = initNode(src, num_lines, index, dest, cost);
-
-			printf("NEW NODE!!!!!!!!!!!!!!\n");
-			print_node(n);
+			struct node *n = initNode(src, num_lines, 1, dest, cost);
 			topology[index] = n;
 
-			printf("%d\n", knownNodes[index]);
 			index++;
 		}
 		//printf("%d %d %d\n", src, dest, cost);
 	}
 
-	for(j=1; j<(num_nodes); j++)
+	for(j=0; j<(num_nodes); j++)
 	{
 		print_node(topology[j]);
 	}
 
-	return 1;
+	return 0;
 }
+*/
 
