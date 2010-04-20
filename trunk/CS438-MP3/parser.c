@@ -12,16 +12,7 @@
 #include <string.h>
 
 #include "util.c"
-
-struct node 
-{
-    int node_num;
-	int arr_length;
-    int curr_index;
-	int *destin;
-    int *costs;
-    int *ports;
-} node;
+#include "node.c"
 
 /**
  *  PARAM:
@@ -46,24 +37,6 @@ void create_node(struct node *topology, int line_nums, int index,
 	n.costs[0] = cost;
 
 	topology[index] = n;
-}
-
-/**
- *  PARAM:
- * RETURN:
- *   FUNC:
- */
-void print_node(struct node n)
-{
-	printf("Node: %d\n", n.node_num);
-	printf("Destination Node, Cost\n");
-
-	int i;
-	for(i=0; i<n.arr_length; i++)
-	{
-	printf("%d, %d\n", n.destin[i], n.costs[i]);
-	}
-
 }
 
 // temporary main to test parser
@@ -91,16 +64,16 @@ int main(int argc, char *argv[])
 	int num_nodes = atoi((char*)&c_num_nodes);
 	
 	// for each node, make a node struct
-	struct node topology[num_nodes+1];
+	struct node * topology[num_nodes+1];
 	int j;
 	for(j=0; j<(num_nodes+1); j++)
 	{
-		struct node n;
-		n.node_num = -1;
-		n.arr_length = -1;
-		n.curr_index = -1;
-		n.destin = NULL;
-		n.costs = NULL;
+		struct node * n;
+		n->node_num = -1;
+		n->arr_length = -1;
+		n->curr_index = -1;
+		n->destin = NULL;
+		n->costs = NULL;
 		topology[j] = n;
 	}
 
@@ -127,16 +100,20 @@ int main(int argc, char *argv[])
 
 		if (ind_of_int = index_of_int(knownNodes, src) != -1)
 		{
-			struct node n = topology[ind_of_int];
-			n.destin[n.curr_index] = dest;
-			n.costs[n.curr_index] = cost;
-			n.curr_index++;
+			struct node *n = topology[ind_of_int];
+			n->destin[n->curr_index] = dest;
+			n->costs[n->curr_index] = cost;
+			n->curr_index++;
 		}
 		else
 		{
 			knownNodes[index] = src;
 
-			create_node(topology, num_lines, index, src, dest, cost); 
+			struct node *n = initNode(src, num_lines, index, dest, cost);
+
+			printf("NEW NODE!!!!!!!!!!!!!!\n");
+			print_node(n);
+			topology[index] = n;
 
 			printf("%d\n", knownNodes[index]);
 			index++;
@@ -149,11 +126,6 @@ int main(int argc, char *argv[])
 		print_node(topology[j]);
 	}
 
-/*
-	int i;
-	for(i=0; i<num_nodes+1; i++)
-		printf("%d\n", knownNodes[i]);
-*/
-	return 0;
+	return 1;
 }
 
