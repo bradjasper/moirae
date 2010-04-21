@@ -21,46 +21,39 @@
 #include <sys/wait.h>
 #include <signal.h>
 
+#include "parser.c"
+#include "router.c"
+
 #define PORT "1357"  // the port users will be connecting to
 
 #define BACKLOG 10	 // how many pending connections queue will hold
-
-void sigchld_handler(int s)
-{
-	while(waitpid(-1, NULL, WNOHANG) > 0);
-}
-
-// get sockaddr, IPv4 or IPv6:
-void *get_in_addr(struct sockaddr *sa)
-{
-	if (sa->sa_family == AF_INET) {
-		return &(((struct sockaddr_in*)sa)->sin_addr);
-	}
-
-	return &(((struct sockaddr_in6*)sa)->sin6_addr);
-}
-
 
 
 int main(int argc, char *argv[])
 {
 	//check for correct number of arguments received from command line
 	//there should be 4 arguments
-	if (argc < 4) {
+	if (argc < 5) {
 		fprintf(stderr,"usage: missing arguments\n");
 		exit(1);
 	}
-	else if(argc > 4) {
+	else if(argc > 5) {
 		fprintf(stderr,"usage: too many arguments\n");
 		exit(1);
 	}
 
 	
 	//parse the network structure information from the file
-	int numNodes = ; //call to parser.c
-	node * arrayNodes = ; //call to parser.c
+	struct node * topology = parse(argv[1]);
+	int numNodes = (topology[0]).arr_length;
+	int j;
+	for(j=0; j<(10); j++)
+	{
+		print_node(&topology[j]);
+	}
 	
 	
+	/*
 	int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
 	struct addrinfo hints, *servinfo, *p;
 	struct sockaddr_storage their_addr; // connector's address information
@@ -159,7 +152,7 @@ int main(int argc, char *argv[])
 		}
 		close(new_fd);  // parent doesn't need this
 	}
-	
+	*/
 
 	
 	return 0;
