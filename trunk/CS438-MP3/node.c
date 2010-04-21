@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <string.h>
 
+
 struct node {
 	int node_num;
 	int arr_length;
@@ -18,6 +19,8 @@ struct node {
     int *costs;
     int *ports;
 } node;
+
+
 
 /**
  *  PARAM: 	node - id of the source node to create
@@ -58,26 +61,15 @@ struct node *initNode(int node, int arr_l, int cur_i,
 
 }
 
-/**
- *	 PARAM:	n - pointer to a node struct
- * 			dest - int to find in n
- *	RETURN: int - 1 if dest exists in n->destin;
- *			else 0
- * 	  FUNC: Determines if dest exists in the destin
- *			array of n
- */
-int existsInDestin(struct node *n, int dest)
+
+void addNode(struct node * topology, int src, int dest, int cost)
 {
-	int *destins = n->destin;
-	int len = n->arr_length;
-	int i;
-	for (i=0; i<len; i++)
-	{
-		if (destins[i] == dest)
-			return 1;
-	}
-	return 0;
+	int item = (topology[src]).curr_index;
+	(topology[src]).destin[item] = dest;	
+	(topology[src]).costs[item] = cost;
+	(topology[src]).curr_index ++;
 }
+
 
 /**
  *  PARAM:  *n - pointer to a node
@@ -94,13 +86,14 @@ void print_node(struct node * n)
 	}
 
 	printf("Node: %d\n", n->node_num);
-	printf("Destination Node, Cost\n");
+	printf("Src\tDest\tCost\n");
 
 	int i;
-	for(i=0; i<n->arr_length; i++)
+	for(i=0; i < n->arr_length; i++)
 	{
-		printf("%d, %d\n", n->destin[i], n->costs[i]);
+		if((n->destin[i] != -1) && (n->costs[i] != -1)) {
+			printf("%d\t%d\t%d\n", n->node_num, n->destin[i], n->costs[i]);
+		}
 	}
 
 }
-

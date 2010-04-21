@@ -13,12 +13,17 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-
 #include <arpa/inet.h>
 
 #define PORT "1357" // the port client will be connecting to 
 
 #define MAXDATASIZE 100 // max number of bytes we can get at once 
+ 
+ 
+void sigchld_handler(int s)
+{
+	while(waitpid(-1, NULL, WNOHANG) > 0);
+}
  
 // get sockaddr, IPv4 or IPv6:
 void *get_in_addr(struct sockaddr *sa)
@@ -32,7 +37,7 @@ void *get_in_addr(struct sockaddr *sa)
 
 
 
-void executeRouter()
+int executeRouter()
 {
 	int sockfd, numbytes;  
 	char buf[MAXDATASIZE];
@@ -86,11 +91,9 @@ void executeRouter()
 
 	freeaddrinfo(servinfo); // all done with this structure
 	
-//needs work here
-	if ((numbytes = sendto(sockfd, &portNum, sizeof(portNum), 0,
-			 (struct sockaddr *) &their_addr, p->ai_addrlen)) == -1) {
-		perror("server: sendto error\n");
-		exit(1);
+	if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
+	    perror("recv");
+	    exit(1);
 	}
 
 	buf[numbytes] = '\0';
@@ -102,10 +105,4 @@ void executeRouter()
 	return 0;
 	
 }
-
-
-
-
-
-
 
