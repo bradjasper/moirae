@@ -3,7 +3,7 @@
  *
  * Part of code as copied from Beej's tutorial example
  */
-
+/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -14,6 +14,9 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+*/
+
+#include "mp3.h"
 
 #define PORT "2468" // the port client will be connecting to 
 

@@ -1,11 +1,11 @@
 CC = gcc
 CCOPTS = -Wall
-LIBS = -lpthread
+LIBS = -lpthread 
 
 all: manager
 
-manager: manager.c parser.c node.c router.c
-	$(CC) $(CCOPTS) -g -o $@ $< $(LIBS)
+manager: manager.c 
+	$(CC) $(CCOPTS) -g -o $@ $< parser.c node.c router.c $(LIBS)
 
 
 clean:
