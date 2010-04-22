@@ -48,7 +48,11 @@ struct node *initNode(int node, int arr_l, int cur_i,
 
 }
 
-
+/**
+ *  PARAM:  
+ * RETURN:  
+ *   FUNC:	
+ */
 void addNode(struct node * topology, int src, int dest, int cost)
 {
 	int item = (topology[src]).curr_index;
@@ -57,7 +61,11 @@ void addNode(struct node * topology, int src, int dest, int cost)
 	(topology[src]).curr_index ++;
 }
 
-
+/**
+ *  PARAM:  
+ * RETURN:  
+ *   FUNC:	
+ */
 void assignPorts(struct node * topology, int src, int port)
 {
 	int len = (topology[0]).arr_length;
