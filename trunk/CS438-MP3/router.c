@@ -108,7 +108,7 @@ int executeRouter()
 	    exit(1);
 	}
 
-	struct node * connectTable = buf;
+	struct node * connectTable = (void*)buf;
 
 	printf("router: received '%d'\n", connectTable->node_num);
 
