@@ -47,11 +47,14 @@ struct node *initNode(int node, int arr_l, int cur_i,
 	n->costs = malloc(arr_l * sizeof(int));
 	n->costs[0] = cost;
 	
+	n->ports = malloc(arr_l * sizeof(int));
+	
 	int j;
 	for(j=0; j<arr_l; j++)
 	{
 		n->destin[j] = -1;
 		n->costs[j] = -1;
+		n->ports[j] = -1;
 	}
 
 	n->costs[0] = cost;
@@ -79,9 +82,8 @@ void assignPorts(struct node * topology, int src, int port)
 	for(i = 0; i < len; i++){
 		num =(topology[i]).curr_index;
 		for(k = 0; k < num; k++) {
-			
-		//	if((topology[i]).destin[k] == src)
-		//		(topology[i]).ports[k] = port;
+			if((topology[i]).destin[k] == src)
+				(topology[i]).ports[k] = port;
 		}
 	}
 }
@@ -102,13 +104,13 @@ void print_node(struct node * n)
 	}
 
 	printf("Node: %d\n", n->node_num);
-	printf("Src\tDest\tCost\n");
+	printf("Src\tDest\tCost\tPort\n");
 
 	int i;
 	for(i=0; i < n->arr_length; i++)
 	{
 		if((n->destin[i] != -1) && (n->costs[i] != -1)) {
-			printf("%d\t%d\t%d\n", n->node_num, n->destin[i], n->costs[i]);
+			printf("%d\t%d\t%d\t%d\n", n->node_num, n->destin[i], n->costs[i], n->ports[i]);
 		}
 	}
 
