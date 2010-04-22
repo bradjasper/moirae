@@ -17,7 +17,7 @@
 
 #define PORT "2468" // the port client will be connecting to 
 
-#define MAXDATASIZE 100 // max number of bytes we can get at once 
+#define MAXDATASIZE 1000 // max number of bytes we can get at once 
  
  
 void sigchld_handler(int s)
@@ -99,14 +99,15 @@ int executeRouter()
 		exit(1);
 	}
 	
+	
 	if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
 	    perror("router: recv");
 	    exit(1);
 	}
 
-	buf[numbytes] = '\0';
+	struct node * connectTable = buf;
 
-	printf("router: received '%s'\n",buf);
+	printf("router: received '%d'\n", connectTable->node_num);
 
 	close(sockfd);
 	exit(0);
