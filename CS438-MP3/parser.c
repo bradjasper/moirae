@@ -12,25 +12,6 @@
  * RETURN:
  *   FUNC:
  */
-int get_num_lines(FILE * file)
-{
-	rewind(file);
-	int num_lines = 1;
-	char num[10];
-	fscanf(file, "%s", num);
-
-	while (!feof(file))
-	{
-		fscanf(file, "%s", num);
-		fscanf(file, "%s", num);
-		fscanf(file, "%s", num);
-		num_lines++;
-	}
-	rewind(file);
-	return num_lines;
-}
-
-
 struct node *parse(char * file)
 {
 	// open file for reading
@@ -40,9 +21,6 @@ struct node *parse(char * file)
 		printf("parser: file open error\n");
 		exit(1);
 	}
-
-	// get number of lines
-	int num_lines = get_num_lines(fp);
 
 	// get number of nodes
 	char c_num_nodes[10];
