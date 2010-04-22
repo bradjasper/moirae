@@ -24,9 +24,10 @@
 #include "parser.c"
 #include "router.c"
 
-#define PORT "1357"  // the port users will be connecting to
+#define PORT "2468"  // the port users will be connecting to
 
 #define BACKLOG 10	 // how many pending connections queue will hold
+#define MAXDATASIZE 100
 
 
 int main(int argc, char *argv[])
@@ -53,7 +54,6 @@ int main(int argc, char *argv[])
 	}
 	
 	
-	/*
 	int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
 	struct addrinfo hints, *servinfo, *p;
 	struct sockaddr_storage their_addr; // connector's address information
@@ -62,6 +62,8 @@ int main(int argc, char *argv[])
 	int yes = 1;
 	char s[INET6_ADDRSTRLEN];
 	int rv;
+	int numbytes;
+	char buf[MAXDATASIZE];
 
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
@@ -119,17 +121,15 @@ int main(int argc, char *argv[])
 	
 	//spawn a new process for each router
 	int i = 0;
-
-	while(1) {  // main accept() loop
-	
-		if(i < numNodes){
-			if (!fork()) 
+	for(i = 0; i < numNodes; i++) {
+		if (!fork()) 
 			{ // this is the child router process
 				executeRouter();
 			}
-			i++;
-		}
-	
+	}
+
+	// main accept() loop
+	for (i = 0; i < numNodes; i++){
 		sin_size = sizeof their_addr;
 		new_fd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size);
 		if (new_fd == -1) {
@@ -142,17 +142,26 @@ int main(int argc, char *argv[])
 			s, sizeof s);
 		printf("manager: got connection from %s\n", s);
 
-		if (!fork()) { // this is the child process
-//needs work here
-			close(sockfd); // child doesn't need the listener
+		//if (!fork()) { // this is the child process
+		//	close(sockfd); // child doesn't need the listener
+			
+			if ((numbytes = recv(new_fd, buf, MAXDATASIZE-1, 0)) == -1) {
+				perror("router: recv");
+				exit(1);
+			}
+			buf[numbytes] = '\0';
+			printf("manager: received '%s'\n",buf);
+			assignPorts(topology, i, atoi(buf));
+			
 			if (send(new_fd, "Hello, world!", 13, 0) == -1)
 				perror("manager: send");
-			close(new_fd);
-			exit(0);
-		}
+				
+		//	close(new_fd);
+		//	exit(0);
+		//}
 		close(new_fd);  // parent doesn't need this
 	}
-	*/
+	
 
 	
 	return 0;

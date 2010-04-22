@@ -15,7 +15,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-#define PORT "1357" // the port client will be connecting to 
+#define PORT "2468" // the port client will be connecting to 
 
 #define MAXDATASIZE 100 // max number of bytes we can get at once 
  
@@ -91,8 +91,16 @@ int executeRouter()
 
 	freeaddrinfo(servinfo); // all done with this structure
 	
+	char port[4];
+	sprintf(port, "%d", getpid()%4096);
+	
+	if (send(sockfd, port, sizeof(port), 0) == -1) {
+		perror("router: send");
+		exit(1);
+	}
+	
 	if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
-	    perror("recv");
+	    perror("router: recv");
 	    exit(1);
 	}
 
@@ -101,6 +109,7 @@ int executeRouter()
 	printf("router: received '%s'\n",buf);
 
 	close(sockfd);
+	exit(0);
 
 	return 0;
 	

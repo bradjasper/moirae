@@ -71,6 +71,22 @@ void addNode(struct node * topology, int src, int dest, int cost)
 }
 
 
+void assignPorts(struct node * topology, int src, int port)
+{
+	int len = (topology[0]).arr_length;
+	int i, k;
+	int num = 0;
+	for(i = 0; i < len; i++){
+		num =(topology[i]).curr_index;
+		for(k = 0; k < num; k++) {
+			
+		//	if((topology[i]).destin[k] == src)
+		//		(topology[i]).ports[k] = port;
+		}
+	}
+}
+
+
 /**
  *  PARAM:  *n - pointer to a node
  * RETURN:  nothing
