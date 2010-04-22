@@ -4,23 +4,7 @@
  * Variables and functions representing a node
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <string.h>
-
-
-struct node {
-	int node_num;
-	int arr_length;
-    int curr_index;
-	int *destin;
-    int *costs;
-    int *ports;
-} node;
-
-
+#include "mp3.h"
 
 /**
  *  PARAM: 	node - id of the source node to create

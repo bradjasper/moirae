@@ -8,6 +8,7 @@
  *
  */
 
+/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -23,6 +24,8 @@
 
 #include "parser.c"
 #include "router.c"
+*/
+#include "mp3.h"
 
 #define PORT "2468"  // the port users will be connecting to
 
