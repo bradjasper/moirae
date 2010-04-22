@@ -17,6 +17,24 @@
 #include <sys/wait.h>
 #include <signal.h>
 
+// lsrouting.c
+typedef struct {
+	int neighor;
+	int cost;
+} vector;
+
+typedef struct {
+	int creator_id;
+	vector * neighbors;
+	int seq_num;
+	int ttl;
+} lsp;
+
+lsp * initLsp(int maker, int sequence, int lifetime);
+vector * initVector(int nearby, int price);
+
+void freeLsp(lsp * packet);
+
 // parser.c
 int get_num_lines(FILE * file);
 
