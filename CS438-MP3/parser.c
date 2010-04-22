@@ -14,23 +14,6 @@
 #include "node.c"
 
 
-
-/**
- *  PARAM: 	file - FILE * to the file being read
- * RETURN: 	char * of the first line of file
- *   FUNC:	Given the first input file, gets and returns
- *			the number of nodes for it.
- */
-char * get_num_nodes(FILE * file)
-{
-	char *line = NULL;
- 	fscanf(file, "%s", line);
-
-	return line;
-}
-
-
-
 /**
  *  PARAM:
  * RETURN:
@@ -40,7 +23,7 @@ int get_num_lines(FILE * file)
 {
 	rewind(file);
 	int num_lines = 1;
-	char *num = NULL;
+	char num[10];
 	fscanf(file, "%s", num);
 
 	while (!feof(file))
@@ -69,7 +52,8 @@ struct node *parse(char * file)
 	int num_lines = get_num_lines(fp);
 
 	// get number of nodes
-	char *c_num_nodes = get_num_nodes(fp);	
+	char c_num_nodes[10];
+	fscanf(fp, "%s", c_num_nodes);
 	int num_nodes = atoi((char*)&c_num_nodes);
 	
 	// for each node, make a node struct
@@ -77,13 +61,13 @@ struct node *parse(char * file)
 	int j;
 	for(j=0; j<(num_nodes); j++)
 	{
-		struct node * n = initNode(j, num_lines, 0, 0, 0);
+		struct node * n = initNode(j, num_nodes, 0, 0, 0);
 		topology[j] = *n;
 	}
 
-	char *c_src = NULL;
-	char *c_dest = NULL;
-	char *c_cost = NULL;
+	char c_src[10];
+	char c_dest[10];
+	char c_cost[10];
 	int src, dest, cost;
 	while (!feof(fp))
 	{
