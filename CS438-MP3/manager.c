@@ -162,7 +162,10 @@ int main(int argc, char *argv[])
 		close(new_fd);  // parent doesn't need this
 	}
 	
-
+	for(j=0; j<(10); j++)
+	{
+		print_node(&topology[j]);
+	}
 	
 	return 0;
 }
