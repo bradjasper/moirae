@@ -40,7 +40,7 @@ void *get_in_addr(struct sockaddr *sa)
 
 
 
-int executeRouter()
+int executeRouter(char * ptcl)
 {
 	int sockfd, numbytes;  
 	char buf[MAXDATASIZE];
@@ -54,6 +54,8 @@ int executeRouter()
 	
 	char * hostname;
 	int len;
+	int protocol = 0;
+	sscanf(ptcl, "%d", &protocol);
 	
 	//get address of the current machine
 	if(gethostname(hostname, len) != 0) {
@@ -97,20 +99,33 @@ int executeRouter()
 	char port[4];
 	sprintf(port, "%d", getpid()%4096);
 	
+	//send port number to manager process
 	if (send(sockfd, port, sizeof(port), 0) == -1) {
 		perror("router: send");
 		exit(1);
 	}
 	
-	
+	//receive ID and connections table assigned to the node
 	if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
 	    perror("router: recv");
 	    exit(1);
 	}
 
 	struct node * connectTable = (void*)buf;
-
 	printf("router: received '%d'\n", connectTable->node_num);
+	
+	//execute protocol chosen by user
+	if(protocol == 1) {
+		//execute link state protocol here
+	}
+	else if (protocol == 2) {
+		//dvRouting(connectTable);
+	}
+	else {
+		printf("Abort: specified number doesn't correspond to any protocol execution (1 for link state, 2 for distance vector). Please try again later\n");
+	}
+	
+	
 
 	close(sockfd);
 	exit(0);

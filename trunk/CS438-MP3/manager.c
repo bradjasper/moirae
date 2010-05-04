@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 
 	
 	//parse the network structure information from the file
-	struct node * topology = parse(argv[1]);
+	struct node * topology = parse(argv[2]);
 	int numNodes = (topology[0]).arr_length;
 	int j;
 	
@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
 	for(i = 0; i < numNodes; i++) {
 		if (!fork()) 
 			{ // this is the child router process
-				executeRouter();
+				executeRouter(argv[1]);
 			}
 	}
 
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
 		assignPorts(topology, i, atoi(buf));
 	}
 	
-	for(j=0; j<(10); j++)
+	for(j=0; j<numNodes; j++)
 	{
 		print_node(&topology[j]);
 	}
