@@ -23,13 +23,14 @@
 
 // lsrouting.c
 typedef struct {
-	int neighor;
+	int neighbor;
 	int cost;
 } vector;
 
 typedef struct {
 	int creator_id;
 	vector * neighbors;
+	int num_neighbors;
 	int seq_num;
 	int ttl;
 } lsp;
