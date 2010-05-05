@@ -20,33 +20,6 @@
 #include <stdio_ext.h>
 
 
-
-// lsrouting.c
-typedef struct {
-	int neighbor;
-	int cost;
-} vector;
-
-typedef struct {
-	int creator_id;
-	vector * neighbors;
-	int num_neighbors;
-	int seq_num;
-	int ttl;
-} lsp;
-
-lsp * initLsp(int maker, int sequence, int lifetime);
-vector * initVector(int nearby, int price);
-
-void freeLsp(lsp * packet);
-
-
-// parser.c
-int get_num_lines(FILE * file);
-
-struct node *parse(char * file);
-
-
 // node.c
 struct node {
 	int node_num;	//node ID
@@ -66,6 +39,32 @@ void assignPorts(struct node * topology, int src, int port);
 
 void print_node(struct node * n);
 
+// lsrouting.c
+typedef struct {
+	int neighbor;	// neighbor node id
+	int cost;		// cost to reach neighbor
+	int port;		// neighbor's port number
+} vector;
+
+typedef struct {
+	int creator_id;		// source node id
+	vector * neighbors;	// array of vectors for neighbors
+	int num_neighbors;	// array length
+	int seq_num;		// number of hops for this packet
+	int ttl;			// packet's time to live
+} lsp;
+
+lsp * initLsp(struct node * maker, int sequence, int lifetime);
+vector * initVector(int nearby, int price, int port_num);
+
+void freeLsp(lsp * packet);
+
+void lsRouting(struct node * a_node);
+
+// parser.c
+int get_num_lines(FILE * file);
+
+struct node *parse(char * file);
 
 // router.c
 void sigchld_handler(int s);

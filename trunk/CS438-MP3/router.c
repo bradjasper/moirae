@@ -101,10 +101,11 @@ int executeRouter(char * ptcl)
 	struct node * connectTable;
 	connectTable = (struct node *) buf;
 	printf("router: received '%d'\n", connectTable->node_num);
+	print_node(connectTable);
 	
 	//execute protocol chosen by user
 	if(!strncmp(ptcl, "1", 1)) {
-		//execute link state protocol here
+		lsRouting(connectTable);
 	}
 	else if (!strncmp(ptcl, "2", 1)) {
 		dvRouting(connectTable);
