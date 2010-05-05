@@ -135,11 +135,11 @@
  //**************************************************************
  void dvRouting(struct node * connectTable)
  {
-	char * hostname;
-	int len;
+	char hostname[32];
+	int len = 32;
 	
 	if(gethostname(hostname, len) != 0) {
-		fprintf(stderr, "router: gethostname error\n");
+		perror("router: gethostname error\n");
 		return;
 	}
  

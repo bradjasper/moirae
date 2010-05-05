@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 	}
 
 	printf("manager: waiting for connections...\n");
-	
+
 	//spawn a new process for each router
 	int i = 0;
 	for(i = 0; i < numNodes; i++) {
@@ -104,6 +104,7 @@ int main(int argc, char *argv[])
 			}
 	}
 
+	//TODO: what does this do?
 	int sockArray[numNodes];
 	for (i = 0; i < numNodes; i++){
 		sin_size = sizeof their_addr;
