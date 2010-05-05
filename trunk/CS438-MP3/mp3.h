@@ -50,10 +50,10 @@ struct node *parse(char * file);
 struct node {
 	int node_num;	//node ID
 	int arr_length;	//number of nodes on the network
-    int curr_index;	//number of neighbors 
+	int curr_index;	//number of neighbors 
 	int *destin;	//list of neighbors
-    int *costs;		//list of link costs
-    int *ports;		//list of port number for each neighbor
+    	int *costs;	//list of link costs
+    	int *ports;	//list of port number for each neighbor
 } node;
 
 struct node *initNode(int node, int arr_l, int cur_i,
