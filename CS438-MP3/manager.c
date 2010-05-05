@@ -20,15 +20,10 @@ int main(int argc, char *argv[])
 {
 	//check for correct number of arguments received from command line
 	//there should be 4 arguments
-	if (argc < 5) {
-		fprintf(stderr,"usage: missing arguments\n");
+	if (argc != 5) {
+		fprintf(stderr,"usage: <protocol> <topology file> <source file> <update file>\n");
 		exit(1);
 	}
-	else if(argc > 5) {
-		fprintf(stderr,"usage: too many arguments\n");
-		exit(1);
-	}
-
 	
 	//parse the network structure information from the file
 	struct node * topology = parse(argv[2]);
