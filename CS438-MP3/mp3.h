@@ -54,12 +54,22 @@ typedef struct {
 	int ttl;			// packet's time to live
 } lsp;
 
+typedef struct {
+	int source_id;
+	int num_packets;
+	lsp * known_packets;
+} lsRoutingTable;
+
+lsRoutingTable * initLsRoutingTable(lsp * packet);
 lsp * initLsp(struct node * maker, int sequence, int lifetime);
 vector * initVector(int nearby, int price, int port_num);
 
 void freeLsp(lsp * packet);
+void freeLsRoutingTable(lsRoutingTable * lsrt);
 
 void lsRouting(struct node * a_node);
+
+void print_ls_table(lsRoutingTable * lsrt);
 
 // parser.c
 int get_num_lines(FILE * file);
