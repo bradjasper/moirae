@@ -53,6 +53,13 @@ struct node *parse(char * file)
 		addNode(topology, src, dest, cost);
 		addNode(topology, dest, src, cost);
 	}
+	
+	int port = 3278;
+	for(j=0; j<(num_nodes); j++)
+	{
+		assignPorts(topology, j, port);
+		port++;
+	}
 
 	return topology;
 }

@@ -3,23 +3,10 @@
  *
  * Part of code as copied from Beej's tutorial example
  */
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <string.h>
-#include <netdb.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-*/
 
 #include "mp3.h"
 
 #define PORT "2468" // the port client will be connecting to 
-
 #define MAXDATASIZE 1000 // max number of bytes we can get at once 
  
  
@@ -92,7 +79,7 @@ int executeRouter(char * ptcl)
 
 	inet_ntop(p->ai_family, get_in_addr((struct sockaddr *)p->ai_addr),
 			s, sizeof s);
-	printf("router: connecting to %s\n", s);
+	//printf("router: connecting to %s\n", s);
 
 	freeaddrinfo(servinfo); // all done with this structure
 	
@@ -111,20 +98,20 @@ int executeRouter(char * ptcl)
 	    exit(1);
 	}
 
-	struct node * connectTable = (void*)buf;
+	struct node * connectTable;
+	connectTable = (struct node *) buf;
 	printf("router: received '%d'\n", connectTable->node_num);
 	
 	//execute protocol chosen by user
-	if(protocol == 1) {
+	if(!strncmp(ptcl, "1", 1)) {
 		//execute link state protocol here
 	}
-	else if (protocol == 2) {
-		//dvRouting(connectTable);
+	else if (!strncmp(ptcl, "2", 1)) {
+		dvRouting(connectTable);
 	}
 	else {
 		printf("Abort: specified number doesn't correspond to any protocol execution (1 for link state, 2 for distance vector). Please try again later\n");
 	}
-	
 	
 
 	close(sockfd);

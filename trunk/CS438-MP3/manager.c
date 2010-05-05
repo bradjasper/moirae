@@ -8,23 +8,6 @@
  *
  */
 
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <arpa/inet.h>
-#include <sys/wait.h>
-#include <signal.h>
-
-#include "parser.c"
-#include "router.c"
-*/
 #include "mp3.h"
 
 #define PORT "2468"  // the port users will be connecting to
@@ -50,7 +33,6 @@ int main(int argc, char *argv[])
 	//parse the network structure information from the file
 	struct node * topology = parse(argv[2]);
 	int numNodes = (topology[0]).arr_length;
-	int j;
 	
 	
 	int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
@@ -142,24 +124,19 @@ int main(int argc, char *argv[])
 		inet_ntop(their_addr.ss_family,
 			get_in_addr((struct sockaddr *)&their_addr),
 			s, sizeof s);
-		printf("manager: got connection from %s\n", s);
+		//printf("manager: got connection from %s\n", s);
 
 		if ((numbytes = recv(new_fd, buf, MAXDATASIZE-1, 0)) == -1) {
 			perror("router: recv");
 			exit(1);
 		}
 		buf[numbytes] = '\0';
-		assignPorts(topology, i, atoi(buf));
+		//assignPorts(topology, i, atoi(buf));
 	}
 	
-	for(j=0; j<numNodes; j++)
-	{
-		print_node(&topology[j]);
-	}
 	
 	for (i = 0; i < numNodes; i++){
 		new_fd = sockArray[i];
-
 		if (send(new_fd, (&topology[i]), sizeof(node), 0) == -1)
 			perror("manager: send");
 

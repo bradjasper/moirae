@@ -31,7 +31,7 @@ struct node *initNode(int node, int arr_l, int cur_i,
 	n->costs = malloc(arr_l * sizeof(int));
 	n->costs[0] = cost;
 	
-	n->ports = malloc(arr_l * sizeof(int));
+	n->ports = malloc(arr_l * 6 * sizeof(int));
 	
 	int j;
 	for(j=0; j<arr_l; j++)
