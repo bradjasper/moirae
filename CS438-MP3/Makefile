@@ -5,7 +5,7 @@ LIBS = -lpthread
 all: manager
 
 manager: manager.c 
-	$(CC) $(CCOPTS) -g -o $@ $< parser.c node.c router.c $(LIBS)
+	$(CC) $(CCOPTS) -g -o $@ $< parser.c node.c router.c dvrouting.c $(LIBS)
 
 
 clean:
