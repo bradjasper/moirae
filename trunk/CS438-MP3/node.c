@@ -69,7 +69,7 @@ void addNode(struct node * topology, int src, int dest, int cost)
 void assignPorts(struct node * topology, int src, int port)
 {
 	int len = (topology[0]).arr_length;
-	topology[src].port = port;
+	//topology[src].port = port;
 	int i, k;
 	int num = 0;
 	for(i = 0; i < len; i++){
