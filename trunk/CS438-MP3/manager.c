@@ -10,7 +10,7 @@
 
 #include "mp3.h"
 
-#define PORT "2468"  // the port users will be connecting to
+#define PORT "3577"  // the port users will be connecting to
 
 #define BACKLOG 10	 // how many pending connections queue will hold
 #define MAXDATASIZE 100
@@ -49,8 +49,8 @@ int main(int argc, char *argv[])
 	if ((rv = getaddrinfo(NULL, PORT, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "manager: getaddrinfo error: %s\n", gai_strerror(rv));
 		return 1;
-	}
-
+	}	
+	
 	// loop through all the results and bind to the first we can
 	for(p = servinfo; p != NULL; p = p->ai_next) {
 		if ((sockfd = socket(p->ai_family, p->ai_socktype,
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 			perror("manager: socket");
 			continue;
 		}
-
+	
 		if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes,
 				sizeof(int)) == -1) {
 			perror("manager: setsockopt");
