@@ -6,7 +6,7 @@
 
 #include "mp3.h"
 
-#define PORT "2468" // the port client will be connecting to 
+#define PORT "3577" // the port client will be connecting to 
 #define MAXDATASIZE 1000 // max number of bytes we can get at once 
  
  
@@ -34,6 +34,7 @@ int executeRouter(char * ptcl)
 	struct addrinfo hints, *servinfo, *p;
 	int rv;
 	char s[INET6_ADDRSTRLEN];
+	int yes = 1;
 
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
@@ -61,6 +62,12 @@ int executeRouter(char * ptcl)
 				p->ai_protocol)) == -1) {
 			perror("router: socket");
 			continue;
+		}
+		
+		if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes,
+				sizeof(int)) == -1) {
+			perror("manager: setsockopt");
+			exit(1);
 		}
 
 		if (connect(sockfd, p->ai_addr, p->ai_addrlen) == -1) {

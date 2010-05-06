@@ -17,9 +17,6 @@
 #include <sys/wait.h>
 #include <signal.h>
 
-#include <stdio_ext.h>
-
-
 // node.c
 struct node {
 	int node_num;	//node ID
