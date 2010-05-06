@@ -2,6 +2,13 @@
  * dvrouting.c
  *
  * Distance Vector Routing
+ * 
+ * The file contains functions for executing distance vector routing.
+ * The routing intializes routing table, established UDP connections
+ * with other routers on the network and exchange network updates
+ * between each other until all nodes have the most up-to-date info.
+ *
+ * The distance vector implementation is not finished.
  */
 
  #include "mp3.h"
@@ -11,6 +18,13 @@
  
  int seqNum = 0;
  
+ //**************************************************************
+ //prints out the information contained in DV routing table:
+ //current node ID,
+ //number of nodes on the network,
+ //number of neighbors,
+ //next hops to the destination,
+ //link costs to reach the destination
  //**************************************************************
  void printRoutingTable(dvRoutingTable * table)
  {
@@ -25,6 +39,9 @@
 	}
  }
 
+ //**************************************************************
+ //initializes routing table
+ //sets unknown values to -1
  //**************************************************************
  dvRoutingTable * initDVroutingTable(struct node * connectTable)
  {
@@ -51,6 +68,12 @@
  }
  
  //**************************************************************
+ //initializes distance vector packet based on the type of message
+ //type 1 is an network routing table update message that contains
+ //another node routing table that is to be used to update current
+ //node routing table
+ //type 2 is a data message
+ //***************************************************************
  dv * initDVpacket(struct node * connectTable, dvRoutingTable * table, int type, int des, int seq)
  {
 	dv * packet = malloc(sizeof(dv));
@@ -74,6 +97,9 @@
 	return packet;
  }
  
+ //**************************************************************
+ //establishes connections between routers
+ //creates sockets and sends update messages
  //**************************************************************
  void updateExchange(dvRoutingTable * table, struct node * connectTable, char * hostname)
  {
@@ -142,6 +168,8 @@
  }
  
  
+ //**************************************************************
+ //creates listening socket and receives update messages
  //**************************************************************
  void receiveUpdate(dvRoutingTable * table, struct node * connectTable, char * hostname)
  {
@@ -218,6 +246,8 @@
  }
  
  
+ //**************************************************************
+ //main distance vector execution function that calls other routines
  //**************************************************************
  void dvRouting(struct node * connectTable)
  {

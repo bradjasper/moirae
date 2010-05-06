@@ -1,6 +1,10 @@
 /** 
  * router.c
  *
+ * the file contains router execution routines
+ * establishes connection to the manager
+ * calls on protocol routines based on user selection
+ *
  * Part of code as copied from Beej's tutorial example
  */
 
