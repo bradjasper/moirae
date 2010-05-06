@@ -17,14 +17,41 @@
 #include <sys/wait.h>
 #include <signal.h>
 
+
+// lsrouting.c
+typedef struct {
+	int neighor;
+	int cost;
+} vector;
+
+typedef struct {
+	int creator_id;
+	vector * neighbors;
+	int seq_num;
+	int ttl;
+} lsp;
+
+lsp * initLsp(int maker, int sequence, int lifetime);
+vector * initVector(int nearby, int price);
+
+void freeLsp(lsp * packet);
+
+
+// parser.c
+int get_num_lines(FILE * file);
+
+struct node *parse(char * file);
+
+
 // node.c
 struct node {
 	int node_num;	//node ID
 	int arr_length;	//number of nodes on the network
-	int curr_index;	//number of neighbors 
+    int curr_index;	//number of neighbors 
+	int port;
 	int *destin;	//list of neighbors
-    int *costs;	//list of link costs
-    int *ports;	//list of port number for each neighbor
+    int *costs;		//list of link costs
+    int *ports;		//list of port number for each neighbor
 } node;
 
 struct node *initNode(int node, int arr_l, int cur_i,
@@ -36,42 +63,6 @@ void assignPorts(struct node * topology, int src, int port);
 
 void print_node(struct node * n);
 
-// lsrouting.c
-typedef struct {
-	int neighbor;	// neighbor node id
-	int cost;		// cost to reach neighbor
-	int port;		// neighbor's port number
-} vector;
-
-typedef struct {
-	int creator_id;		// source node id
-	vector * neighbors;	// array of vectors for neighbors
-	int num_neighbors;	// array length
-	int seq_num;		// number of hops for this packet
-	int ttl;			// packet's time to live
-} lsp;
-
-typedef struct {
-	int source_id;
-	int num_packets;
-	lsp * known_packets;
-} lsRoutingTable;
-
-lsRoutingTable * initLsRoutingTable(lsp * packet);
-lsp * initLsp(struct node * maker, int sequence, int lifetime);
-vector * initVector(int nearby, int price, int port_num);
-
-void freeLsp(lsp * packet);
-void freeLsRoutingTable(lsRoutingTable * lsrt);
-
-void lsRouting(struct node * a_node);
-
-void print_ls_table(lsRoutingTable * lsrt);
-
-// parser.c
-int get_num_lines(FILE * file);
-
-struct node *parse(char * file);
 
 // router.c
 void sigchld_handler(int s);
