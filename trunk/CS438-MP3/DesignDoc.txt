@@ -1,0 +1,151 @@
+Nadia Tkach (ntkach2)
+Joseph Subida (jsubida2)
+
+***********************************************************
+Design
+***********************************************************
+
+			node.c
+
+node.c represents a router. It contains the following
+functions:
+
+struct node *initNode(int node, int arr_l, int cur_i,
+			int dest, int cost);
+void addNode(struct node * topology, int src, int dest, int cost);
+void assignPorts(struct node * topology, int src, int port);
+void print_node(struct node * n);
+
+
+			lsrouting.c
+
+lsrouting.c represents the functionality for the link state
+protocol. It contains the following functions:
+
+lsRoutingTable initLsRoutingTable(lsp * packet);
+lsp * initLsp(int maker, int sequence, int lifetime);
+vector * initVector(int nearby, int price);
+void freeLsp(lsp * packet);
+void lsSend(lsp * packet, int port);
+void lsReceive(int port);
+void print_ls_table(lsRoutingTable * lsrt);
+
+
+			parser.c
+
+parser.c handles parsing the input files accordingly. It 
+contains the following functions:
+
+int get_num_lines(FILE * file);
+struct node *parse(char * file);
+
+
+			router.c
+
+router.c is like a node except that it handles forwarding
+of messages. It contains the following functions:
+
+void sigchld_handler(int s);
+void *get_in_addr(struct sockaddr *sa);
+int executeRouter();
+
+
+			dvrouting.c
+
+dvrouting.c represnts the functionality for the distance
+vector protocol. It contains the following functions:
+
+void printRoutingTable(dvRoutingTable * table);
+dvRoutingTable * initDVroutingTable(struct node * connectTable);
+dv * initDVpacket(struct node * connectTable, dvRoutingTable * table, 
+			int type, int des, int seq);
+void updateExchange(dvRoutingTable * table, struct node * connectTable, 
+			char * hostname);
+void dvRouting(struct node * connectTable);
+
+
+			manager.c
+
+manager.c contains the main() function. It is the program 
+that is run.
+
+
+***********************************************************
+Implementation
+***********************************************************
+
+
+1. upon launching, the program first parses the first file
+2. it then proceeds to create a node structure for each 
+	node in the file
+3. after, the program forks a process for each node
+4. within each process, the specified protocol (1 for 
+	link state; 2 for distance vector) is run given the
+	node structure created in step 2. 
+5. each protocol builds the routing table accordingly
+6. the routing table is output to the screen
+
+
+***********************************************************
+Data Structures
+***********************************************************
+
+
+struct node {
+	int node_num;	//node ID
+	int arr_length;	//number of nodes on the network
+	int curr_index;	//number of neighbors 
+	int *destin;	//list of neighbors
+	int *costs;	//list of link costs
+	int *ports;	//list of port number for each neighbor
+} node;
+
+
+typedef struct {
+	int neighor;
+	int cost;
+} vector;
+
+
+typedef struct {
+	int creator_id;		// source node id
+	vector * neighbors;	// array of vectors for neighbors
+	int num_neighbors;	// array length
+	int seq_num;		// number of hops for this packet
+	int ttl;		// packet's time to live
+} lsp;
+
+
+typedef struct {
+        int source_id;
+        int num_packets;
+        lsp * known_packets;
+} lsRoutingTable; 
+
+
+typedef struct {
+	int nodeID;
+	int numNodes;
+	int numNeighbors;
+	int * nextHop;
+	int * linkCost;
+} dvRoutingTable; //routing table at each node
+
+
+typedef struct {
+	int type;		//type of message: 1 for network update, 2 for data
+	int source;
+	int dest;		//-1 for network update, nodeID for data packet destination
+	int seq_num;
+	int ttl;
+	int * path;		//path traversed
+	void * data;		//dvRoutingTable* for network update, char* for data
+} dv; //packet format
+
+
+***********************************************************
+Acknowledgements
+***********************************************************
+
+- most of our networking code is from Beej's Guide:
+http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html#datagram
