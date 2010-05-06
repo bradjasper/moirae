@@ -10,7 +10,7 @@
 
 #include "mp3.h"
 
-#define PORT "3577"  // the port users will be connecting to
+#define PORT "3455"  // the port users will be connecting to
 
 #define BACKLOG 10	 // how many pending connections queue will hold
 #define MAXDATASIZE 100
@@ -20,10 +20,15 @@ int main(int argc, char *argv[])
 {
 	//check for correct number of arguments received from command line
 	//there should be 4 arguments
-	if (argc != 5) {
-		fprintf(stderr,"usage: <protocol> <topology file> <source file> <update file>\n");
+	if (argc < 5) {
+		fprintf(stderr,"usage: missing arguments\n");
 		exit(1);
 	}
+	else if(argc > 5) {
+		fprintf(stderr,"usage: too many arguments\n");
+		exit(1);
+	}
+
 	
 	//parse the network structure information from the file
 	struct node * topology = parse(argv[2]);
@@ -94,17 +99,17 @@ int main(int argc, char *argv[])
 	}
 
 	printf("manager: waiting for connections...\n");
-
+	
 	//spawn a new process for each router
 	int i = 0;
 	for(i = 0; i < numNodes; i++) {
 		if (!fork()) 
 			{ // this is the child router process
+				close(sockfd);
 				executeRouter(argv[1]);
 			}
 	}
 
-	//TODO: what does this do?
 	int sockArray[numNodes];
 	for (i = 0; i < numNodes; i++){
 		sin_size = sizeof their_addr;

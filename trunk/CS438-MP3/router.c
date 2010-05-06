@@ -6,7 +6,7 @@
 
 #include "mp3.h"
 
-#define PORT "3577" // the port client will be connecting to 
+#define PORT "3455" // the port client will be connecting to 
 #define MAXDATASIZE 1000 // max number of bytes we can get at once 
  
  
@@ -108,11 +108,10 @@ int executeRouter(char * ptcl)
 	struct node * connectTable;
 	connectTable = (struct node *) buf;
 	printf("router: received '%d'\n", connectTable->node_num);
-	print_node(connectTable);
 	
 	//execute protocol chosen by user
 	if(!strncmp(ptcl, "1", 1)) {
-		lsRouting(connectTable);
+		//execute link state protocol here
 	}
 	else if (!strncmp(ptcl, "2", 1)) {
 		dvRouting(connectTable);

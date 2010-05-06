@@ -88,6 +88,7 @@
 	int rv;
 	int numbytes;
 	char tempPort[6];
+	int yes = 1;
 
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
@@ -110,6 +111,12 @@
 				perror("router: UDP socket");
 				continue;
 			}
+			
+			if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1) {
+				perror("manager: setsockopt");
+				exit(1);
+			}
+		
 			break;
 		}
 
@@ -126,7 +133,7 @@
 
 		freeaddrinfo(servinfo);
 
-		printf("router: sent %d bytes to %s\n", numbytes, tempPort);
+		//printf("router: sent %d bytes to %s\n", numbytes, tempPort);
 
 		close(sockfd);
 	}
@@ -150,6 +157,7 @@
 	char buf[MAXBUFLEN];
 	size_t addr_len;
 	char s[INET6_ADDRSTRLEN];
+	int yes = 1;
 
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
@@ -169,6 +177,12 @@
 			perror("receiveUpdate: socket");
 			continue;
 		}
+		
+		if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes,
+				sizeof(int)) == -1) {
+			perror("manager: setsockopt");
+			exit(1);
+		}
 
 		if (bind(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
 			close(sockfd);
@@ -187,19 +201,17 @@
 	freeaddrinfo(servinfo);
 	addr_len = sizeof their_addr;
 	
-	while(1){
+	//while(1){
 		if ((numbytes = recvfrom(sockfd, buf, MAXBUFLEN-1 , 0,
 			(struct sockaddr *)&their_addr, &addr_len)) == -1) {
 			perror("receiveUpdate: recvfrom");
 			exit(1);
 		}
-
-		printf("receiveUpdate: got %d bytes long packet from %s\n", numbytes,
-			inet_ntop(their_addr.ss_family,
-				get_in_addr((struct sockaddr *)&their_addr),
-				s, sizeof s));
-		buf[numbytes] = '\0';
-	}
+		
+		dvRoutingTable * routingTable = (dvRoutingTable *) buf;
+		//printf("receiveUpdate: %d\t%d\t%d\n", routingTable->nodeID, routingTable->numNodes, routingTable->numNeighbors);
+		
+	//}
 
 	close(sockfd);
 	exit(0);
@@ -209,18 +221,18 @@
  //**************************************************************
  void dvRouting(struct node * connectTable)
  {
-	char hostname[32];
-	int len = 32;
+	char * hostname;
+	int len;
 	
 	if(gethostname(hostname, len) != 0) {
-		perror("router: gethostname error\n");
+		fprintf(stderr, "router: gethostname error\n");
 		return;
 	}
  
 	dvRoutingTable * table;
 	table = initDVroutingTable(connectTable);
 
-	if(!fork()){
+	if(!fork()){	//needs to be threads
 		receiveUpdate(table, connectTable, hostname);
 	}
 	
