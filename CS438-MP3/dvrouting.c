@@ -147,7 +147,7 @@
  {
 	char tempPort[6];
 	memset(tempPort, 0, sizeof(tempPort));
-	sprintf(tempPort, "%d", connectTable->port);
+	sprintf(tempPort, "%d", connectTable->ports[0]);
 	
 	int sockfd;
 	struct addrinfo hints, *servinfo, *p;
@@ -156,7 +156,7 @@
 	struct sockaddr_storage their_addr;
 	char buf[MAXBUFLEN];
 	size_t addr_len;
-	char s[INET6_ADDRSTRLEN];
+	//char s[INET6_ADDRSTRLEN];
 	int yes = 1;
 
 	memset(&hints, 0, sizeof hints);
@@ -208,7 +208,7 @@
 			exit(1);
 		}
 		
-		dvRoutingTable * routingTable = (dvRoutingTable *) buf;
+		//dvRoutingTable * routingTable = (dvRoutingTable *) buf;
 		//printf("receiveUpdate: %d\t%d\t%d\n", routingTable->nodeID, routingTable->numNodes, routingTable->numNeighbors);
 		
 	//}
@@ -241,5 +241,5 @@
 	printRoutingTable(table);
 
  }
- 
- 
+
+  
