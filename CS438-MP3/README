@@ -1,0 +1,40 @@
+README file
+CS 438 machine problem 3
+spring 2010
+
+created by Joseph Subida and Nadia Tkach
+some code snippets copied from Beej's tutorial on TCP and UDP
+connections
+
+//************************************************************
+Files included: 
+mp3.h
+manager.c
+node.c
+parser.c
+router.c
+lsrouting.c
+dvrouting.c
+Makefile
+
+To run the program execute command "make" on the Unix command line,
+then run "./manager protocolNumber networkInfo dataTransferPairs
+linkFailures" where protocolNumber is either 1 for link state or
+2 for distance vector routing, networkInfo is a file containing
+network topology information, dataTransferPairs is a file containing
+pairs of node for data transfer, and linkFailures is a file with
+information about links between nodes which link cost has been 
+changed during the program execution.
+
+manager.c file contains the main function and starts the execution
+of the program as a whole. It reads and parse the networkInfo file
+specified at the command line, parses the information into an
+array of structs with the type node, spawns the number of processes
+corresponding to the number of routers on the network. Each router
+process executes the routine as specified in router.c file,
+establishes TCP connection to the manager and receives the 
+information about its node ID, its neighbors and network topology.
+
+based on the choice of a user the routers execute either link state
+or distance vector routing protocol routines as specified in
+lsrouting.c and dvrouting.c files. 
